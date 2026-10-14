@@ -691,6 +691,9 @@ input[type=checkbox]{accent-color:var(--pitch)}
  .addrow #new-name,.addrow #new-nat{flex-basis:100%}
 }
 
+/* --- mis evaluaciones --- */
+.linkbtn{border:0;background:none;padding:0;margin-top:6px;color:var(--pitch);font:inherit;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.ev-new{border-color:var(--pitch);color:var(--pitch);margin-right:6px}
 /* --- estadísticas --- */
 .mh-r{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .mdel{border:0;background:none;cursor:pointer;font-size:14px;opacity:.45;padding:2px 4px}.mdel:hover{opacity:1}
@@ -837,6 +840,8 @@ const ITEMS=[
  {k:'piq',g:'sin',n:'Pique al espacio',lo:'Espera la pelota parado',hi:'Pica al vacío, va a buscar el pase largo'},
  {k:'mar',g:'sin',n:'Marca / quite',lo:'Lo pasan fácil, no la recupera',hi:'Pega el quite, recupera mucho'},
  {k:'ubi',g:'sin',n:'Ubicación',lo:'Siempre mal parado, no cubre',hi:'Lee el juego, está donde tiene que estar'},
+ {k:'vel',g:'fis',n:'Velocidad',lo:'Lento, lo pasan en cualquier carrera',hi:'Rapidísimo, gana todas las carreras'},
+ {k:'est',g:'fis',n:'Estado físico',lo:'A los 10 minutos ya no da más',hi:'Termina como empezó, no se cansa nunca'},
  {k:'hue',g:'act',n:'Huevos',lo:'Saca la pierna, no va a las divididas',hi:'Va a todas, pone la pierna y el pecho'},
  {k:'eq',g:'act',n:'Juego en equipo',lo:'Morfón, no la pasa nunca',hi:'Siempre ve al compañero mejor ubicado'},
  {k:'hab',g:'act',n:'Habla / ordena',lo:'Mudo, no dice nada',hi:'Ordena, avisa marcas, organiza'},
@@ -845,9 +850,9 @@ const ITEMS=[
  {k:'arq',g:'arco',n:'Como arquero',lo:'Cuando ataja es un colador',hi:'Ataja de verdad, sale bien, ordena'},
  {k:'gen',g:'gen',n:'Nivel general',lo:'Si armás equipo, lo elegís de los últimos',hi:'Lo elegís de los primeros'},
 ];
-const GRUPOS={con:'Con la pelota',sin:'Sin la pelota',act:'Actitud',arco:'Al arco',gen:'Nivel general'};
-const CAMPO=['ten','pc','pl','gam','def','desp','piq','mar','ubi','hue','eq','hab','reg'];
-const CATS={ata:['def','gam','piq'],def:['mar','ubi'],fis:['desp','hue'],jue:['ten','pc','pl','eq']};
+const GRUPOS={con:'Con la pelota',sin:'Sin la pelota',fis:'Físico',act:'Actitud',arco:'Al arco',gen:'Nivel general'};
+const CAMPO=['ten','pc','pl','gam','def','desp','piq','mar','ubi','vel','est','hue','eq','hab','reg'];
+const CATS={ata:['def','gam','piq'],def:['mar','ubi'],fis:['desp','vel','est','hue'],jue:['ten','pc','pl','eq']};
 const POS={def:'Defensa',med:'Medio',ata:'Ataque',igual:'Le da igual'};
 const ARCO={si:'Le gusta atajar',toca:'Si le toca, ataja',no:'Prefiere no atajar'};
 const ARCO_YO={si:'Me gusta atajar',toca:'Si me toca, atajo',no:'Prefiero no atajar'};
@@ -1007,6 +1012,7 @@ const T3=[
  ['Este dominio todavía no está autorizado en Firebase.','Questo dominio non è ancora autorizzato in Firebase.','This domain isn’t authorised in Firebase yet.'],['No se pudo entrar. Probá de nuevo.','Accesso non riuscito. Riprova.','Couldn’t sign in. Try again.'],
  ['¿Agregar este partido a las estadísticas?','Aggiungere questa partita alle statistiche?','Add this match to the stats?'],['¿Reemplazar el partido de hoy?','Sostituire la partita di oggi?','Replace today’s match?'],['Ya hay un partido guardado hoy. Se reemplazan los equipos.','C’è già una partita salvata oggi. Le squadre verranno sostituite.','There is already a match saved today. The teams will be replaced.'],['Hacelo solo si estos son los equipos confirmados.','Fallo solo se queste sono le squadre confermate.','Only do it if these are the confirmed teams.'],['Sí, agregar','Sì, aggiungi','Yes, add'],['Sí, reemplazar','Sì, sostituisci','Yes, replace'],['No','No','No'],['¿Borrar partido?','Eliminare la partita?','Delete match?'],['Sí, borrar','Sì, elimina','Yes, delete'],['Borrar partido','Elimina partita','Delete match'],['Partido borrado','Partita eliminata','Match deleted'],
  ['Pie','Piede','Foot'],['Altura','Altezza','Height'],['Camiseta','Maglia','Shirt'],['Al arco','In porta','In goal'],['Puntos','Punti','Points'],['Derecho','Destro','Right'],['Zurdo','Mancino','Left'],['Ambos','Entrambi','Both'],
+ ['Físico','Fisico','Physical'],['Velocidad','Velocità','Speed'],['Lento, lo pasan en cualquier carrera','Lento, lo superano in ogni scatto','Slow, gets beaten in every sprint'],['Rapidísimo, gana todas las carreras','Velocissimo, vince ogni scatto','Very fast, wins every sprint'],['Estado físico','Condizione fisica','Fitness'],['A los 10 minutos ya no da más','Dopo 10 minuti non ne ha più','Gassed after 10 minutes'],['Termina como empezó, no se cansa nunca','Finisce come ha iniziato, non si stanca mai','Finishes like he started, never tires'],['Ver y editar mis evaluaciones','Vedi e modifica le mie valutazioni','See and edit my ratings'],['Tocá ✎ para ver lo que votaste y cambiarlo.','Tocca ✎ per vedere cosa hai votato e cambiarlo.','Tap ✎ to see what you voted and change it.'],['Faltan las nuevas','Mancano le nuove','New ones missing'],['✎ Completar','✎ Completa','✎ Complete'],['Completar','Completa','Complete'],
  ['Estadísticas','Statistiche','Stats'],['Armar','Squadre','Teams'],['Stats','Stats','Stats'],['Partidos','Partite','Matches'],['jugado','giocata','played'],['jugados','giocate','played'],
  ['Tabla general','Classifica generale','Overall table'],['puntos','punti','points'],['Los que más vienen','Chi viene di più','Most present'],['Figuras','Migliori in campo','MVPs'],['Figura','Migliore in campo','MVP'],['Ganadores','Vincenti','Winners'],
  ['veces elegido figura','volte migliore in campo','times MVP'],['Todavía no se eligió ninguna figura.','Ancora nessun migliore in campo.','No MVP chosen yet.'],['Todavía no hay resultados cargados.','Ancora nessun risultato inserito.','No scores entered yet.'],
@@ -1633,16 +1639,18 @@ function vAvance(){
   const msg=!left?'¡Completaste el plantel! 🏆':!done&&!sk?'¡Arrancá, tu voto es clave!':left<=3?`¡Te ${left===1?'queda solo 1':`quedan solo ${left}`}!`:pct>=50?'Pasaste la mitad 💪':'Cada voto hace los equipos más parejos';
   return`<div class="card avance"><div class="av-num"><span class="label">${left?'Te faltan':'Listo'}</span><b class="num">${left||'✓'}</b></div>
    <div class="av-mid"><p class="av-msg">${msg}</p>${staleIds().length?`<p class="av-sub" style="margin:0 0 6px">${`${staleIds().length} para re-evaluar`}</p>`:''}<div class="b2-t thick"><i style="width:${pct}%"></i></div>
-    <p class="av-sub num">${total-left} de ${total} · evaluaste ${done} · salteaste ${sk}</p></div>
+    <p class="av-sub num">${total-left} de ${total} · evaluaste ${done} · salteaste ${sk}</p>${done||sk?`<button class="linkbtn" data-act="open-mis">Ver y editar mis evaluaciones</button>`:''}</div>
    ${left?`<button class="btn bib av-btn" data-act="start">${done||sk?'Seguir puntuando':'Empezar a puntuar'}</button>`:''}</div>`;
 }
+const NEW_KEYS=['vel','est'];
 function vMisEvals(){
   const act=new Set(activeIds()),rated=S.mine.rated.filter(id=>act.has(id)),sk=S.mine.skip.filter(id=>act.has(id));
   if(!rated.length&&!sk.length)return'';
   const vids=S.mine.vids||{};
   const row=(id,btn)=>`<li class="ev">${av(id)}<span class="ev-n">${esc(name(id))}</span>${btn}</li>`;
   return`<details class="card mis" id="mis-evals"${S.misOpen?' open':''}><summary><span class="label">Mis evaluaciones</span> <span class="pill">${rated.length+sk.length}</span></summary>
-   <ul class="ev-list">${sortedIds(rated.slice()).map(id=>row(id,vids[id]?`<button class="btn small" data-act="ev-edit" data-id="${id}">✎ Editar</button>`:`<span class="pill" title="Este voto es de antes de que se pudiera editar">Votado antes · no editable</span>`)).join('')}
+   <p class="muted" style="font-size:13px;margin:8px 0 4px">Tocá ✎ para ver lo que votaste y cambiarlo.</p>
+   <ul class="ev-list">${sortedIds(rated.slice()).map(id=>{const v=myVote(id),miss=v&&v.r&&NEW_KEYS.some(k=>!v.r[k]);return row(id,vids[id]?`${miss?'<span class="pill ev-new">Faltan las nuevas</span>':''}<button class="btn small" data-act="ev-edit" data-id="${id}">✎ ${miss?'Completar':'Editar'}</button>`:`<span class="pill" title="Este voto es de antes de que se pudiera editar">Votado antes · no editable</span>`);}).join('')}
    ${sortedIds(sk.slice()).map(id=>row(id,`<button class="btn small ghost" data-act="ev-known" data-id="${id}">Ahora sí lo conozco</button>`)).join('')}</ul></details>`;
 }
 function surveyPool(){const excl=new Set([...S.mine.rated,...S.mine.skip,S.myClaim]);return [...activeIds().filter(id=>!excl.has(id)),...staleIds()];}
@@ -2102,6 +2110,7 @@ break;
     case 'lang':setLang(t.dataset.l);render();break;
     case 'signin':{try{await S.FB.signIn();}catch(e){const c=e&&e.code||'';if(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')break;toast(c==='auth/unauthorized-domain'?'Este dominio todavía no está autorizado en Firebase.':'No se pudo entrar. Probá de nuevo.');console.error(e);}break;}
     case 'signout':try{await S.FB.signOut();}catch(_){}break;
+    case 'open-mis':S.misOpen=true;render();setTimeout(()=>{const el=document.getElementById('mis-evals');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},30);break;
     case 'more-matches':S.allMatches=!S.allMatches;render();break;
     case 'all-table':S.allTable=!S.allTable;render();break;
     case 'mk-edit':{const m=S.matches.find(x=>x._id===t.dataset.m);if(!m)break;S.markFor=m._id;S.markDraft={late:new Set(m.late||[]),abs:new Set(m.abs||[])};render();break;}
