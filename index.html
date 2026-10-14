@@ -685,6 +685,57 @@ input[type=checkbox]{accent-color:var(--pitch)}
  .addrow #new-name,.addrow #new-nat{flex-basis:100%}
 }
 
+/* --- estadísticas --- */
+nav.tabs .sm{display:none}
+@media (max-width:620px){nav.tabs .lg{display:none}nav.tabs .sm{display:inline}}
+.stats{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;margin-top:18px;align-items:start}
+@media (max-width:900px){.stats{grid-template-columns:minmax(0,1fr)}}
+.st-right{display:flex;flex-direction:column;gap:16px;min-width:0}
+.stats .card{margin:0}
+.st-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.st-h h3{font-size:22px;text-transform:uppercase}
+.st-h .muted{font-size:12px}
+.st-legend{margin:0 0 6px;font-size:12px;color:var(--muted)}.st-legend b{color:var(--pitch)}
+.rk2{display:grid;grid-template-columns:30px 28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 0;border-top:1px solid var(--line);cursor:pointer}
+.rk-list .rk2:first-child{border-top:0}
+.rk2 .rk-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.st-det{display:block;font-size:11px;font-weight:400;color:var(--muted)}
+.st-pts{font-family:var(--f-display);font-size:20px;text-align:right;white-space:nowrap}
+.st-bar{display:inline-block;width:80px;height:7px;border-radius:4px;background:#1a2236;overflow:hidden;vertical-align:middle;margin-right:8px}.st-bar i{display:block;height:100%;background:var(--pitch)}
+.rk2 .st-pts{display:flex;align-items:center;justify-content:flex-end}
+.st-fire{color:#ff8a3d;border-color:#ff8a3d;background:none}
+.mcard{border-top:1px solid var(--line);padding:14px 0}.st-left .mcard:first-of-type{border-top:0;padding-top:4px}
+.mh{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.mh .md{font-family:var(--f-display);font-size:18px;text-transform:uppercase;letter-spacing:.03em}
+.mh .muted{font-size:12px;text-align:right}
+.msides{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center;margin-top:10px}
+.mside{display:flex;flex-direction:column;gap:6px;min-width:0}.mside.b{align-items:flex-end}
+.tn{font-family:var(--f-display);font-size:12px;letter-spacing:.08em;text-transform:uppercase}.tn.a{color:var(--bib)}.tn.b{color:var(--nobib)}
+.mavs{display:flex;flex-wrap:wrap;gap:3px}.mside.b .mavs{justify-content:flex-end}
+.mface{position:relative;display:inline-flex;border:0;background:none;padding:0;border-radius:50%}
+.mface .av{width:26px;height:26px;font-size:9px}
+.mside.a .mface .av{box-shadow:0 0 0 2px var(--bib)}.mside.b .mface .av{box-shadow:0 0 0 2px var(--nobib)}
+.mface.off .av{opacity:.35;filter:grayscale(1)}
+button.mface{cursor:pointer}button.mface:hover .av{outline:2px solid var(--pitch);outline-offset:2px}
+.mb{position:absolute;right:-5px;bottom:-5px;font-style:normal;font-size:11px;line-height:1}
+.mb.mfig{top:-6px;bottom:auto}
+.mscore{display:flex;align-items:center;gap:6px}
+.mscore input{width:44px;height:44px;border-radius:10px;text-align:center;font-family:var(--f-display);font-size:22px;padding:0}
+.mscore input.filled{border-color:var(--pitch);color:var(--pitch)}
+.mscore input:disabled{opacity:1}
+.mscore span{font-family:var(--f-display);font-size:20px;color:var(--muted)}
+.lock{font-size:12px;opacity:.8}
+.mfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.mfig{display:flex;align-items:center;gap:8px;font-size:13px}
+.mfig select{width:auto;padding:5px 8px;font-size:13px}
+.figset{display:inline-flex;align-items:center;gap:6px;padding:3px 10px 3px 3px;border-radius:99px;border:1px solid var(--pitch);color:var(--pitch);font-weight:700}
+.figset .av{width:22px;height:22px;font-size:8px}
+.parv{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px}
+.parv .chipbtn{padding:4px 10px;font-size:12px}.parv .chipbtn b{margin-left:4px}
+.parv .chipbtn:disabled{opacity:.6;cursor:default}
+.mmarks{margin-top:8px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px}
+@media (max-width:520px){.msides{grid-template-columns:minmax(0,1fr)}.mside.b{align-items:flex-start}.mside.b .mavs{justify-content:flex-start}.mscore{justify-content:center}}
+
 /* --- web propia: login --- */
 body.needlogin nav.tabs, body.needlogin .me-btn{display:none}
 .login{max-width:440px;margin:40px auto 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
@@ -750,9 +801,10 @@ try{
     <div class="brand"><img class="crest" src="data:image/webp;base64,UklGRihEAABXRUJQVlA4WAoAAAAQAAAA7wAAEAEAQUxQSOwIAAAB8Ib9/zk3/v/dH4Nk4uTdoLZtJO3ato2sbbRrq1jbtor1ble1mW7dJt2gCGcmj/uFJO1rZl6v53MvvRsRE4D/xsVZi5A9h8PipIGJiMDBrB49ncyHoyJiRtIymiaFQqFQUpfjT23xlIf/nOXg7JfOPLXFU07dPzs5FAqFknwAIC2biohgNwu6desyasLkiRMnTfx0a2XLtXQ0XFXZ8valL06cOHHipEcP79K9awZ2U0SMQppF02BysP2RJ5xw/Blv/vXnHwtruOfqKJ2Mrvrjz1/vOf7EE044vk9SUpIPgDRrAiKCZlM7dul44P1PPPrexvLy8soIm+qe01l1kiRrysvLy7dNe/zxR0/r2rm1D82KiHdJUwAIBLsfecxRt/3w26/LwqpsXlWVCayqyuZVdcNvMz84+6gjOgWCPgAQEfEeEUHTjA7tR97+8Odbysp2kaS2TDfU3SQZrSjb9NEDD5/XrUObIJqKp4gAkIC/9QFH3PfDj3NrlE1VVenSqsqmjbrl158+u/CwEal+AUTEE0REgFDrDifde/dr/5RVk6Q2S5fXZklqednfj919bPsMACIi7iYCAL4O+13z1Q9ro1Elqar0UlVVko3R1d/dd+i+bXwAIG4lIgL4cwsOuO2dtVVsqqr0YlVVktWb17x209iCVgKIiPuIAEDOqDPfnbqoQUlVpberktS6eVPfOGVEJgCIq4gAyModdOWUJduUJFVpgqpKMlq24MlL++X4ARG3EAApA46Y8uXMnVFSVZXmqKpKRqt+ffP0YdkARBJORIBA53PunbmpgSRVaZ6qJBtLFz116cBkQEQSSQRA3vDzvygLk1RVmqqqkpHtP99Y2FEASKKIACn5Rzy/dJuSqjRcVZJVJR+d1TEdEJEEECDQdeyET1ZGSVWlCauSjZu/nnhgDgCJMxEg2LX465KdJFVpzkoyvGLyRUNDgEg8Aa0HF39drqQqDVuVDO+YefugFEDiRASSd8wri8tIKo1cSe7887YhIUAkdgKg4JhX/4mQqjR2VbJ65h2DUwCJjQjgyz/21bVRUmn+u/66fWgIkFgAmT2PfXVthKo0f1Wy+o/xQ1LhvEha0QN/rovSKnf9XZwjjqHfQ3PrSFWLUCXXPntoK4fyjvuojlSlZSojq5/qBNkjQcr1G8JUpX2qsvQYR1p9SKWdqlac5MhBi9Va6NDVdbSsa/b6b6//9vpvr//2+m/v6K6tt61TNthW+y8sptKZ7PctZun+juRYjL6QbVuPJ9nWE8n/CWS/rtYSftAJIHD2FqqVKFccKnBQMGy5tfzWGeLI8BX20sWplbbV73faqXKmM0DK+HqqjbDh+VxnBJfWWIny35MhcKZ4p60c49iIPyyl5CDHMt+0E305z7Gst+2k8cGgYykTdtFGow84BcGY5VTrUJYc4xM4NXChlfzYEU4B+S+EqfbxcwwEF+2yD4ZfzY3FGdusQ7ntJIHjgh5fW8jmQyExSH/FPvTb3jFJuaeathm9PxgDAIVLqVahrLvNHwtBv/nWMa9IBLEoeCVMy/isALGA4PwdVItQVlyRjJgKxsyyjE0HQmKU8aJlzBsVs8Bl22iT0cczYgRB/7lUa1BWXCqCWBW8GqZFzOiFWEHk7CqqJSgrrkxCzAWFsy1i9VhIHGQ8Zw2MvtE2LgKX/0u1AmXtdSKIvaDfLGuYv0+cFLwWoR3WPJyOeIDIceuoFqBceyAEcYH8VxptgJzRK04AOW4N1fiUlVcGBfEp6PyTFXzfG/GT+UAN1fiiL2bGDQSF84xPuf4EP+JWkHZ/HU2/8Y3WkLiBoHA+1eiUa08UQTy1/lxN7+O2iCcg+bIKqsmx9sHU+BL0nGp0ygVFiPfA5RVUY1PWPZgRb4LuU9Xk5o2FxBkQvLSCamy1D6XHn6Dnt2pqygVjkIiBS8upRqbcclNGIgi6TzW16Kv5kAQAks5aQRNXrj1OkKCpd9dSzYuR1wogiSEYNcvAlGuPFUGipN5TTfPSV/ORKBCMmEM1rcY5hwsSOPXCf6hGpSy/JIgEFvzvxYhpfd0DkkAQOWIN1aS4pTiQYMh7vIpqTMrqB3OR4IKuXxjVrJGQBAMCZ62iOdfenSpI/LQ7aqiG1PBhf7igYMi0iBkp1xwOcQGI/7CVVANS/ju+lUug1WPbVQ1Iv+wEgSsKun5CA+KC44NwSYH/jBKarrLmjhBcNL14DdVsWP9hf4h7CLImRcxGG78aJHBVKfw+YjLKreeI2/j2+Y1qLiy9Kx8uAyTduJ2mqgxPyYMLd5qyw1h07oEQF0KnKTuoZjL/pJDAhQV9fjSTxnknJcOVRUIXltA8lZvOSoZrpxeXmAfr32wHcS2kX1xiHPUfDvbBzdOK11ONov7DQQI39yHv9UaaZN2HgwQu7x/3fcQclAsL4Xrw7TMjYgwsuyNT3A/+sTMiZqAsm5AHT/SNmxExApZOyINH+sfOiHifsmx8HjzTP256xPNYOj4P4hnwFU2PeJuydHwuPNVXND3iZcrSO/MgngJf0fSwdylL78yF5/qKpkY8i6V35MKDfYXTIh5VO+vGXHiyr3Bq1JNq3x6eBo/2Fb67Ub1GWft2P3i3v82Fy6ieoqx7u6+IdwEp5y6np0bXPN8Pni5IOWdhvapHKBv/PCHX520A0vadUk71BupfRwYgiZBR4HMToO1DFVQPUK2beUQQgkRsOzjgLs4mEEz9/19RqmX9spNUqxp482/VVLUohAa+VNpItScBOpzx8WZVtSVA4G9/1kc7qRpXanIQgXR/YlmY1DhirckBIpJ94MRl9VSNC1XWzL3f7ACBZB8wcWkDqbFTsvSR0WmmBwiQvf9TS+upGhNVcv7ky/JhgyJA1v5PLW0g1TElWT79uNQARCwAgADZ+z25pJ5UdUCV5NxnLusehEWKAFn7P7G0gQ4qWb34m6NSA4BYBAABsvd78MNNUapqS6pkzax7RnUMAgLbFIEktzvlvY3K3a6Zc/eoVAACW5W2J7+1ble0ufoVb905LBUQga2KCHztT757A5Vk49cn5IcAEXglVlA4IBY7AACQtACdASrwABEBPj0aikOiIaEhK3QMwEAHiWZuS3NQJY8xLHMFPbgBaG/gOvK6T3//BfuD/dfeLsL90/sv60/vXuw7ceo/+h6C/k367/0P7z/jPgH/bP+j/ZvdN+g/+f/iv3/+gb+nf0/9mffB6CP3F9Qf7M/uP7sn+U/Y73Hf3L/b+wP/Tv9R/+va7/6P//9y//D/9X//+4d/O/9d/9PXe/dj/6fKh/ZP+N+6XtOf/f2AP/z7YH8A4kL/Rf1r8afeH86/gv8t+RXn35NvSPtR/fP/Z/qvbB8lXYPmr/Mfuj+T/tf7h/md9+P6z/m+Ofyp/vvtv+Qj8g/m/+E/MP+4fub7ue3YtT6BfsT9J/zH95/yX/d/y3qPf3/5le7H15/1v5pf4j7AP5n/Uv8f/a/3e/vn//+tf+3/pvJr+0/7r/m/5/8ivsE/kf9C/z3+E/z37MfH1/rf5n8u/cf+i/4H/pf4r/R/tJ9hP8m/pf+k/uv+W/83+P////2+7D2N/tr/+fdD/WH/jfnemH6i+x02h0fIrYIsNziAPHROpzAszky0coSoGvz/AOPB2xcEJppfkib6zmzODG5IhY6dxKpp8cTwynWT8RG8JOjKK/8k/0EmW/55PIL2X1+sifVrIoZGHwpDvE2KT3ckGHdWn/tt7i1BYjm+KjIKQquXF3o6xNAQvncKixnvo28/WDvHlm0qjx3f7GPThI0uc6xPNojiLcXN8zUaJ0hi6DO2RwvVNlC/3KGG/eUrV/kK31wrI8Mitwj9eXCZcp31Zhv4LoORv1koq6AwrLOBS0e8RTp0c0LnNpWc3ZeXnOyHDNY9wMi6HdBzB+YJnHPGu3ka6MAAGJDkZqPMvwUBTARUDBPuR7ZURbxiDi11GZSWJP762hHerZOjd+OQo1m88ZgBO/qXeMvI7ygP8TNvWNOIVptX/jxSHeJS3uQ/GzSvCx6ukrFjM/YTqRvgKU79f01ic7iTjSJlwkmMH8OLowjsxCkXEAP+G9dxFsFx/SUWdmbqBRONVNKQaxugut1t/e0IUeJdF+GxrobjUmtXCL9BkN7dDomdiikWisMKCVt555hOePlUAqAisp+q2ZIP5DE2iasVPQoh4QEDfYF3AJCT/rEfSGU/TeYkSkmGJ5r8obSMoWQ93erzQUvXq0eTSrUyrwNf73fosQEQsEaeTqN042SlNbJp5wb4giuDdYdQR+2LiTjHov9010B6RfTZwoaWemu1YlRBG5cEh7KMfJS8YFiKKiL1XrwL9yG1MnVZH2/K+Q4UfkO310+MraF9u1DPcMo1eIE/hLW9tLjDvMQwIBtex9XybTd6Etlz1TBTVN1bqBzkMXqqfcnTc/n+8WPOnumFWEsuUTTEVrzGwGFPUMXCAA/ScfHR8DDeWQ5/RLJXhi2ELX98uDY6f+k4hBR9fCG68RpPYyKvmmkn90Kb9v7TWZitqHHhmgfUV3wEme5/pge6q0Ag3UkgGm7RmikOT2dzm3gQB5ASFlnThFyCFHAZnZ4Yi/UIrjlnx48vSW/5ytQEEmmBoRiD/hzupH9EzCAO9FqYDcQlEbJ4AI7L4t4XT1hoUJJpA7gWUL9p/PsWofRD8gJoVAM3wMMNU41A/mCMv0INSOZAF4y6gN/kJBuOJxdsHFz9/T/Hr78PMtspBPIYUpwbN92hY5iw6/OzOhQ6j9ntm9mAzbIo1StR+7IkEtzfgYODVqVZqWw3WM17UcXFUQk+baDwKJIDyPuCxtOQvhlPVwStRjETqDaF8rz97ejZCpxdA7TagiOPoWjYZ+7yEeeD43+OeI5bAQCRc+zz08xSihq/y6BsiTNlCy5itDYcL6+ZxJ82nyYDXL9pdGRQb0wovVCTRteUtLQjdHZqTPwdDkLMG0I/mCC4Aro3ZakeOlQLfBJffQuWv2oKFuuXf2Nz3iNjc5EcB4QAAP7+0BwZvvbpOsgZ7C0TOc3KfE6GhKOJZ0087ZEEGvJ2EPuwvYREpSu3CY+zGXsAjdI/ULbf/Gd9LAU8jANMUuVHtr59FlBqi3vjAK0VBX04hBiw4/5b3Dxlujqn5MFbD5VgmR60A+mEqPybB6WqS/F9r7aQnn/VdSOD6H0STyQkVbBw7fKdg2pSeIbePqN3A9wehcpyWyHWNh/vo5G5nbHSWjrQctmGa2dVJh3OpPoa9lL5eGNqlQ79pYIiqvmrf7z9hLJSL3kufiuRdBR5Jv7MFabpsWg7IOi0LhM0yBYrV5uxx8UDeiooN/WACYc94f6NodsDADa88ZqeR442pfhAyshymzEQnOxZgBTw8qWPmZ8OZ/sJXweDqJrkyx+dBIJjvAV2O1nW0cjmdQtm0Ap46aeEwZIhmgSKgX+YIM2W0+xGxwfEti0DsImmWcd+HV0zIXGcLCXXl92I0y2pRPaqAeKMJDmCnYbua/YJck7m9/XgE6JRI24BmPfOrfcid3xEKUhiZC5Qar+F3aa5CrXYuUgeaCq8uwAtemD0sU/iIq0Ut+S0JinDxTQoshMIHfJmmWPqDU78dlyGDfI+js4V9teYrQmT+ZPFHis6LCVZdBy7k8ysOcUUN31e6/mVibHk2rRRM80IN2Ko+m3gdkrcj4rbiU2imvaPANBNekzM9kOak3MIIBhANYR6Bj0RmyDGk7OrCgWs0zAlyQi76OaI/khx6amGIlp0ML6MkBWPTbg5u8cwzN+qq+5CR2xlP00kPjKhm8z4wBchwA/TF5AqAuhUV6tshGRvwkcll4/DIAga4yFLQpGiyR1Ohl9fX+0YMEwZZRZt5NDYc1n5n/GX6p+mNcc9/pRqA6RhLQW9x8FX6kJEq571evQDIlwpfTGBYP+bu6uvwm9B2nTm/m0+IgTBCxSEI5m5xU5KnG1htKvtSbHpyFr1+aD7f3WfU9dFlk56F5FIraTm6xXCxxaxVFsV91h3qUeCyAd+hNk8y8Dg5/aclRmF1AX3eCK86Tkk/qgg4Cbgr3mhDhA4JYBBdwrrj+G/HNIQZfH814hcIHMK9Y7Qi0Jg2bdc3oN/k17IjtM6Uonf5xw8Zeme3lhF/xg/YfOaImJFy29mU/angwrB2XYCdiuJDpVA6FSw4OTnrcMGvOfg44XAdc7//ftb5cqr6IYjaF9yYBPvR4wSrk8cgFgChwTjRVzI4EUBrD77TTSkj06uYWW1p9MheE7S80UPIPVQjuPp/URd4UljtbFg2AbRdx9pFljS7yqf84nvaKLazUozkUB3ZXxw+2OmbR6zJNeZPJPpPPrYdFfpZkxq0KJ5aBpOYKttTjKK1EWD+f9Xr//opP/9GI//+iob8df48f/fkv71RqX+O39+SyeAJVaJNUEdfSqAaXkXmnpK50oGSlYIAAEPes6WXP2eVBgp22+ZzGrLSCd7Aetr8C9n6PK9E0UQM8bVC4tC4EyhjKu/mzbQ2UXnMPNmbjTa0SjdJsH4sCD0D3GUYZVkOIGkNZPmH6/URDEeOefrO4L53iv5WFs2YWR51ono+dEIzXC2tHdOCTraEZhqh/sJ0n1uxS+fUZM5/5P+rbudNQzCG4HqVyR1HYxuggRXcuaifArBJRrkYxA1k6Tow2dFBH26qemo3xc3VAp/nnU3MIdSOLNmm6Zh33cPi2yVrWKqRtaOvEhNMO/jB+p06u24uqzOnD1YlmLjUgOJWf75UrWGBSanNlTcuj+iXZS90BFLPkVKykDvNgl0puVs3nSBbCVpqilH1OzsARf/huj6r8vJnwQhOcUhsnSsdptX34eNtffEl8rub7jHAqjedvoH+FVN8f8uYIwDNgx1ZwpYbylrK4TEG3fLTdFYJrlNWLs2rdWH67mdtjN5jymTKbHjVce1OF84yj4XooWCSfYmq+8kt7fgpKeysPBD3vmMdg4tmqXGvWIwdJnCiG3XvbkligkDngf1/iVN/VETrlTmZ3NeSepa8D1ak5YVcF8UGkTsec+xprkrO6OT3zBRRON48ooKcsKw9INmwIucnz5wfhDyUOxckpOYRTPOrr5tFTSjo4vmdymHl2lN7iwM+g8hpz+o5pcjcCr4nGYViSY+8SFGWNF22sMHA7wbHsdR6gi4rQYHXbjabuYu4r4kXGb2G4lsxDXsIWFVDeiRq63q8+qaC9TNe78K8kstBCXYahi1tZdttbhTM3hvAHalNxGXglsxSKkCFpaYX+Iwr9KdqoRd3uzvb8VFlRvHDRuMJOL6sn6A7qFhY0hSNgf8nbQqAoy9RDD5HrV0Mri/BhCNXk3H/qKASn2wwLZz64MU5k/ghjPtS/4g35ecEVdeNhrzIttkhkV7JDjz0gcqaTHxsf62s8Y3DnYvjNv5sXE5ew5qhYySJZQl1I+2UWGAWYuursKk885vOSgBFMOqXe8iOqX3mTq6f/q7RRZAgZjAndJSDSB8m3D0jrmCU6ezvJJz24SCzS96T7ZiX7KzfJKZUKT5n6BLV2NGDMkzQcpT5NZvh+lx+8WfEgNus8dLRAE/rSl4O0NyqVIZ89DRpsYYL6+iz/ggVgpqWVgyNws2JxvkwKYtA9nTaojZ4xpGqc8MBkXCFiRLla/PQrJPkcZU0WIwCZhRvj88Mzrlg+IGfn2XCsy6U6E6bJuzTB9iXMnc9/E4F/cGWWtRJO8ycYiVaFe5TR7sBS0llsefaCX1DmNvjDnu/LwyXt5xGRZ3W7sUZ0iigZhwvv5VVHF/obOujTRhil4lg7p7DH99oi/MgBkP2aKMlsLf/cNF/Gf+/5YBcTKEX/rYznsVJDKDXkGSReGsuNi4hIsAGxo/IABQwv7PTX4DxM9kx6xf8NYSl6lYfM7G76QnEaVQzPJr+o15aXLaO2i1qiMefgPuTQFVlPWFnfdSmGgDfk0YHa7xTUWwW0IeFaI4PNQ5OglV9U3ZL1WxTYRVK43qpc/hWWPNZf2PA3zQt+7JbCQe+FicDL7mSdQV3ipx1Ek/IcIsTGe/lDYoWLKULXiA55/ijSK0PgDPotdeyUduRj4j61FjU5AzG0rT/tg26dP/LTC//ZWI3TCQO8M2OHUdl0omLUB0/WV1klcDu9zCKPPmYn5bGIivIOB1Wo8wvloYdws6j/nta72sHcmh+Ku1P0lEzf5wgKIs0TdTlH9Hlx7xiZnP8AHbyRSUP2/fFYJJOAEFK6qvP+P8hxXeELoWb6OWc7wGN9/dBmDK57PI+zEUx2hh6ZMQ+VfHh8wrUr2ubTM6PK9y/osQktdg1JOuzX2V7JdaichSTigJldtF4zW2TNjld/6EsDmrNSkBwtTbfO/TFTPqac8GJLoAJ8iWLnf2negIQQmVmtYyUQq+4ZLurdRlGQjdqSosH53M0QlFFNMyxUfumWbPo0aW4X2V3OKJSO5Z/LRIdmW+scfi3kWu17FeG6Jxqygok/RGLgOX+5HbsPcXhN5jLT/NvCwQZpLBK1Taf2VNdqE8odgOTuGdBK4hw+6gmUN4Dm/I1rT6NfWaqIx2AKQq0kmFoz8LlSysTS7Pbbl2eZTmyuX5OnBuythUNGtS24M0S2OBeWfyNHOs9vQzLYEPxpa5ySZrAc2sHkXfZAMlSc6aN2VvILd7ZCEgou6v+Fs+pQ+23ooKo/pcUqMvRO/OO+QKdZfd0YoLRz56yv4ClpQf5vgkDpqDd3CksBOik6DWOsKwoj4eUFsaa72dXI9zkZS9PA3JW82yYEB020vIdVuZGD2KljPoMUbVvl+pR2S180FF6eurCnizo/B2Tcvw2KQEdID7QT0myKuAfaKfuFTgjSMwmFdJ2F7IY1rrl9sp2pZAbepVuOhaiJJ7AqxqHqVn+okMhnxkyNkCBzKcsRZuepvxLNIikMx2X2egie0sIpyB6HYAZq/75qlZyOmlKZShyDd7bMpiGvg7CpgR43j11O8m78F0o8UnDlQogBYY6T05Bha91t4fM5XzKa9e9GcLJ/HzB0geZnRTPyRoAMOXKP/xrzcJ1kjvzO7klpvYDPeTV8c2BF51FbHVLJj/3f4klkQSl3CvQNLlfyPrP6xzoSefspAnSG1LpRMho3/1gX1TcryPXdy8Z7rQeD4UajizZmX9q++j0/AzqbUlCFtHpaY4h7v4rAdCUX22ciZyy/S5pqoSiahlVU4AHeNPHtQsFhvF34+bP07JQ1uHgIRXuqvkDIm8xIeTnNLRg7uXuqSgz9jPz1SUGeon2r4g8q9euP2/nF/JMwDC+6WixH6Ja+kecLOvY4pcaXyJJsSYxVJ0x3c9w8fml+WBTS+nrRMACWKCXVDZvdM0k9z1oWUviW4A0bZZoRPC6krzx8jaVIX9rzCoMPIdk/MuzpD3yr15K2WLt/H0HZQqk0PNvWpBLQGykV0rCAtW2MyQGtuOc1SHqVf4auJUTlt5Etp/VXzM8N7jxW2e6hJYBijia0MMEvX+PaX38TdOCmttrdzlHzrkUHn1+m1h73UvYrrYjkTdCvgFJA7znwKPiPjKm12IY6+8j6SaKyzPOmuaH7BULSjwLUX9h4+OjHLEwKifr/2+T3Xm513ENRqcUG0CDtD8l1IzOxZcM2AMLfb4WvEF0Q2COpKv6wksA+SSIohJGjf0H2dyU+WfGhDNRLJ75bM+vRDFfsNCj8JQXZfJegNXrwwllvIGhxP9buRIMS9/JwN/HLenBwfM49QzSFiJsl9tkzcN0KIJ9UHM63nJYVCJjNoSl77CzknhpaU3TNM09yGSuXUd4ethSK6O6zTKw2PSMzOA2B+wSA/1Np1Ydz0Ja/raWkh3sIIWhng+J3F2ifxDuSbxSXxfqUtl/uYcqIzRx9mpsVA5zs3yXxBe8FR6F5jt6uijysl+knHa9ic8Lgf8+j0tHYQVoCKq9pWvZq0bz0Y+GrXZ/WO42vmaruOloQKHPf45kuazL7IHvF51sDBPjHin+oWr/ChSWEX4fZN44qr74ULzasG07Y2sp1YcW7BROrIzeOBJGXOK3Tc0++0zCJmHVUouZnzj3dmmpmbPdw86ZhxPXn9uu+fIazW/n6yYj9C5zbTt6wJ+kXxzWuYToEHItFi7zKev+MlVlqa4l7lrGNuwDxUCLpXHmwXpXhGl4iwZ7Gc0VonE3wp65z3wSC4U5p/MzU1JW95fsW40Hj+PD1ji3sV1S5/dIaZSv5Xcq+LdHw7RQSJ/lflumqaLJJgfP2J0G71LVUNIF/v777Kl+5TuXQcOUb54VsBLCHbGo6M7SR7aRrZu3u0E+SiMOi5bULRqHFWlC/Q2mGYGePICX56zSyXTqG2aoVsmqzuLjqn9AuHe+Tr6wjdwFThvoQv9ND2PAAN6jdQCKNMOb+ui4Y9r/SrG7dQgiV//QQcyEoBLGomT6Q6YEBQLllmykAo3jn7GxlpIOAqqJP7KRvQTalzwi2YEh/xpC8wkmmC9KWJ/VPfeyB1C+CPmloTVDxsrBY8Ko8gtgXg9nDXZiNldFg0VLTYVowCdSIr23174N0Zm/1igZhx2qq11L1njlDndBmJUJFjluE3oNdngSvUY9FDWIBf5VsdmHvarO1vW/8SQdXg4Pl94B6esnvzj3ai1C4580nA7gSaXqrfde1qnAVTpepVnxKesNwQX5gGGsHHSjnTLnjcotPCgUH+q9oYl+VSY/0vei6QHkPVevjOFEQcg3LmBUhPI/Y4vg4oArQrb+P0JAEnxGXQ2tim164pJy0U1AG0h38Sl8GiFDsK37EMqF1nPvm8E4XlMndWzJOhdDcwOa9h52sREwo2oO6+LNqgiRQXdw3JVfWeMEJaLdmTc9UHIHY2WN82B/19ZdBq+zri8C6s56xsVTp08QU9uXpW/49m+xalEddKaG55nAJJVEJFu3vly5ajR1ZIZPbaTL8zHcOMSkfd55AF0d8NTzMG+D2r/h4H3AAWFPHoqqvWIILgYx9Soe0+WJSxa7daF/062kDDRUrCw4dP6oLHrzttALtkzMS4rB3pIe0uO118UCe9cFenAOqXcYTxzVqr3VLPTnkvRGIwbxqk8ZDIvtLerKFVuhi/gH85xwb9ZyOrGZFq4y331gE/2tHzdD5skULyReBl6jPhTtGzI7lynnUzPuLb3eRupYPnRa6ied1bdsorxH1WWFVxHJ1iClu/xcOaociLFlKPIrMS/LufUwMGRPaLiuuezSfCIv7oIYjIYHntGAEl1Siov/Fj3HL/pdHSmvitylqXVWzaSfUrG39H8LRCxe4W2PYstPBBfqeXVZm/7VDAndd/Iyvq0UCm7XnxvgKeV7K2zAtd6v3GFiqeIYI+VtiMdSqlPQhkWGT5UuyycqeUbpTA1FKQbLwueqeDUR3vaJ6skjw8ut4eMqR7tdn+OJt6SK6eZnaqVKUIeVEZ14LCGp8Eg78PDceslCRAXFu/fTYj1HFdiPUR4QJxzm4fs1kwKwb4qXbN33vS96cO0gFKd+QycgHSJxApQFaAdWIKppd1CBttnPYJgg7pGoc/ZnTYg+wV1DEfugOLmrPJvUGoO5RrtXcjqnefIx22lqESURhuLfrwEzNCwbmU1BmCUPNpVxdvgHfj3kY28deS6m7EABWWVy6TmwgebBIvSUU1HiaCvCWNfd6qyjLwmUOj+9WOgzjpDeNSuIM1kgzBfRTxkCit+wiUsRfFvPjjc1GjCg8vcnGZDgpsvEIzGPWBBrAAGlh6QzHboN5oXJFjjx489SNCqKmYm2+qiay2KRhci1Y+NZ24ZPJySwCmAot4/2txRBhID/jPCJC/shQp63pip2N9zT3nh+cmwgvzlIzsls/yYeL/O0z4ajMWyCvmrZFeatAUK2wLqGopob9y9YXiVRrHu6s5KQsQua9bfYBa9fzLfc3MtWdN8Erolrm08EZqqeY2WmpjsQsCeQBQ9t4x6Xt3I4o2fGTsjtFGkUPAcYUm1nyU2wb1f2+gJQPkuVip77arseCAC54vQ/3FHT5qm8tsP6eKb3zSKbEIKn1Up5DpxETqcVEUFv1D9Aa8s6qG2PxUs6rCAbA+K//6TOfW7cG+9knm4AiCjDJaYOOXbHBAO4z7FuoQDxzJD7qleIUxpjDThsv4dcxFJHroUHHQ4ufDaSTlLBkM+Eh3a6JRJ9GO/VDcpDCC5t+SBsGUDWrVLMmmK0cI4z+L5YJFaFWmwoORPleimATrWyawcGYh7v4vj1R5+tEkZiUJENFH/++7p7lvb94BtrDkoowUsVcwK6xVHxjRpVDvPB8GQRCMZgzTtN8CGKRTfgHlPM/XZ8LMd8GOEwRSHDsIaWEbAs3i+fufUBcWLnxtShS/QSjK00OhvPAfUpEMLKIWtkq3Px5kDmb4/QNuUJN6dwAGeoBnkb2Y7ogS5chBgJbU9ZP8+V4o5P3uxxw1wMFR+57weeWJD+SmsEGNWlYOGSZm+y7IrPFcFoLxNr9gWJB66LdKIczorC6turbmjHRl39tZUHsmd7V1HdoIkkclbxQZks+nQs4HcvND+Gf1rtD2ad7fZpQRBZBvmKjfQ/OIvPSe+MQQcIIa3jy3MVM+RcDhnPf4XZENEfoX7TPEhSbTXlEkG5geOStpN3M7rOq69eAR/CSC/zr7nlGEr8LyCdmbxBUikR3dd/2CKjmfPusm2hlqxHN3dm9IX4LOr8Nh0jtJUEzdpX1WqEAxhDTv1tGgtqK2RPwOxv+/tHLynZBmnPsqDgTgkM3Qm32xXbbDTwWV8wvNZEGTtmMJvH53CX0tnI180nHd2l5bNBUeOu4L1cXahd7R+zrUUVS4c+bQAosqzvBIs126wAfeH+hUl4E8FE9LaY8biongOawVPJ32zvGqiSKLQr2LQuugOtXWD1+VvDZ9so6C2XByogwLPcTI7pSQvXtrAnThMS0YrGTilDPH7bjpZzQ4/TWAzgPplULuPH2DyDRuZLCBplmkaFycQQuAKK55g2/h6xPywpgHpcQlEgQeKpX22GbhqXSlOMVtWbxySjyB1OpRBqH78zjO9KEdV6KZH3mtRLIWM7F3mtFlFiUYWtLrJsKgXmx+ZtaUrHsb6JnfMWLrKfgZTQNjV/8l+XGTVT737CXyeTiYTXATGIVek3tJEDTIBqVRSXNR95i+628sOAXTS1Bb3Z8Ft3GxAwRFKKD8tx4kAaJi9p/ZgniMHtJ9sHSZIup2wypgrbKDYXleSHINt4AnDQJP/m/VWN+jCymI+f/GYoY+WpX18ose2vJp/nd/478Eknroz8m8Pr+r7vBreldew0f/9VxNHs+dakXEqYnq8fMZqMvOBhRaH1zGeAhEDch27ZUs3PNuUiVfibw295fTGUck/g9DjSYEr2rntdHqYNiD+Ngi+VH6FLGZ8ENkloJ5ZVKrlPRPUgd32UoAMCUr7aibqcURumQAlgw1txxQa3Vp/pGwj9SDVRK8EMVbpKSq5zA6mciM5A6euIVfKwMO0TZfVcUNxMp/HQcOD0wwbrXcL9pvuJpu03eni6Fc0BlbK6CnFk7EotUV6SDD6379LeqxGXyMy81kWg+7/T35qvF+IAbF/XRz0qDYthm8lbQuHGqwamEZ0BLE8yp78LYByCelV+5WnMolF5RVkatMs2dnWA0fINT+QScYp4qINXLKJOd6tLbEZsRAM5PtwW2OKGIRSxDmAl4bu/DhGCwu5nlwMuY75QWXLFCM3238vDra8CX2I4VSEBtm3jw10Cyi3QcMW/9bTfDq4OAUOn9uAOqKCunZhS4Y+ceEknqMxa3wJRIfCO4cxvdV1BiAueULWs62382+7xT4i6oNyfTV1jAsJhp5EqCN24UE24zbi3AZ6t5eS+wKTGOlcGhVxSEhzk5nAS4yjwIvG3ZZo2F60f3442GVckIwRz5CI8Z7V9wuR40Sdos5alxb86FWOGLhLX6Avlj6EW6yPL06G2/pCmB6KhMuHoN38SurqWIrATWepUWai9s9p8SJQBchaZWBeSGu+z+f8VClQFS3j7afesDHcKknO4SXQy5Q+C79TcbURofBToiAqrINKwqBnweN0CYbd7UlXlRqwmg8eKPCLM4cLAyDse3MGPo3oehHEoEk/bTWszywwOC4nA/iIrSlJFp/Hc3rE1IlYAFPKg0KlQuDdYopg/JaKxlPALvOW3FEsHOppSXvJAXLrrfnbdd9A4UCmOoorH6lToEntYC3cpWnnGi3GyO9EtTrnDzDSU9rv0eiYmJusFV8xBks761bpImdfPD7WVh479VGax6sZi9jvBYCjuFRFDDdk01XU/H19QtbjsxVxP2ZVGBeJhYJr7a8q9zY1fVO9XM3R7vZq8VESaYC5eYAaXYS1Mm+Ne2vrM9qk2lBynNbqbldQRqc03oX2EcOWLTr4cl4BfGePmS3f7XjJilxZ53YcCbIDN436DFwE7lgj3ECJD/Eo+rw5Je5GiWx798mxpgDfvku3DxRAkoH2HZI4e6Rga1UgleTtREDGi83+96wcFjgbfU88z9dJ89ggs5fHr8HMl7Q1Biml+L3qClNfRi4vBsIH0V3C3FoJtwH+AhUJf0ymj5pEjmaKgVhjq0dIE8xTduWTudlqgU4/JUZ0hAJxRJI1bQDPNrywRG+jy+/juY8hiCS2eSaXRvzriZVR4VWKgUgfAqBA7ukra7Lt4aR5E6H3e5nm8f8LNhsMW/kqtbNt1iNSxYIKtnRtCnUrL3uY3GztqZd3oYhGsKkV53HoaF/8GxUo/yGyVTWeissZ+CI69aXhYnOAOIgBCAq+6tS++s2TiiTLEKomcULhitgouRdmPrbUBImkQmEtEiu8y+VygWediC9nCR0TFg4dpDYTq3l/FsBD6yuhtmUsSaMewDjJFFo3OYlPbuw6kWYnAPlXY7hjHOTS+kLw61d4ogWB5mZ/gmsP0Oh1KQkER2Cgxz0Lzx1zaaKIvA9DN4bBlgUFDhEfKAmDgzx10U/tIM7dOUOoeVOOgLj0jQJqEE+4R8vh2FfBHZxe/KuqraQwR/Vy2Xzy9ubdfg9KsbVGkn7Q3UTwg611VJQ4vHZFFqDnHWnAWOKWOM0iLrZxwfBrwCaKF6OjX+V/e4tyoMFQO/kXBKoNLyEDSvN44KPjlmRRTdKo5Q+VJLb0z30/LtNrkkIej6oPZCQose/dSNbS+u9K+kLICY3vIE008ZAAUAR+cwY0is6pzKirnZpSmcJU44e57K7dS3tpT/p0dPc16Z2xFybJM8IPAZ2AgoVgzU2H2oF6evA2udrTtGKU7yFMJ4aQjjQfyS1hn7OLMEsEMxAxasKj4asyABjZ9xZWo8+sJH7nNNzBhYP103KasdS5JQKsXFqpVXz/xyltZ1YGL3OAqnR8Hl/wQIQp9k/jsLl/+tn3fbQbNbww6sv0/NgAZ9IAgvjHrjY4kRiIz1BTBSV/TdEtMDtk+ijph3bNV4S38gQV70XpCRlGlEVizjALBcV1j5Uw8jZZvi/6qvv9LQRZH/N0+V/G8bIcd5V0IcqzmMlIuRuTnwDmZy5GPX8SjfLjC2AUVTahbkE4S6OENVyp51uRETsJx3AT+QJvXxxahzv0p7PHkJ4tdsMYPDxawnZ5PWCI9ujy7LzEtG+52XOevVBM49wOSKPueP8HgODbeLUA74cVy7CV52JSAK/UGw2lDa5b0FGn8HEaVlS+y2PYNnpKtV2IUK1ZxlmaBSOGe25mQWFJWx/5txt8uWiF+IAer4D+nq6TvPL54x/JffbM/TprMmiqae/1w6szYSJLP/SJNnETzVPm3OpJuv9Y6Pajkn1WRV0X4pjq8zhuXIgqcKKcZ2keHhs6UkJ35+zhiyfZ1aL+ihuWF45ckAtvBMxlLtOZQvV91alsmksjRkVBIBq+oRRIkHLGXhIBaYz00IjRQa7nafxQGrzYhaUqvxkbO48PLwO5zKQqTRv/8MXcRALzmJGn2IWCegkDtOWRYiY7B4Y3wNdJ4/+zZo4KWPR70RGiXT2PNPibOf5VMBERZ70xq0meg0A1FhE9wYHh3frkWFw5Ad9/t4uzRXKllX4gGpxwEOZjQimPF7jptb5TmLi6VfW+fV0uHRwGUdw7wPqrDEA4J9q+jfM0Nq+ZZ1C+OpgfozKuN5YPTbfWuuIII/pGF/7OYtQPz4Zx0b19XFMh3PM4c8iJZZEefp7sS+cgui9wBpC1v7P05uiABC5IXaHnfqUS3iO6spDzK/IBhP1RNTSHjGP/vIbip5C0GKKkA0PbLblDKbJGpE6WZtF2JfLaV+qz+GdIT3br1veBRuYSOC9F5oBpvQk6P758di0zRJSh5ZZewFA2ic+hwjTh4IFBkcR8hZxaC9r672AecrXla1flJDtaknaDs3IDWOKthb4JnVP7NVrQ87TqjdG0FIm0BWqxsg/54+pk0LJQ0Z0L2UD7r0OCsbcixcv9X/9Nbq7rzHYw+i1ei/l3PKeVkYFa2IYQWxTzqwKAWvvyCAP04rFNaMa4XFUXD9pmgIQE2nJ0wuPNX5ZE56tIPiJRJryhY9VYeUS/Fc0S9zbk1xvTNDwa5E3cBU128HK877WI9TraOvqGEo4A8cUxNDMrjlWIn9Y9BxiEW9EwTeTJxHyAXNviZQ2XsR47pyqyFmfI4UJy+JSV0aJSnjJO52BVdiVHsGVoDjJxxZ6SHRNJVPg9hb6PqJCPIbUbfDh1IuA19VyJCQXj4BI2TaYcq26vJqFCO2EsEW0zQHfDKBReM6ucfibqOt1sp53sIpk/sT0nY7LXBbCpCoA2ATsYjBg0HtsdyR2Wd5iFqXnwxFSOWFG1EpJ2GCn+GxO8I3h4Kj3VkjEMqJvIsjgiEmYnv5G0RJQcAo2Xy4NwXiUn1Z96ItGFrhgeE4mKWzFSWS3s6JExkQefuPHS9Zl4zzfYd86IoMMa+NnkQrEF4depWe531jqhAWRRKFqwF4achsXTNRsvzluKf32g4HGooGiD/RcKaWZJguQiWXJrOMHh0BRKZyQAkACYwd4PAj9Zp/QUlGZ+L+lm5cJtFB6lv2OOff2VPwoy1uYtTCmI5aBpXsjALSj2be9PpxgHivmGWFHjfQJ0OCZwwpQ1WW/jFR5SQnJweC5DN6nvfbYnwLgrCU6/dvQ5AfG/ARmaKhrYejmh5YS1yJyXkRgvQkyuxlVmbkSdvM7RYt3UJ8sVaxtkMYtGX3/w+/ZhD2K+SMVW4X/3Aj9OhZyZYNqO7lMw8TaGCS6WDA5yRNle35JL1oNTLwglvjWiNj71ooYZLSg4R6A+ocoYI/6mvWUJZq8AEBReoG0L/7HM5V47GrC2E+SNuwsd/R6Ox82KEtZEnXDE0Z+Jbh+byVozyK1YrBlsDwUj2Bh16IjxNhPsRt4CjDzcQNTnFnJE4XTUS6919y44IwvFyGalgVbDz8M12io57KrZGEv05LC/3joakatxp0xTeCG6dU0lAim662heRaHugbWvd291GyXZrvS3wZMh1C36RpDUd2k89x+2iNOHcbDWitoMlmVqJ5MR3cHhh13iN0j9NoqoD2la8TEj4LuO4VF945swVD4di21PfOyeVYJsN+aM8yTi1FGYXQ1cyyhtKPm6JTuce/8PcYwlb/4WBP6NXjSbiqRihw2VLHvnJxRlFWYigbzybxk6uVKTIsAZXG00OKvibyGJ7usPP8jjBKHyql04CHahODxnyCDEnBvB7TC4q5f/LYUPxwl+G8tR2b+jalAW/T48siczyJsz6GABogq0DMb+WjDhq5Ma6iKixoNe5MNVS0SLxVm38kyIqS3c1dDYFaLn6kTTROOx0K6GrgcR4lj7aIg3zoBRl+HjMSzOWfbLPxdnw0L4NYBW1h/c49haZXZ3xE/ZN4nKPlEapIvmp5vo6pr0phRodz9fSqPZQNbEbwQRunn4X8RCUMXjlhvj0c56W7LdPFQXhBT4Yks+4LSv2s2BAP79hqKiZv4K7iW7Dx+toMB0dXLZCXcRFQN+mlIFanGA6w3AIJLfqXueDH1mXmOqNiAfTN83EaNP5QC1NbMxv6JMVXig8SZEKkaaVpT72aB96tnA8UFFCLCV3NtU+ER8+qDkwEex0zBGCPdQCCqqxarqX4krWPSPhsl8qCYtryWCz9XovCYB/uvq3frLSQIbmq8VqB6ORfiNpHJWH8nZi86X0ZpJp2WQBfP0wXOwpc0y8DK+QO56fQ6drX8ztKrvPpqy61mKv/8jG3d2QpJESPQDeox9enHMYjp8lnKjFi4TTmVWsQ2Xfw43BE4dZZ2kx88EZ9pw6bblFimc1eXwL/iLdTUN4OHAEdcyqrl0K+vGY2xEbDa68dHAfkvrAMSPF0QW8iiA1IHIGjvT/JeaPCyU8jPxLq1LGj4R3IgOTL8zosVks2qdkk4++oEF9UWz5cGtFvSQfPWiMIGAmpJaze/x3XVKOKeEkGvaRTJ4QI8RoDwL4LjQK498kGjcxaJGHnb6HSAGwsEeRUm3bieqvJlICuJHUI1WJhslh8ppPEezT8Y8+PnFDH053hUU2IaxZ4rRGTNpH2HP3cowcOhtvEk+pj3wOAGM7BtdyN33tyvNl5U/offEKS75zVvt+giGreUtFkmAraZTkb8l/Yf1DAKm7D0XkqpmXnuOIsxsGnrT80Ly2BM72M8V+jGiONL/p4DuZTaUVh+g1u/ghEYlcYbJ21z6yF4n8W5kddCCR9A4RVG8LKImHrIepwKYSojr/R1mDpcCWLl84M9DIrV4FXFHIB/uYEjFnxwmu1/MnpdCTogCnyQcxy/+d52rYv2u9Q3N7OeVqqdhUGSk/kOYC7KyuEKEtvrQob5v3X3xTwiqU54G8WqET1cgWhCTMTWdhZAPbUYMqNvg+15DqhyuRkRyr/7AI2z1nwYtBiQjpOHSRjdOFN2T/jk5+MejDJMOAUoXqG7NjajRmwvoPGs9MwWExK9LE+ryX6iAYx3iVMsXeFUiw+lXYxY3UIzIcOFJf4+JbACxHJqJLVT/P4ysmpbTvSHE858Mgje/dq4BXvX3lznGD1eCZOUogpDawqSxwWmDK5MQRm5zwN7RG9I1dU6lCx2MYBMiEjqn1fNjMuC0U5Yj+5xhf0pDlxX9kkvdvdjS32NS4qh8e0P1Ez3MSDiGE8IRBELEl5pcKgfQr+i7wD07hZ8P2rTr0TCepkOcxnbdW2S+HUXDOlorCg7zUhUPxLWyqrdhGozck1fEdBBgPYNRQ4oF+rupI6O/izA8TLnw/UFaxIFnC/YU57hQNG7JKrmZO0O521Gsvi9a64tVxbqnOxEanL8+y3LACRCb423cZIhdNFjXjHmVH5CkFcGbCQc8Io+AQm2zzp+Je+eDc7WqLtwXcE/JKOhRmk945xZ9f/YYaZrViUwjWEDfD3yWtocwMbJyIR+K5YTW2KB9f8xUImU47TTZO2OLKW3jlCZskOQwI04HE5SasGvzkX8AejErEVvn63Vea241xTk6xBoErzuchPsCDbdQwQvdKXYjIA/EDIJsNHZdiAxvCLcY9iANPEHjI/7jkK2IAdPyJXy6zQwzuXQqsCZPLRR2KZKq/24y2pZUKO1HmI2IxL7Iui0cKDSLr/m0rWeXqzWDt4RAu06f5/oB3I9gx+D7HMQd3RnLAMoPAYRrPUmdxtoQHe22rJ0GHyp35tjx3kdUzBLG4o2UEHKNRcgFgnPt6QjJjU/gAFQpEzHjlY4BL3KRSTcwFTl8NhNgcq73HC07lsh9Vpm5yL/I5PiKWdruR6jpmHq9wcdL1580j2DOFxMf+V1GgR5SMDPCtcTGp0IY+inFtNdd1u0nthw8EihKPTm92UgNyGiYdZ0boSsYcHk7R7aMxw0DAGlmFhQwr38KVc4OrrV5LyWLzG0EMJPsD1UT9g9KLrvfvvkbA2cfzXWJxkUYsy9PFxtL5IQzwZp2LN79qmhaug2sbAQ8RViuGdzdBAGaNvKXxauS5KJa13n+Zx0escfwL4Huh56+1eKEXKgZxqy7i3MaoZaUH6YKpl/gd8hux95WP/rHexc5r2fhiQccrwZ2YfbSZyzXeQwy6p3EdE8aLP7dl1zba6zN9TheTqRmoc0JX7ts317ph8zHfnEcQF59NHqGXspR579GoVR/yLpFw1jlO8g4eEzrfJ4B/E4srt/pGMiplUVeyqonJBMYrGw1+PegaDKG+FZG6mEuzWUoYU29cRu1FY1T4CwhSeLPMWo6kRHn48mhyHKuJw+Ib+uCf1KzasfeoOntR4jyXihO+bc6eqYmSmzGBeDSTrK3/T1LmU1Y3hUh+f2r1Ml2LrGu48InyTG3x3GdOlKzafHdfpWZUcmugwfNcniDZe5C55FwGFEsyiQ6g+jULQw0BcjM70rZhRzM0AIw9N4w8zSA4GpwDHqr7nnkfnoHusE92IpvregDMr4tbm5VOZVi3fHNrcdrhLF2BM4o6ZtqXW1qZIAE9rFxF2rjzc4tX6iBANSsehE/SKQoUlj1IzbG2ZZcgaXSlXrJCsLgJQkr2HpJk5fJiF10QwBZ2+KQtY00qZa0rKHhsxMHVN+EqTr5CC+S/o9CMv7PKSOfhWHNiesFyOqzHagpuJVoV+b2iBi5DnJ+Fzc2vrl7MYJD9HLR69v+EOGxccoUymUCFX4yqiXNzzmZc8xqv9q5Htm6TFnBwAACHpL2tuWncE6afWWn2touvg69tlYHDpkoxqZvarIgK8PcInV9RpfA8GqVqDICZB44ETesTAEB8Y4ZcdWpw74iLNkeOLTMUdoKpanTf4V3uJ7I2a1DeGsLjohWJ7WaILKj0Au+2+nCj9qLdzjv05qHLrNZtg2uCeW377yY7gvSfIYwuVxyMDd9Bvw8ghhbcIOBHyDvSshg5pNg/gSMZs/GOFPEbAo1GzaeBSSaXBkkIpbvh+G8rvPGFTJ9g0Ht+UlsrA1DMSVJedbksHb9OUpWfNEojBkBLhRIKudrYsWdbfxYlJhr3OC4gNKz1fxIOrflScvs0Ou4ZU79dG+jxT9Vzk9KZ+QKadlkBE3kFoevBGp+vhxDbGaKwA7yuH6NVkpr+N9pCz30lQXDboPsqqq3qWviBS04Zic6RHPXObEnRf+X4aaN0i83SaJ8YKiVHKJb4fhy3OnIxNWV2wD7cuLtmm8HEmUlUHbMQeRpRwkh2m24gj5Cg13iNDTVOwdq6WDoOxvkl6mwTLa50kBpN0vtijBiIxixKS6ghiIjVxc0L6n3fx1NlsGPnGhHMjusyn7SOf4rG8XYAUVpOUxD1TZ3DxKQ49s1Aai26NRYXumVJRq+DSFZNiB8a7Ypbc+IIQgskDZfOlgLyqbSEipTSnilU9IyrO524Zf1iDgVRHY0u9Av4CVqKwQbNg3PhuWkgrxubUKGlxJ0W5BF5Oqa4glFAtIgv05Flq0NwwdXwKxQjga3H2PCUbG2b1AlQO76OcOf0uscAPdeWPwYZHvvjIQuNwpNBGBXSQhmmqlBbN9eXjE6h7VbPfY6UmpPS69Mqz0A01Sa50HtpZYCpx+V9J5Tf8idivVGv26GSyEvOGdVE4yvPj74udhtVKwcNyQAEeiQ2qTauui0tosxLNEPOkGb9bXM4ZG03liejkhVSrfnBMVmetNrG9Qvv90QL97m1ney2PxeRZtn94kzEUIJiVW6IyFGgYF6S+yqqwc5bzGXTawZxA7rXZ63lqz7JK6oT0niC5MobqBAMyEBuRcgMC++tozJqChWqGnsBB7OTg7m9bURwEFxjYRSQAAAATUMCRQ/6vFNsu0Kniwqrh+BbPwkYlfHzCYBHAAz31gy5Kcj8FmHeFPbg9LUmQ8ujtF9G/dEvnmimmHE9sMSF4BhKQw+ojI65Kk5R1Gpx2hHQYH7YVYXm3hay7QmETADsBorlhVJ0g01ID0qXivB+yeiquewbLO++zJ9ok3oGdCeFFbT6UKRYYyrN1VvwJcqHfvibvYV0XL88izqLrmx3UELkmj6mr9ugmjkFPVwQBCTUj8/B+N7iIcjwNdXk5xQX8jU3QqeI6DGHVP+HOGH4pQZGyFSpknd314wFbHTPnzkt/nK2z0meOQYaDOBvylCLPxLdj0BMjoPe30K18qqcCTzjKz54dQyWZcejvnBqbzeDQdnNmD10MytMyATAC+hQJtoe0dEj6Y3mZh2RCmPth/oeiEMQKKrDxuOmonLpQMNNc/ivQpqJynfivZerAUe4eNLNox8gnZ2oNQLQGZ6jnuuQ2UBACHA5q8X3w056zBG28A3Ad7mhirv6L352agwou3ar7HIwudrieDj0oGV15NRT4txkDvR/Cv9wyfaPSqYOO19tKKZiefF5/63fSw0QzUmMQH3s2oPn8dByuC4tb0f7n9JTv3FHgf3dEkTsAXvCNieO+ldS/eXGOmGGUHonrieu8J9PMv03XO5EtZ36Q4+KIYigMEY7DUGmQ4f6dI1Cd54rqZJiBtPN35CgD7y/Rch60yOuunPXU1BRsGKAWNZoYw02XWGD+lcihvKYBwumtwEQEZwJfiO2NM+5de3vfuTV0gLmAS5jjdsfkPcsngxEz34BldDmgftZq5xDa9tgQ2UxcuhqM51lZUiLnfoxDnAdjs5vYw1mLS9AnnbOwtXMgAMwsx2ktMHi5tVQ1IAACCOhxfpTXOG6W37rBEK4GynrA0xnFRZSOYWx57yk7I232KN156/LMAxkiCsRIMizz3F2JzhQ+VxHdO4oQMyOXhLArezdwOSZRWvGg8xedQuxRKJTh+jkfyqBKQdejaVjhwU1Pz/KEi733RAVX5+KN1uHofltsVcGLX9WX+G/s7mq4HI5+vm3L9ZE3iiJ53/5pNuPqcimyl538bdc1t+MCjwWbiKitwl5TiuA9pF0/Ua4Bx7kg2c2BwleDNim8Jsah928rfReYoI4Fqe6ywhhZWCRuLA/UlQDKxKjWvH7EjKzriYJlK9VWezvvhodNq+SOHmy3T+2g/VHElV/5qgPBhUIHoWgDH2geGWycVCT83Y3E+6NXcFa0cqqsJcw4J5Ik3Jc+kZfZ/cwQo2PKfE/N+O1kP7lU04jssJ+t/ABX5Z/oFa0Sk8JkyZuWfVIrysoy9JLli+YfaSt2zzswUV1Kep6VdwsIBoM8Ctl1ueJjdwu7uNjixDzLLpWC8nQip0kj6XE662RRz9xZ5iI8002FEsmWW/pPQx8zDuWt2Y2D6FIZ5x2PTG3h3OUVlGdA0TDTuybp34uHiKmDDL0jwPZJcZJr65z4S/VXFgvbp9AAAAAACaj6KKe3Qz88QtJGXWs9+J5a+nlGoBx9UUmdPmg3a/sVV1ZAbCyX5hPRPuWOWcCHVjqm6bGQ4/iVM6FLTCA6UAAAAAAAA=" alt="Escudo de Fulbo a Bologna" width="240" height="273"><div class="wm-box"><h1 class="wm">Fulbo a Bologna</h1><small class="motto">Più di un gioco · 7 contra 7</small></div></div>
     <div class="right">
       <nav class="tabs" role="tablist" id="tabs">
-        <button role="tab" data-tab="armar" aria-selected="true">Armar equipos</button>
+        <button role="tab" data-tab="armar" aria-selected="true"><span class="lg">Armar equipos</span><span class="sm">Armar</span></button>
         <button role="tab" data-tab="plantel" aria-selected="false">Plantel</button>
         <button role="tab" data-tab="encuesta" aria-selected="false">Encuesta</button>
+        <button role="tab" data-tab="stats" aria-selected="false"><span class="lg">Estadísticas</span><span class="sm">Stats</span></button>
       </nav>
       <div id="me-slot"></div>
     </div>
@@ -943,6 +995,15 @@ const T3=[
  ['Cerrar sesión','Esci','Sign out'],['No se pudo conectar','Impossibile connettersi','Couldn’t connect'],['Revisá tu conexión y recargá la página.','Controlla la connessione e ricarica la pagina.','Check your connection and reload the page.'],
  ['No tenés permiso para hacer eso.','Non hai il permesso di farlo.','You don’t have permission to do that.'],
  ['Este dominio todavía no está autorizado en Firebase.','Questo dominio non è ancora autorizzato in Firebase.','This domain isn’t authorised in Firebase yet.'],['No se pudo entrar. Probá de nuevo.','Accesso non riuscito. Riprova.','Couldn’t sign in. Try again.'],
+ ['Estadísticas','Statistiche','Stats'],['Armar','Squadre','Teams'],['Stats','Stats','Stats'],['Partidos','Partite','Matches'],['jugado','giocata','played'],['jugados','giocate','played'],
+ ['Tabla general','Classifica generale','Overall table'],['puntos','punti','points'],['Los que más vienen','Chi viene di più','Most present'],['Figuras','Migliori in campo','MVPs'],['Figura','Migliore in campo','MVP'],['Ganadores','Vincenti','Winners'],
+ ['veces elegido figura','volte migliore in campo','times MVP'],['Todavía no se eligió ninguna figura.','Ancora nessun migliore in campo.','No MVP chosen yet.'],['Todavía no hay resultados cargados.','Ancora nessun risultato inserito.','No scores entered yet.'],
+ ['Jugó','Giocato','Played'],['Ganó','Vinto','Won'],['Llegó tarde','Arrivato tardi','Late'],['Faltó sin avisar','Assente senza avvisare','No-show'],
+ ['Ganó con pechera','Vince con casacca','Bibs won'],['Ganó sin pechera','Vince senza casacca','No-bibs won'],['Empate','Pareggio','Draw'],['Sin resultado','Senza risultato','No result'],['Hoy · cargá el resultado cuando termine','Oggi · inserisci il risultato a fine partita','Today · enter the score when it ends'],
+ ['Elegir…','Scegli…','Choose…'],['Figura del partido','Migliore in campo','Match MVP'],['⏰ 🚫 Marcar tardanzas y ausencias','⏰ 🚫 Segna ritardi e assenze','⏰ 🚫 Mark late arrivals and no-shows'],['Tocá a un jugador: ⏰ llegó tarde → 🚫 faltó sin avisar → normal','Tocca un giocatore: ⏰ in ritardo → 🚫 assente senza avvisare → normale','Tap a player: ⏰ late → 🚫 no-show → normal'],
+ ['Guardar','Salva','Save'],['Muy desparejo','Molto squilibrata','Very uneven'],['Ver partidos anteriores','Vedi partite precedenti','See earlier matches'],['Ver menos','Mostra meno','Show less'],['Ver todos','Vedi tutti','See all'],
+ ['Todavía no hay partidos','Ancora nessuna partita','No matches yet'],['Los partidos se guardan solos cuando un admin toca "Copiar para WhatsApp" al armar los equipos.','Le partite si salvano da sole quando un admin tocca "Copia per WhatsApp" dopo aver fatto le squadre.','Matches are saved automatically when an admin taps "Copy for WhatsApp" after making the teams.'],
+ ['Solo un admin puede corregirlo','Solo un admin può correggerlo','Only an admin can change it'],['Resultado guardado','Risultato salvato','Score saved'],['Re-evaluación: ¿sigue igual?','Rivalutazione: è ancora così?','Re-rating: still the same?'],['Sigue igual / Guardar','È uguale / Salva','Still the same / Save'],['Saltear','Salta','Skip'],
  ['Datos de jugador','Dati del giocatore','Player details'],['Sobre mí','Su di me','About me'],['Número de camiseta','Numero di maglia','Shirt number'],['Altura','Altezza','Height'],['Menos','Meno','Less'],['Más','Più','More'],['Altura en cm','Altezza in cm','Height in cm'],['Posiciones','Posizioni','Positions'],['Cambiar foto','Cambia foto','Change photo'],['Cambiar foto personal','Cambia foto personale','Change personal photo'],['Todavía no hay jugadores. Agregalos arriba.','Ancora nessun giocatore. Aggiungili qui sopra.','No players yet. Add them above.'],['Todavía no hay jugadores. Solo los administradores agregan, editan o borran jugadores.','Ancora nessun giocatore. Solo gli amministratori aggiungono, modificano o eliminano giocatori.','No players yet. Only admins add, edit or delete players.'],['La altura tiene que estar entre 140 y 220 cm','L’altezza deve essere tra 140 e 220 cm','Height must be between 140 and 220 cm'],['El número de camiseta va de 1 a 99','Il numero di maglia va da 1 a 99','Shirt number goes from 1 to 99'],
  ['Solo los administradores agregan, editan o borran jugadores.','Solo gli amministratori aggiungono, modificano o eliminano giocatori.','Only admins add, edit or delete players.'],['Admin','Admin','Admin'],['Administrador','Amministratore','Admin'],['Hacer admin','Rendi admin','Make admin'],['Quitar admin','Togli admin','Remove admin'],
 ];
@@ -989,6 +1050,15 @@ const I18P=[
  P(/^Ignorar (.+)$/,m=>`Ignora ${m[1]}`,m=>`Ignore ${m[1]}`),
  P(/^(.+) ahora es admin$/,m=>`${m[1]} ora è admin`,m=>`${m[1]} is now an admin`),
  P(/^(.+) ya no es admin$/,m=>`${m[1]} non è più admin`,m=>`${m[1]} is no longer an admin`),
+ P(/^🔥 (\d+) seguidos$/,m=>`🔥 ${m[1]} di fila`,m=>`🔥 ${m[1]} in a row`),
+ P(/^PJ (\d+)$/,m=>`PG ${m[1]}`,m=>`MP ${m[1]}`),
+ P(/^PJ (\d+)(.*)$/,m=>`PG ${m[1]}${m[2]}`,m=>`MP ${m[1]}${m[2]}`),
+ P(/^mín\. (\d+) partidos? con resultado$/,m=>`min. ${m[1]} partite con risultato`,m=>`min. ${m[1]} matches with a score`),
+ P(/^sobre (\d+) partidos$/,m=>`su ${m[1]} partite`,m=>`out of ${m[1]} matches`),
+ P(/^(\d+) para re-evaluar$/,m=>`${m[1]} da rivalutare`,m=>`${m[1]} to re-rate`),
+ P(/^(\d+)G (\d+)E (\d+)P$/,m=>`${m[1]}V ${m[2]}N ${m[3]}P`,m=>`${m[1]}W ${m[2]}D ${m[3]}L`),
+ P(/^Equipos confirmados ✓ · partido del (.+) guardado$/,m=>`Squadre confermate ✓ · partita del ${m[1]} salvata`,m=>`Teams confirmed ✓ · match on ${m[1]} saved`),
+ P(/^(\d+) jugados?$/,m=>`${m[1]} giocat${m[1]==='1'?'a':'e'}`,m=>`${m[1]} played`),
  P(/^Ignorar$/,m=>'Ignora',m=>'Ignore'),
  P(/^Agregar (.+) como jugador nuevo$/,m=>`Aggiungi ${m[1]} come nuovo giocatore`,m=>`Add ${m[1]} as a new player`),
  P(/^Ver ficha de (.+)$/,m=>`Vedi scheda di ${m[1]}`,m=>`See ${m[1]}’s profile`),
@@ -1079,16 +1149,17 @@ function syncClaims(){
 }
 
 /* ---------- Puntajes ---------- */
+function aggW(items){if(!items.length)return null;const s=[...items].sort((a,b)=>a.x-b.x);const t=s.length>=5?s.slice(1,-1):s;const W=t.reduce((a,b)=>a+b.w,0);return W?t.reduce((a,b)=>a+b.x*b.w,0)/W:null;}
 function agg(vals){if(!vals.length)return null;const s=[...vals].sort((a,b)=>a-b);const t=s.length>=5?s.slice(1,-1):s;return avg(t);}
 function computeStats(){
-  const by={};for(const v of S.votes){if(v&&v.p)(by[v.p]||=[]).push(v.r||{});}
+  const by={};for(const v of S.votes){if(v&&v.p)(by[v.p]||=[]).push({r:v.r||{},w:voteWeight(v)});}
   S.stats={};
   for(const [id,p] of S.players){
     const rs=by[id]||[];const base=(+p.base>=1&&+p.base<=5)?+p.base:3;const v={};
     for(const it of ITEMS){
       const prior=it.k==='cal'?2:base;
-      const vals=rs.map(r=>+r[it.k]).filter(x=>x>=1&&x<=5);
-      const m=agg(vals);const w=Math.min(vals.length,FULL_V)/FULL_V;
+      const vals=rs.map(o=>({x:+o.r[it.k],w:o.w})).filter(o=>o.x>=1&&o.x<=5);
+      const m=aggW(vals);const w=Math.min(vals.reduce((a,o)=>a+o.w,0),FULL_V)/FULL_V;
       v[it.k]=m==null?prior:w*m+(1-w)*prior;
     }
     const cats={};for(const c in CATS)cats[c]=avg(CATS[c].map(k=>v[k]));
@@ -1290,7 +1361,8 @@ function card(id,inf,opt={}){
     .map(([k,a])=>`<span><b class="num">${to99(avg(a))}</b>${k}</span>`).join('');
   const ph=inf.photo&&photoSrc(inf.photo)?`<img src="${photoSrc(inf.photo)}" alt="" onerror="this.remove()">`:`<span>${esc(initials(p.name))}</span>`;
   const full=completeness(inf)===DONE_KEYS.length;
-  const meta=[inf.pie?'Pie '+PIE[inf.pie].toLowerCase():'',inf.alt?inf.alt+' cm':''].filter(Boolean).map(t=>`<span>${esc(t)}</span>`).join('');
+  const pjN=S._st&&S._st.P[id]?S._st.P[id].pj:0;
+  const meta=[pjN?`PJ ${pjN}`:'',inf.pie?'Pie '+PIE[inf.pie].toLowerCase():'',inf.alt?inf.alt+' cm':''].filter(Boolean).map(t=>`<span>${esc(t)}</span>`).join('');
   const back=[['Posiciones',[inf.pos,inf.pos2].filter(x=>x&&POS7[x]&&x!=='igual').map(x=>tr(x)).join(' · ')],['Hincha de',inf.club],['Ídolo',inf.idolo],['Festejo',inf.festejo],['Cumple',inf.cumple?fmtCumple(inf.cumple):''],['Nació en',inf.nat?countryName(inf.nat):'']].filter(x=>x[1]);
   return`<div class="pcard ${tier} ${S.flip===id?'flipped':''}" data-act="flip" data-id="${id}" role="button" tabindex="0" aria-label="Carta de ${esc(p.name)}, tocá para darla vuelta">
   <div class="pc-in">
@@ -1318,12 +1390,13 @@ function render(){
   document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===S.tab?'true':'false'));
   renderHead();
   const m=$('#main');
+  try{S._st=statsAll();}catch(_){S._st={ms:[],P:{}};}
   if(!S.ready){m.innerHTML='<div class="empty">Cargando el plantel…</div>';return;}
   const ae=document.activeElement,fid=ae&&ae.id&&m.contains(ae)?ae.id:null;
   const typing=fid&&(ae.tagName==='TEXTAREA'||ae.tagName==='INPUT'&&/^(text|search|number)$/.test(ae.type))?{v:ae.value,s:ae.selectionStart,e:ae.selectionEnd}:null;
   let html;
   document.body.classList.toggle('needlogin',!!S.needLogin);
-  try{html=S.needLogin?vLogin():S.fbError?`<div class="cancha-empty" style="margin-top:22px"><strong>No se pudo conectar</strong>Revisá tu conexión y recargá la página.</div>`:S.tab==='armar'?vArmar():S.tab==='encuesta'?vEncuesta():S.tab==='yo'?vYo():vPlantel();}
+  try{html=S.needLogin?vLogin():S.fbError?`<div class="cancha-empty" style="margin-top:22px"><strong>No se pudo conectar</strong>Revisá tu conexión y recargá la página.</div>`:S.tab==='armar'?vArmar():S.tab==='encuesta'?vEncuesta():S.tab==='stats'?vStats():S.tab==='yo'?vYo():vPlantel();}
   catch(err){console.error(err);html=`<div class="cancha-empty" style="margin-top:22px"><strong>Algo falló al mostrar esta pantalla</strong>Recargá la página. Si vuelve a pasar, avisá con este detalle: <code>${esc(err&&err.message)}</code><br><br><button class="btn" data-act="reset-teams">Limpiar equipos y reintentar</button></div>`;}
   m.innerHTML=html;
   i18nDom(document.querySelector('.wrap'));
@@ -1427,13 +1500,13 @@ function vTeams(n){
   for(const [x,y] of S.rules.sep)if((a.includes(x)&&a.includes(y))||(b.includes(x)&&b.includes(y)))warns.push(`${esc(name(x))} y ${esc(name(y))} quedaron juntos (marcados para separar).`);
   for(const [x,y] of S.rules.jun)if((a.includes(x)&&b.includes(y))||(b.includes(x)&&a.includes(y)))warns.push(`${esc(name(x))} y ${esc(name(y))} quedaron separados (marcados para juntar).`);
   const VERD=`<span class="big dif ${verdict[1]}">${verdict[0]}</span><span class="muted vd-d">Diferencia de nivel: <strong class="num">${dif99(dF)}</strong> ${dif99(dF)===1?'punto':'puntos'}${S.manual?' · <span class="pill">Modificado a mano</span>':''}</span>
-   <span class="row vd-b"><button class="btn small" data-act="copy">Copiar para WhatsApp</button>${!canManage()?'':`<button class="btn small primary" data-act="save-match">Guardar partido</button>`}</span>`;
+   <span class="row vd-b"><button class="btn small" data-act="copy">Copiar para WhatsApp</button></span>`;
   S._verd=VERD;
   return head+pitch+`<div class="teams">${col('A',a,LA,mA)}${col('B',b,LB,mB)}</div>
    <div class="verdict verdict-top">${VERD}</div>
    ${warns.length?`<ul class="warns">${warns.map(w=>`<li>${w}</li>`).join('')}</ul>`:''}
    <div class="metrics"><table><thead><tr><th></th><th>Con pechera</th><th>Sin pechera</th><th>Diferencia</th></tr></thead><tbody>${rows}</tbody></table></div>
-   ${vPartidos()}`;
+   `;
 }
 function chip(id,no,pos){
   const s=S.stats[id];
@@ -1494,18 +1567,18 @@ function vEncuesta(){
     return`<div class="enc">${intro}<div class="card"><div class="row" style="justify-content:space-between"><div><span class="label">Tu avance</span><p style="margin:4px 0 0">Evaluaste a <strong class="num">${done}</strong> ${done===1?'jugador':'jugadores'}. Te quedan <strong class="num">${left}</strong>.</p></div>
      <button class="btn bib" data-act="start" ${left?'':'disabled'}>${left?(done?'Otra tanda':'Empezar'):'¡Listo, no queda nadie!'}</button></div></div>${vRanking()}</div>`;
   }
-  const {queue,i,edit,known}=S.survey,id=queue[i];
+  const {queue,i,edit,known,stale}=S.survey,id=queue[i],isStale=!!(stale&&stale[id]);
   const answered=Object.keys(S.ans).length,canSave=S.ans.gen&&answered>=8;
   const grp=g=>`<div class="qgrp"><span class="label">${GRUPOS[g]}</span>${ITEMS.filter(it=>it.g===g).map(it=>`<div class="q ${it.inv?'inv':''}">
     <span class="qn">${it.n}${it.inv?'<small>acá 5 no es bueno</small>':''}${it.k==='arq'?'<small style="color:var(--muted)">si nunca lo viste atajar, dejalo vacío</small>':''}</span>
     <span class="scale" role="group" aria-label="${it.n}">${[1,2,3,4,5].map(v=>`<button data-act="ans" data-k="${it.k}" data-v="${v}" aria-pressed="${S.ans[it.k]===v}">${v}</button>`).join('')}</span>
     <span class="anch"><span>1 · ${it.lo}</span><span>${it.hi} · 5</span></span></div>`).join('')}</div>`;
   return`<div class="enc"><div class="card">
-   <div class="eval-h"><div class="row" style="flex-wrap:nowrap">${av(id,'lg')}<div><span class="label">${edit?'Editando tu evaluación':known?'Nueva evaluación':`Jugador ${i+1} de ${queue.length}`}</span><h2>${esc(name(id))}</h2></div></div>
+   <div class="eval-h"><div class="row" style="flex-wrap:nowrap">${av(id,'lg')}<div><span class="label">${edit?'Editando tu evaluación':known?'Nueva evaluación':isStale?'Re-evaluación: ¿sigue igual?':`Jugador ${i+1} de ${queue.length}`}</span><h2>${esc(name(id))}</h2></div></div>
     <div class="prog">${queue.map((_,j)=>`<i class="${j<i?'done':j===i?'cur':''}"></i>`).join('')}</div></div>
    ${Object.keys(GRUPOS).map(grp).join('')}
-   <div class="eval-f"><button class="btn ghost" data-act="skip">${edit||known?'Cancelar':'No lo conozco lo suficiente'}</button>
-    <div class="row"><span class="muted" style="font-size:13px">${canSave?'':S.ans.gen?`Faltan ${8-answered} respuestas`:'Falta el nivel general'}</span><button class="btn primary" data-act="save-vote" ${canSave?'':'disabled'}>${edit?'Guardar cambios':i+1<queue.length?'Guardar y seguir':'Guardar y terminar'}</button></div></div>
+   <div class="eval-f"><button class="btn ghost" data-act="skip">${edit||known?'Cancelar':isStale?'Saltear':'No lo conozco lo suficiente'}</button>
+    <div class="row"><span class="muted" style="font-size:13px">${canSave?'':S.ans.gen?`Faltan ${8-answered} respuestas`:'Falta el nivel general'}</span><button class="btn primary" data-act="save-vote" ${canSave?'':'disabled'}>${edit?'Guardar cambios':isStale?'Sigue igual / Guardar':i+1<queue.length?'Guardar y seguir':'Guardar y terminar'}</button></div></div>
   </div></div>`;
 }
 function vRanking(){
@@ -1538,7 +1611,7 @@ function vAvance(){
   const done=S.mine.rated.filter(id=>act.has(id)).length,sk=S.mine.skip.filter(id=>act.has(id)).length,pct=total?Math.round((total-left)/total*100):0;
   const msg=!left?'¡Completaste el plantel! 🏆':!done&&!sk?'¡Arrancá, tu voto es clave!':left<=3?`¡Te ${left===1?'queda solo 1':`quedan solo ${left}`}!`:pct>=50?'Pasaste la mitad 💪':'Cada voto hace los equipos más parejos';
   return`<div class="card avance"><div class="av-num"><span class="label">${left?'Te faltan':'Listo'}</span><b class="num">${left||'✓'}</b></div>
-   <div class="av-mid"><p class="av-msg">${msg}</p><div class="b2-t thick"><i style="width:${pct}%"></i></div>
+   <div class="av-mid"><p class="av-msg">${msg}</p>${staleIds().length?`<p class="av-sub" style="margin:0 0 6px">${`${staleIds().length} para re-evaluar`}</p>`:''}<div class="b2-t thick"><i style="width:${pct}%"></i></div>
     <p class="av-sub num">${total-left} de ${total} · evaluaste ${done} · salteaste ${sk}</p></div>
    ${left?`<button class="btn bib av-btn" data-act="start">${done||sk?'Seguir puntuando':'Empezar a puntuar'}</button>`:''}</div>`;
 }
@@ -1551,7 +1624,132 @@ function vMisEvals(){
    <ul class="ev-list">${sortedIds(rated.slice()).map(id=>row(id,vids[id]?`<button class="btn small" data-act="ev-edit" data-id="${id}">✎ Editar</button>`:`<span class="pill" title="Este voto es de antes de que se pudiera editar">Votado antes · no editable</span>`)).join('')}
    ${sortedIds(sk.slice()).map(id=>row(id,`<button class="btn small ghost" data-act="ev-known" data-id="${id}">Ahora sí lo conozco</button>`)).join('')}</ul></details>`;
 }
-function surveyPool(){const excl=new Set([...S.mine.rated,...S.mine.skip,S.myClaim]);return activeIds().filter(id=>!excl.has(id));}
+function surveyPool(){const excl=new Set([...S.mine.rated,...S.mine.skip,S.myClaim]);return [...activeIds().filter(id=>!excl.has(id)),...staleIds()];}
+
+/* ----- Estadísticas ----- */
+const PTS={jugo:3,gano:1,figura:2,tarde:-1,falto:-3};
+const isNum=x=>typeof x==='number'&&isFinite(x);
+function localDay(dt){const d=dt||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function statsAll(){
+  const ms=[...(S.matches||[])].sort((x,y)=>String(y.d).localeCompare(String(x.d)));
+  const P={};const g=id=>P[id]||(P[id]={pj:0,pts:0,w:0,e:0,l:0,res:0,fig:0,late:0,abs:0,streak:0,last:null});
+  for(const m of ms){
+    const A=m.a||[],B=m.b||[],abs=new Set(m.abs||[]),late=new Set(m.late||[]),hasRes=isNum(m.ga)&&isNum(m.gb);
+    for(const id of [...A,...B]){const s=g(id);
+      if(abs.has(id)){s.abs++;s.pts+=PTS.falto;continue;}
+      s.pj++;s.pts+=PTS.jugo;if(!s.last)s.last=m.d;
+      if(hasRes){s.res++;const diff=A.includes(id)?m.ga-m.gb:m.gb-m.ga;if(diff>0){s.w++;s.pts+=PTS.gano;}else if(diff===0)s.e++;else s.l++;}
+      if(m.fig===id){s.fig++;s.pts+=PTS.figura;}
+      if(late.has(id)){s.late++;s.pts+=PTS.tarde;}
+    }
+  }
+  for(const id in P){let k=0;for(const m of ms){const pl=[...(m.a||[]),...(m.b||[])];if(pl.includes(id)&&!(m.abs||[]).includes(id))k++;else break;}P[id].streak=k;}
+  return{ms,P};
+}
+const medal=i=>i<3?`<span class="rk-m">${['🥇','🥈','🥉'][i]}</span>`:`<span class="rk-m rk-n num">${i+1}</span>`;
+function vStats(){
+  const {ms,P}=S._st||statsAll();
+  const empty=`<div class="cancha-empty" style="margin-top:22px"><strong>Todavía no hay partidos</strong>Los partidos se guardan solos cuando un admin toca "Copiar para WhatsApp" al armar los equipos.</div>`;
+  if(!ms.length)return empty;
+  const shown=S.allMatches?ms:ms.slice(0,5);
+  const ids=Object.keys(P).filter(id=>S.players.has(id));
+  const row=(id,i,right,extra='')=>`<li class="rk2" data-act="profile" data-id="${id}">${medal(i)}${av(id)}<span class="rk-name">${esc(name(id))}${extra}</span>${right}</li>`;
+  const table=ids.slice().sort((x,y)=>P[y].pts-P[x].pts||P[y].pj-P[x].pj||name(x).localeCompare(name(y),'es'));
+  const pres=ids.filter(id=>P[id].pj>0).sort((x,y)=>P[y].pj-P[x].pj||P[y].streak-P[x].streak).slice(0,8);
+  const figs=ids.filter(id=>P[id].fig>0).sort((x,y)=>P[y].fig-P[x].fig).slice(0,5);
+  const resN=ms.filter(m=>isNum(m.ga)&&isNum(m.gb)).length,minRes=Math.max(1,Math.min(6,Math.ceil(resN/2)));
+  const wins=ids.filter(id=>P[id].res>=minRes).sort((x,y)=>(P[y].w/P[y].res)-(P[x].w/P[x].res)||P[y].w-P[x].w).slice(0,5);
+  const tot=ms.length;
+  return`<div class="stats">
+   <section class="card st-left"><div class="st-h"><h3>Partidos</h3><span class="muted">${tot===1?'1 jugado':`${tot} jugados`}</span></div>
+    ${shown.map(vMatch).join('')}
+    ${ms.length>5?`<button class="btn small ghost" data-act="more-matches">${S.allMatches?'Ver menos':'Ver partidos anteriores'}</button>`:''}
+   </section>
+   <div class="st-right">
+    <section class="card"><div class="st-h"><h3>Tabla general</h3><span class="muted">puntos</span></div>
+     <p class="st-legend"><span>Jugó</span> <b>+3</b> · <span>Ganó</span> <b>+1</b> · <span>Figura</span> <b>+2</b> · <span>Llegó tarde</span> <b>−1</b> · <span>Faltó sin avisar</span> <b>−3</b></p>
+     <ol class="rk-list">${(S.allTable?table:table.slice(0,10)).map((id,i)=>{const s=P[id];return row(id,i,`<span class="st-pts num">${s.pts}</span>`,`<span class="st-det">PJ ${s.pj}${s.fig?` · ⭐${s.fig}`:''}${s.late?` · ⏰${s.late}`:''}${s.abs?` · 🚫${s.abs}`:''}</span>`);}).join('')}</ol>
+     ${table.length>10?`<button class="btn small ghost" data-act="all-table">${S.allTable?'Ver menos':'Ver todos'}</button>`:''}
+    </section>
+    <section class="card"><div class="st-h"><h3>Los que más vienen</h3><span class="muted">${`sobre ${tot} partidos`}</span></div>
+     <ol class="rk-list">${pres.map((id,i)=>{const s=P[id];return row(id,i,`<span class="st-pts num"><span class="st-bar"><i style="width:${s.pj/tot*100}%"></i></span>${s.pj}</span>`,s.streak>=3?` <span class="pill st-fire">${`🔥 ${s.streak} seguidos`}</span>`:'');}).join('')}</ol>
+    </section>
+    <section class="card"><div class="st-h"><h3>Figuras</h3><span class="muted">veces elegido figura</span></div>
+     ${figs.length?`<ol class="rk-list">${figs.map((id,i)=>row(id,i,`<span class="st-pts num">${P[id].fig} ⭐</span>`)).join('')}</ol>`:'<p class="muted" style="margin:6px 0 0">Todavía no se eligió ninguna figura.</p>'}
+    </section>
+    <section class="card"><div class="st-h"><h3>Ganadores</h3><span class="muted">${`mín. ${minRes} partidos con resultado`}</span></div>
+     ${wins.length?`<ol class="rk-list">${wins.map((id,i)=>{const s=P[id];return row(id,i,`<span class="st-pts num">${Math.round(s.w/s.res*100)}%</span>`,`<span class="st-det">${s.w}G ${s.e}E ${s.l}P</span>`);}).join('')}</ol>`:'<p class="muted" style="margin:6px 0 0">Todavía no hay resultados cargados.</p>'}
+    </section>
+   </div>
+  </div>`;
+}
+function vMatch(m){
+  const adm=canManage(),signed=!S.demo&&!!S.db&&!!S.uid;
+  const A=m.a||[],B=m.b||[],all=[...A,...B],abs=new Set(m.abs||[]),late=new Set(m.late||[]);
+  const hasRes=isNum(m.ga)&&isNum(m.gb),isToday=m.day===localDay();
+  const canRes=signed&&(adm||!hasRes),canFig=signed&&(adm||!m.fig);
+  const marksSet=(m.late||[]).length||(m.abs||[]).length,canMarks=signed&&(adm||!marksSet);
+  const editing=S.markFor===m._id,dr=editing?S.markDraft:null;
+  const st=hasRes?(m.ga>m.gb?'Ganó con pechera':m.ga<m.gb?'Ganó sin pechera':'Empate'):(isToday?'Hoy · cargá el resultado cuando termine':'Sin resultado');
+  const face=id=>{const L=editing?dr.late.has(id):late.has(id),X=editing?dr.abs.has(id):abs.has(id);
+    const inner=`${av(id)}${L?'<i class="mb">⏰</i>':''}${X?'<i class="mb">🚫</i>':''}${m.fig===id?'<i class="mb fig">⭐</i>':''}`;
+    return editing?`<button type="button" class="mface ${X?'off':''}" data-act="mk-cycle" data-id="${id}" title="${esc(name(id))}">${inner}</button>`:`<span class="mface ${X?'off':''}" title="${esc(name(id))}">${inner}</span>`;};
+  const lock=`<span class="lock" title="Solo un admin puede corregirlo">🔒</span>`;
+  const par=m.par||{},vp=Object.values(par).filter(v=>v==='p').length,vd=Object.values(par).filter(v=>v==='d').length,mine=par[S.uid];
+  const canPar=signed&&!!S.myClaim&&all.includes(S.myClaim);
+  const figOpts=all.filter(id=>!abs.has(id));
+  return`<article class="mcard">
+   <div class="mh"><span class="md">${esc(fmtDate(m.d))}</span><span class="muted">${st}</span></div>
+   <div class="msides">
+    <div class="mside a"><span class="tn a">Con pechera</span><div class="mavs">${A.map(face).join('')}</div></div>
+    <div class="mscore">
+     <input type="text" inputmode="numeric" maxlength="2" data-mscore="${m._id}" data-side="a" value="${hasRes?m.ga:''}" placeholder="–" aria-label="Goles con pechera" ${canRes?'':'disabled'} class="${hasRes?'filled':''}">
+     <span>:</span>
+     <input type="text" inputmode="numeric" maxlength="2" data-mscore="${m._id}" data-side="b" value="${hasRes?m.gb:''}" placeholder="–" aria-label="Goles sin pechera" ${canRes?'':'disabled'} class="${hasRes?'filled':''}">
+     ${hasRes&&!adm?lock:''}
+    </div>
+    <div class="mside b"><span class="tn b">Sin pechera</span><div class="mavs">${B.map(face).join('')}</div></div>
+   </div>
+   <div class="mfoot">
+    <div class="mfig">⭐ <span>Figura</span>
+     ${m.fig&&!canFig?`<span class="figset">${av(m.fig)}${esc(name(m.fig))}</span>${lock}`
+       :canFig?`<select data-mfig="${m._id}" aria-label="Figura del partido"><option value="">Elegir…</option>${figOpts.map(id=>`<option value="${id}" ${m.fig===id?'selected':''}>${esc(name(id))}</option>`).join('')}</select>`
+       :m.fig?`<span class="figset">${av(m.fig)}${esc(name(m.fig))}</span>`:'<span class="muted">—</span>'}
+    </div>
+    <div class="parv" role="group" aria-label="¿Estuvo parejo?"><span class="muted">¿Estuvo parejo?</span>
+     <button type="button" class="chipbtn" data-act="mpar" data-m="${m._id}" data-v="p" aria-pressed="${mine==='p'}" ${canPar?'':'disabled'}>👍 <span>Muy parejo</span> <b class="num">${vp}</b></button>
+     <button type="button" class="chipbtn" data-act="mpar" data-m="${m._id}" data-v="d" aria-pressed="${mine==='d'}" ${canPar?'':'disabled'}>👎 <span>Muy desparejo</span> <b class="num">${vd}</b></button>
+    </div>
+   </div>
+   <div class="mmarks">${editing?`<span class="muted">Tocá a un jugador: ⏰ llegó tarde → 🚫 faltó sin avisar → normal</span><span class="row"><button class="btn small primary" data-act="mk-save" data-m="${m._id}">Guardar</button><button class="btn small ghost" data-act="mk-cancel">Cancelar</button></span>`
+     :canMarks?`<button class="btn small ghost" data-act="mk-edit" data-m="${m._id}">⏰ 🚫 Marcar tardanzas y ausencias</button>`:marksSet&&!adm?`<span class="muted">⏰ 🚫 ${lock}</span>`:''}</div>
+  </article>`;
+}
+async function saveMatch(){
+  if(!S.teams||!canManage())return;
+  const {a,b,ord,form}=S.teams,day=localDay(),ref=S.db.doc('matches/'+day);
+  let ex=null;try{ex=await ref.get();}catch(_){}
+  const base=JSON.parse(JSON.stringify({d:new Date().toISOString(),day,a,b,ord:ord||null,form:form||null}));
+  const ok=await write(()=>ex&&ex.exists?ref.update(base):ref.set({...base,ga:null,gb:null,fig:null,late:[],abs:[],par:{}}));
+  if(ok)toast(`Equipos confirmados ✓ · partido del ${fmtDate(base.d)} guardado`);
+}
+async function saveScore(mid){
+  const ia=document.querySelector(`[data-mscore="${mid}"][data-side="a"]`),ib=document.querySelector(`[data-mscore="${mid}"][data-side="b"]`);if(!ia||!ib)return;
+  const a=ia.value.replace(/\D/g,''),b=ib.value.replace(/\D/g,'');
+  if(a!==''&&b!=='')await write(()=>S.db.doc('matches/'+mid).update({ga:+a,gb:+b}),'Resultado guardado');
+  else if(a===''&&b===''&&canManage())await write(()=>S.db.doc('matches/'+mid).update({ga:null,gb:null}));
+}
+/* ----- Vigencia de los votos ----- */
+const HALF_MS=120*864e5,STALE_MS=90*864e5;
+function voteTime(v){const r=(v&&v.r)||{};return +r._t||(v&&v.d?Date.parse(v.d):0)||0;}
+function voteWeight(v){const t=voteTime(v);if(!t)return 1;return Math.pow(0.5,Math.max(0,Date.now()-t)/HALF_MS);}
+function myVote(pid){const vid=(S.mine.vids||{})[pid];return vid?S.votes.find(x=>x._id===vid):null;}
+function staleIds(){const act=new Set(activeIds());return S.mine.rated.filter(id=>act.has(id)&&id!==S.myClaim).filter(id=>{const v=myVote(id);const t=voteTime(v);return v&&t&&Date.now()-t>STALE_MS;});}
+const stripAns=r=>{const o={...(r||{})};delete o._t;return o;};
+function prefillAns(){const sv=S.survey;if(!sv)return;const id=sv.queue[sv.i];
+  if(sv.stale&&sv.stale[id]){const v=S.votes.find(x=>x._id===sv.stale[id]);S.ans=stripAns(v&&v.r);}else S.ans={};}
+async function saveNewVote(id,r){const vid=S.FB.newId('ratings');const ok=await write(()=>S.FB.batch().set(`users/${S.uid}/myvotes/${id}`,{vid}).set('ratings/'+id,{[vid]:r},true).commit());return ok?vid:null;}
+async function updateVote(id,vid,r){return write(()=>S.db.doc('ratings/'+id).update({[vid]:r}));}
 
 /* ----- Plantel ----- */
 function vPlantel(){
@@ -1788,30 +1986,34 @@ function copyTeams(){
   const side=(ids,emo,tit)=>{const L=layoutTeam(ids,ord,form);return`${emo} *${tr(tit)}*\n`+ids.slice().sort((x,y)=>ord[x]-ord[y]).map(id=>{const k=ord[id];return`${k}. ${name(id)}${k===1?' 🧤':''} · ${tr(ROL[L.pos[id]])} · ${tr('arco')} ${(k-1)*MINS}'-${k*MINS}'`;}).join('\n');};
   const txt=`${side(a,'🔵','CON PECHERA')}\n\n${side(b,'⚪','SIN PECHERA')}\n\n${tr(`Formación ${form}. El 1 arranca al arco y cada ${MINS}' pasa el siguiente.`)}`;
   try{navigator.clipboard.writeText(txt).then(()=>toast('Copiado'),()=>fallbackCopy(txt));}catch(e){fallbackCopy(txt);}
+  if(canManage())setTimeout(saveMatch,600);
 }
 function fallbackCopy(txt){const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');toast('Copiado');}catch(e){toast('No se pudo copiar');}t.remove();}
 function startSurvey(){
   const pool=surveyPool(),cnt=id=>S.stats[id]?.n||0;
-  pool.sort((x,y)=>cnt(x)-cnt(y)||Math.random()-.5);
-  S.survey={queue:pool.slice(0,TANDA),i:0};S.ans={};render();window.scrollTo({top:0});
+  const st=new Set(staleIds());
+  pool.sort((x,y)=>(st.has(x)-st.has(y))||cnt(x)-cnt(y)||Math.random()-.5);
+  const queue=pool.slice(0,TANDA),stale={};queue.forEach(id=>{if(st.has(id))stale[id]=(S.mine.vids||{})[id];});
+  S.survey={queue,i:0,stale};prefillAns();render();window.scrollTo({top:0});
 }
 async function saveMine(){await S.db.doc(`users/${S.uid}/meta/yo`).set({skip:S.mine.skip});}
 async function nextInSurvey(kind){
-  const sv=S.survey,id=sv.queue[sv.i];
+  const sv=S.survey,id=sv.queue[sv.i],staleVid=sv.stale&&sv.stale[id];
   if(kind==='vote'){
-    const r={...S.ans},d=new Date().toISOString().slice(0,10);
-    if(sv.edit){const ok=await write(()=>S.db.doc('ratings/'+id).update({[sv.edit]:r}),'Evaluación actualizada');if(!ok)return;S.survey=null;S.ans={};render();window.scrollTo({top:0});return;}
-    const vid=S.FB.newId('ratings');
-    const ok=await write(()=>S.FB.batch().set(`users/${S.uid}/myvotes/${id}`,{vid}).set('ratings/'+id,{[vid]:r},true).commit());if(!ok)return;
-    S.mine.rated=[...S.mine.rated.filter(x=>x!==id),id];S.mine.skip=S.mine.skip.filter(x=>x!==id);S.mine.vids={...(S.mine.vids||{}),[id]:vid};
+    const r={...stripAns(S.ans),_t:Date.now()};
+    if(sv.edit){const ok=await updateVote(id,sv.edit,r);if(!ok)return;toast('Evaluación actualizada');S.survey=null;S.ans={};render();window.scrollTo({top:0});return;}
+    if(staleVid){const ok=await updateVote(id,staleVid,r);if(!ok)return;}
+    else{const vid=await saveNewVote(id,r);if(!vid)return;
+      S.mine.rated=[...S.mine.rated.filter(x=>x!==id),id];S.mine.skip=S.mine.skip.filter(x=>x!==id);S.mine.vids={...(S.mine.vids||{}),[id]:vid};}
   }else{
     if(sv.edit||sv.known){S.survey=null;S.ans={};render();return;}
-    S.mine.skip=[...S.mine.skip,id];
+    if(!staleVid)S.mine.skip=[...S.mine.skip,id];
   }
   try{await saveMine();}catch(e){}
   syncMyCount();
-  S.ans={};sv.i++;
-  if(sv.i>=sv.queue.length){S.survey=null;const r=myRank();toast(r?`Tanda terminada. Estás ${r}º en el ranking 🔥`:'Tanda terminada. ¡Gracias!');}
+  sv.i++;
+  if(sv.i>=sv.queue.length){S.survey=null;S.ans={};const r=myRank();toast(r?`Tanda terminada. Estás ${r}º en el ranking 🔥`:'Tanda terminada. ¡Gracias!');}
+  else prefillAns();
   render();window.scrollTo({top:0});
 }
 function goTab(t){S.tab=t;if(t!=='yo'){S.editPid=null;}else if(!S.editPid){S.draftFor=null;}try{localStorage.setItem('pech-tab',t==='yo'?'armar':t)}catch(_){}render();}
@@ -1839,11 +2041,11 @@ break;
     case 'copy':copyTeams();break;
     case 'save-match':await write(()=>S.db.collection('matches').add({d:new Date().toISOString(),a:S.teams.a,b:S.teams.b,ord:S.teams.ord,form:S.teams.form,ga:null,gb:null,par:null}),'Partido guardado');break;
     case 'demo':loadDemo();break;
-    case 'exit-demo':S.demo=false;S.players=new Map(S.real.players);S.votes=S.real.votes;S.profiles=S.real.profiles||new Map();S.rules=S.real.rules||{sep:[],jun:[]};S.sel.clear();resetTeams();S.profile=null;computeStats();syncClaims();render();break;
+    case 'exit-demo':S.demo=false;S.players=new Map(S.real.players);S.votes=S.real.votes;S.matches=S.real.matches||[];S.profiles=S.real.profiles||new Map();S.rules=S.real.rules||{sep:[],jun:[]};S.sel.clear();resetTeams();S.profile=null;computeStats();syncClaims();render();break;
     case 'start':startSurvey();break;
     case 'ans':{const k=t.dataset.k,v=+t.dataset.v;if(S.ans[k]===v)delete S.ans[k];else S.ans[k]=v;render();break;}
     case 'skip':nextInSurvey('skip');break;
-    case 'ev-edit':{const vid=(S.mine.vids||{})[id];const v=S.votes.find(x=>x._id===vid);if(!vid){toast('Ese voto no se puede editar');break;}S.ans={...((v&&v.r)||{})};S.survey={queue:[id],i:0,edit:vid};render();window.scrollTo({top:0});break;}
+    case 'ev-edit':{const vid=(S.mine.vids||{})[id];const v=S.votes.find(x=>x._id===vid);if(!vid){toast('Ese voto no se puede editar');break;}S.ans=stripAns(v&&v.r);S.survey={queue:[id],i:0,edit:vid};render();window.scrollTo({top:0});break;}
     case 'ev-known':S.ans={};S.survey={queue:[id],i:0,known:true};render();window.scrollTo({top:0});break;
     case 'save-vote':nextInSurvey('vote');break;
     case 'addp':{
@@ -1872,6 +2074,13 @@ break;
     case 'lang':setLang(t.dataset.l);render();break;
     case 'signin':{try{await S.FB.signIn();}catch(e){const c=e&&e.code||'';if(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')break;toast(c==='auth/unauthorized-domain'?'Este dominio todavía no está autorizado en Firebase.':'No se pudo entrar. Probá de nuevo.');console.error(e);}break;}
     case 'signout':try{await S.FB.signOut();}catch(_){}break;
+    case 'more-matches':S.allMatches=!S.allMatches;render();break;
+    case 'all-table':S.allTable=!S.allTable;render();break;
+    case 'mk-edit':{const m=S.matches.find(x=>x._id===t.dataset.m);if(!m)break;S.markFor=m._id;S.markDraft={late:new Set(m.late||[]),abs:new Set(m.abs||[])};render();break;}
+    case 'mk-cancel':S.markFor=null;S.markDraft=null;render();break;
+    case 'mk-cycle':{const dr=S.markDraft;if(!dr)break;if(dr.abs.has(id))dr.abs.delete(id);else if(dr.late.has(id)){dr.late.delete(id);dr.abs.add(id);}else dr.late.add(id);render();break;}
+    case 'mk-save':{const dr=S.markDraft,mid=t.dataset.m;if(!dr)break;const ok=await write(()=>S.db.doc('matches/'+mid).update({late:[...dr.late],abs:[...dr.abs]}),'Guardado');if(ok){S.markFor=null;S.markDraft=null;render();}break;}
+    case 'mpar':{const m=S.matches.find(x=>x._id===t.dataset.m);if(!m||!S.uid)break;const par={...(m.par||{})};if(par[S.uid]===t.dataset.v)delete par[S.uid];else par[S.uid]=t.dataset.v;await write(()=>S.db.doc('matches/'+m._id).update({par}));break;}
     case 'toggle-admin':{if(!S.owner)break;const u=S.claims.get(id);if(!u)break;const set=new Set(S.admins);set.has(u)?set.delete(u):set.add(u);
       await write(()=>S.db.doc('staff/admins').set({uids:[...set]}),set.has(u)?`${name(id)} ahora es admin`:`${name(id)} ya no es admin`);break;}
     case 'pos7':{const v=t.dataset.v,d=S.draft;
@@ -1916,6 +2125,8 @@ document.addEventListener('change',async e=>{
     S.uploading=null;render();return;}
   if(a==='yphoto'){const f=t.files&&t.files[0];if(f){if(S.pending)URL.revokeObjectURL(S.pending.url);S.pending={file:f,url:URL.createObjectURL(f)};render();}return;}
   if(a==='savename'){const v=t.value.trim();if(v&&v!==name(id)){if([...S.players.entries()].some(([k,p])=>k!==id&&norm(p.name)===norm(v))){toast('Ya hay otro jugador con ese nombre');render();return;}await write(()=>S.db.doc('players/'+id).update({name:v}),'Nombre corregido');}render();return;}
+  if(t.dataset.mscore){await saveScore(t.dataset.mscore);return;}
+  if(t.dataset.mfig){const v=t.value||null;await write(()=>S.db.doc('matches/'+t.dataset.mfig).update({fig:v}),'Guardado');return;}
   if(a==='mres'){const f=t.dataset.f;const v=t.value===''?null:+t.value;await write(()=>S.db.doc('matches/'+id).update({[f]:v}));return;}
 });
 document.addEventListener('submit',async e=>{
@@ -1946,6 +2157,7 @@ document.addEventListener('pointerdown',e=>{const b=e.target.closest('[data-step
 document.addEventListener('click',e=>{const b=e.target.closest('[data-step]');if(b&&e.detail===0){stepAlt(+b.dataset.step);render();}});
 document.addEventListener('input',e=>{
   const t=e.target;
+  if(t.dataset&&t.dataset.mscore){const c=t.value.replace(/\D/g,'');if(c!==t.value)t.value=c;return;}
   if(t.id==='paste'){S.pasteTxt=t.value;return;}
   if(t.id==='q'){S.q=t.value;render();return;}
   const k=t.dataset.y;
@@ -1978,7 +2190,11 @@ function loadDemo(){
     const nv=[2,5,7,9,13][i%5];
     for(let j=0;j<nv;j++){const r={};ITEMS.forEach(it=>r[it.k]=Math.max(1,Math.min(5,Math.round(prof[it.k]+(rnd()-.5)*1.6))));votes.push({p:id,r});}});
   const cnt=[14,9,0,22,3,0,11,5,26,0,7,1,0,4,18,2];S.profiles=new Map(cnt.map((v,i)=>['du'+i,{player:'demo'+i,votos:v,pasados:i===8?0:0}]));
-  S.demo=true;S.players=players;S.votes=votes;S.rules={sep:[['demo1','demo4']],jun:[]};S.matches=[];
+  const dm=[];for(let k=0;k<8;k++){const d=new Date(Date.now()-k*7*864e5);const pool=names.map((_,i)=>'demo'+i).filter((_,i)=>(i+k)%6!==0).slice(0,14);
+    const a=pool.filter((_,i)=>i%2===0),b=pool.filter((_,i)=>i%2===1);const ga=k===0?null:Math.floor(rnd()*7)+2,gb=k===0?null:Math.floor(rnd()*7)+2;
+    dm.push({_id:localDay(d),day:localDay(d),d:d.toISOString(),a,b,ga,gb,fig:k===0?null:pool[Math.floor(rnd()*pool.length)],late:k%3===1?[pool[3]]:[],abs:k===2?[pool[5]]:[],par:k?{x1:'p',x2:rnd()>.6?'d':'p'}:{}});}
+  if(!S.demo)S.real.matches=S.matches;
+  S.demo=true;S.players=players;S.votes=votes;S.rules={sep:[['demo1','demo4']],jun:[]};S.matches=dm;
   computeStats();syncClaims();S.sel=new Set(names.slice(0,14).map((_,i)=>'demo'+i));resetTeams();S.profile=window.innerWidth>=1200?'demo2':null;S.tab='armar';S.ready=true;
   runBalance();
 }
@@ -2008,7 +2224,7 @@ function startSubs(){
   UNSUB.push(db.collection('profiles').limit(1000).onSnapshot(s=>{const m=new Map();s.docs.forEach(d=>m.set(d.id,d.data()));if(S.demo&&S.real)S.real.profiles=m;else S.profiles=m;done();syncMyCount();},e=>console.error(e)));
   UNSUB.push(db.doc('staff/admins').onSnapshot(s=>{S.admins=new Set(s.exists?(s.data().uids||[]):[]);done();},e=>console.error(e)));
   UNSUB.push(db.doc('config/rules').onSnapshot(s=>{const r=s.exists?s.data():{};const f=l=>(l||[]).filter(o=>o&&o.a&&o.b).map(o=>[o.a,o.b]);const rules={sep:f(r.sep),jun:f(r.jun)};if(S.demo&&S.real)S.real.rules=rules;else S.rules=rules;done();},e=>console.error(e)));
-  UNSUB.push(db.collection('matches').orderBy('d','desc').limit(10).onSnapshot(s=>{S.matches=s.docs.map(d=>({...d.data(),_id:d.id}));done();},e=>console.error(e)));
+  UNSUB.push(db.collection('matches').orderBy('d','desc').limit(300).onSnapshot(s=>{const ms=s.docs.map(d=>({...d.data(),_id:d.id}));if(S.demo&&S.real)S.real.matches=ms;else S.matches=ms;done();},e=>console.error(e)));
   UNSUB.push(db.collection(`users/${S.uid}/myvotes`).onSnapshot(s=>{const vids={};s.docs.forEach(d=>{vids[d.id]=(d.data()||{}).vid;});S.mine={...S.mine,rated:Object.keys(vids),vids};done();syncMyCount();},e=>console.error(e)));
   UNSUB.push(db.doc(`users/${S.uid}/meta/yo`).onSnapshot(s=>{S.mine={...S.mine,skip:s.exists?(s.data().skip||[]):[]};done();syncMyCount();},e=>console.error(e)));
 }
