@@ -613,7 +613,8 @@ input[type=text],input[type=search],input[type=number],select,textarea{backgroun
 .av-btn{font-size:17px;padding:14px 22px;font-family:var(--f-display);letter-spacing:.06em;text-transform:uppercase}
 @media (max-width:620px){.avance{grid-template-columns:auto minmax(0,1fr)}.av-btn{grid-column:1/-1;width:100%}.av-num b{font-size:56px}.av-num{min-width:70px}}
 .mis{margin-top:12px}
-.mis summary{cursor:pointer;display:flex;align-items:center;gap:8px}
+.mis summary{cursor:pointer;display:flex;align-items:center;gap:8px;list-style:none}.mis summary::-webkit-details-marker{display:none}
+.mis .mis-hint{margin-left:auto;font-size:13px;font-weight:700;color:var(--pitch)}.mis .chev{color:var(--pitch);transition:transform .2s}.mis[open] .chev{transform:rotate(180deg)}
 .ev-list{list-style:none;margin:10px 0 0;padding:0}
 .ev{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--line)}
 .ev-n{flex:1;min-width:0;font-weight:600}
@@ -784,14 +785,14 @@ try{
   const wrapDoc=ref=>({id:ref.id,path:ref.path,
     get:async()=>snapDoc(await getDoc(ref)),
     set:(d,o)=>setDoc(ref,d,o||{}),update:d=>updateDoc(ref,d),delete:()=>deleteDoc(ref),
-    onSnapshot:(n,e)=>onSnapshot(ref,s=>n(snapDoc(s)),e),
+    onSnapshot:(n,e)=>onSnapshot(ref,s=>{const o=snapDoc(s);o.fromCache=s.metadata.fromCache;n(o);},e),
     collection:p=>wrapCol(collection(ref,p))});
   const wrapCol=(ref,q)=>{q=q||ref;return{path:ref.path,
     doc:id=>wrapDoc(id?doc(ref,id):doc(ref)),
     add:async d=>wrapDoc(await addDoc(ref,d)),
     limit:n=>wrapCol(ref,query(q,qlimit(n))),
     orderBy:(f,dir)=>wrapCol(ref,query(q,qorder(f,dir||'asc'))),
-    onSnapshot:(n,e)=>onSnapshot(q,s=>n({docs:s.docs.map(snapDoc),size:s.size,empty:s.empty}),e)};};
+    onSnapshot:(n,e)=>onSnapshot(q,s=>n({docs:s.docs.map(snapDoc),size:s.size,empty:s.empty,fromCache:s.metadata.fromCache}),e)};};
   const db={doc:p=>wrapDoc(doc(fdb,p)),collection:p=>wrapCol(collection(fdb,p))};
   const batch=()=>{const b=writeBatch(fdb);const api={
     set:(p,d,merge)=>{b.set(doc(fdb,p),d,merge?{merge:true}:{});return api;},
@@ -1013,6 +1014,7 @@ const T3=[
  ['¿Agregar este partido a las estadísticas?','Aggiungere questa partita alle statistiche?','Add this match to the stats?'],['¿Reemplazar el partido de hoy?','Sostituire la partita di oggi?','Replace today’s match?'],['Ya hay un partido guardado hoy. Se reemplazan los equipos.','C’è già una partita salvata oggi. Le squadre verranno sostituite.','There is already a match saved today. The teams will be replaced.'],['Hacelo solo si estos son los equipos confirmados.','Fallo solo se queste sono le squadre confermate.','Only do it if these are the confirmed teams.'],['Sí, agregar','Sì, aggiungi','Yes, add'],['Sí, reemplazar','Sì, sostituisci','Yes, replace'],['No','No','No'],['¿Borrar partido?','Eliminare la partita?','Delete match?'],['Sí, borrar','Sì, elimina','Yes, delete'],['Borrar partido','Elimina partita','Delete match'],['Partido borrado','Partita eliminata','Match deleted'],
  ['Pie','Piede','Foot'],['Altura','Altezza','Height'],['Camiseta','Maglia','Shirt'],['Al arco','In porta','In goal'],['Puntos','Punti','Points'],['Derecho','Destro','Right'],['Zurdo','Mancino','Left'],['Ambos','Entrambi','Both'],
  ['Físico','Fisico','Physical'],['Velocidad','Velocità','Speed'],['Lento, lo pasan en cualquier carrera','Lento, lo superano in ogni scatto','Slow, gets beaten in every sprint'],['Rapidísimo, gana todas las carreras','Velocissimo, vince ogni scatto','Very fast, wins every sprint'],['Estado físico','Condizione fisica','Fitness'],['A los 10 minutos ya no da más','Dopo 10 minuti non ne ha più','Gassed after 10 minutes'],['Termina como empezó, no se cansa nunca','Finisce come ha iniziato, non si stanca mai','Finishes like he started, never tires'],['Ver y editar mis evaluaciones','Vedi e modifica le mie valutazioni','See and edit my ratings'],['Tocá ✎ para ver lo que votaste y cambiarlo.','Tocca ✎ per vedere cosa hai votato e cambiarlo.','Tap ✎ to see what you voted and change it.'],['Faltan las nuevas','Mancano le nuove','New ones missing'],['✎ Completar','✎ Completa','✎ Complete'],['Completar','Completa','Complete'],
+ ['Ocultar mis evaluaciones ▴','Nascondi le mie valutazioni ▴','Hide my ratings ▴'],['Ver y editar mis evaluaciones ▾','Vedi e modifica le mie valutazioni ▾','See and edit my ratings ▾'],['Ocultar','Nascondi','Hide'],['Ver y editar','Vedi e modifica','See and edit'],
  ['Estadísticas','Statistiche','Stats'],['Armar','Squadre','Teams'],['Stats','Stats','Stats'],['Partidos','Partite','Matches'],['jugado','giocata','played'],['jugados','giocate','played'],
  ['Tabla general','Classifica generale','Overall table'],['puntos','punti','points'],['Los que más vienen','Chi viene di più','Most present'],['Figuras','Migliori in campo','MVPs'],['Figura','Migliore in campo','MVP'],['Ganadores','Vincenti','Winners'],
  ['veces elegido figura','volte migliore in campo','times MVP'],['Todavía no se eligió ninguna figura.','Ancora nessun migliore in campo.','No MVP chosen yet.'],['Todavía no hay resultados cargados.','Ancora nessun risultato inserito.','No scores entered yet.'],
@@ -1626,7 +1628,7 @@ function vRanking(){
 }
 function myRank(){const act=new Set(activeIds());const rows=[...S.claims.entries()].filter(([pid])=>act.has(pid)).map(([pid,uid])=>({pid,v:pid===S.myClaim?S.mine.rated.length:+(S.profiles.get(uid)||{}).votos||0}));rows.sort((a,b)=>b.v-a.v);return rows.findIndex(r=>r.pid===S.myClaim)+1;}
 async function syncMyCount(){
-  if(S.demo||!S.db||!S.uid||!S.myClaim||S._syncing)return;
+  if(S.demo||!S.db||!S.uid||!S.myClaim||S._syncing||S.mineLoaded===false)return;
   const pr=S.profiles.get(S.uid);if(!pr)return;
   const v=S.mine.rated.length,k=S.mine.skip.length;
   if(pr.votos===v&&pr.pasados===k)return;
@@ -1639,7 +1641,7 @@ function vAvance(){
   const msg=!left?'¡Completaste el plantel! 🏆':!done&&!sk?'¡Arrancá, tu voto es clave!':left<=3?`¡Te ${left===1?'queda solo 1':`quedan solo ${left}`}!`:pct>=50?'Pasaste la mitad 💪':'Cada voto hace los equipos más parejos';
   return`<div class="card avance"><div class="av-num"><span class="label">${left?'Te faltan':'Listo'}</span><b class="num">${left||'✓'}</b></div>
    <div class="av-mid"><p class="av-msg">${msg}</p>${staleIds().length?`<p class="av-sub" style="margin:0 0 6px">${`${staleIds().length} para re-evaluar`}</p>`:''}<div class="b2-t thick"><i style="width:${pct}%"></i></div>
-    <p class="av-sub num">${total-left} de ${total} · evaluaste ${done} · salteaste ${sk}</p>${done||sk?`<button class="linkbtn" data-act="open-mis">Ver y editar mis evaluaciones</button>`:''}</div>
+    <p class="av-sub num">${total-left} de ${total} · evaluaste ${done} · salteaste ${sk}</p>${done||sk?`<button class="linkbtn" data-act="open-mis" aria-expanded="${!!S.misOpen}">${S.misOpen?'Ocultar mis evaluaciones ▴':'Ver y editar mis evaluaciones ▾'}</button>`:''}</div>
    ${left?`<button class="btn bib av-btn" data-act="start">${done||sk?'Seguir puntuando':'Empezar a puntuar'}</button>`:''}</div>`;
 }
 const NEW_KEYS=['vel','est'];
@@ -1648,7 +1650,7 @@ function vMisEvals(){
   if(!rated.length&&!sk.length)return'';
   const vids=S.mine.vids||{};
   const row=(id,btn)=>`<li class="ev">${av(id)}<span class="ev-n">${esc(name(id))}</span>${btn}</li>`;
-  return`<details class="card mis" id="mis-evals"${S.misOpen?' open':''}><summary><span class="label">Mis evaluaciones</span> <span class="pill">${rated.length+sk.length}</span></summary>
+  return`<details class="card mis" id="mis-evals"${S.misOpen?' open':''}><summary><span class="label">Mis evaluaciones</span> <span class="pill">${rated.length+sk.length}</span><span class="mis-hint">${S.misOpen?'Ocultar':'Ver y editar'}</span><span class="chev" aria-hidden="true">▾</span></summary>
    <p class="muted" style="font-size:13px;margin:8px 0 4px">Tocá ✎ para ver lo que votaste y cambiarlo.</p>
    <ul class="ev-list">${sortedIds(rated.slice()).map(id=>{const v=myVote(id),miss=v&&v.r&&NEW_KEYS.some(k=>!v.r[k]);return row(id,vids[id]?`${miss?'<span class="pill ev-new">Faltan las nuevas</span>':''}<button class="btn small" data-act="ev-edit" data-id="${id}">✎ ${miss?'Completar':'Editar'}</button>`:`<span class="pill" title="Este voto es de antes de que se pudiera editar">Votado antes · no editable</span>`);}).join('')}
    ${sortedIds(sk.slice()).map(id=>row(id,`<button class="btn small ghost" data-act="ev-known" data-id="${id}">Ahora sí lo conozco</button>`)).join('')}</ul></details>`;
@@ -2110,7 +2112,7 @@ break;
     case 'lang':setLang(t.dataset.l);render();break;
     case 'signin':{try{await S.FB.signIn();}catch(e){const c=e&&e.code||'';if(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')break;toast(c==='auth/unauthorized-domain'?'Este dominio todavía no está autorizado en Firebase.':'No se pudo entrar. Probá de nuevo.');console.error(e);}break;}
     case 'signout':try{await S.FB.signOut();}catch(_){}break;
-    case 'open-mis':S.misOpen=true;render();setTimeout(()=>{const el=document.getElementById('mis-evals');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},30);break;
+    case 'open-mis':S.misOpen=!S.misOpen;render();if(S.misOpen)setTimeout(()=>{const el=document.getElementById('mis-evals');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},30);break;
     case 'more-matches':S.allMatches=!S.allMatches;render();break;
     case 'all-table':S.allTable=!S.allTable;render();break;
     case 'mk-edit':{const m=S.matches.find(x=>x._id===t.dataset.m);if(!m)break;S.markFor=m._id;S.markDraft={late:new Set(m.late||[]),abs:new Set(m.abs||[])};render();break;}
@@ -2176,7 +2178,7 @@ document.addEventListener('submit',async e=>{
   let ref;const ok=await write(async()=>{ref=await S.db.collection('players').add({name:nm,active:true,base:base?+base:null,c:Date.now(),info:nat?{nat}:{}});},`Agregué a ${nm}`);
   if(ok&&ref){S.photoFor=S.assets?ref.id:null;const f=$('#new-nat');if(f)f.value='';const nn=$('#new-name');if(nn)nn.value='';render();setTimeout(()=>$('#new-name')?.focus(),0);}
 });
-document.addEventListener('toggle',e=>{if(e.target.id==='rules-box')S.rulesOpen=e.target.open;if(e.target.id==='mis-evals')S.misOpen=e.target.open;},true);
+document.addEventListener('toggle',e=>{if(e.target.id==='rules-box')S.rulesOpen=e.target.open;if(e.target.id==='mis-evals'&&S.misOpen!==e.target.open){S.misOpen=e.target.open;render();}},true);
 function setNum(k,raw){
   const d=S.draft;if(!d)return;const v=String(raw).replace(/\D/g,'');
   if(v===''){delete d[k];render();return;}
@@ -2262,8 +2264,9 @@ function startSubs(){
   UNSUB.push(db.doc('staff/admins').onSnapshot(s=>{S.admins=new Set(s.exists?(s.data().uids||[]):[]);done();},e=>console.error(e)));
   UNSUB.push(db.doc('config/rules').onSnapshot(s=>{const r=s.exists?s.data():{};const f=l=>(l||[]).filter(o=>o&&o.a&&o.b).map(o=>[o.a,o.b]);const rules={sep:f(r.sep),jun:f(r.jun)};if(S.demo&&S.real)S.real.rules=rules;else S.rules=rules;done();},e=>console.error(e)));
   UNSUB.push(db.collection('matches').orderBy('d','desc').limit(300).onSnapshot(s=>{const ms=s.docs.map(d=>({...d.data(),_id:d.id}));if(S.demo&&S.real)S.real.matches=ms;else S.matches=ms;done();},e=>console.error(e)));
-  UNSUB.push(db.collection(`users/${S.uid}/myvotes`).onSnapshot(s=>{const vids={};s.docs.forEach(d=>{vids[d.id]=(d.data()||{}).vid;});S.mine={...S.mine,rated:Object.keys(vids),vids};done();syncMyCount();},e=>console.error(e)));
-  UNSUB.push(db.doc(`users/${S.uid}/meta/yo`).onSnapshot(s=>{S.mine={...S.mine,skip:s.exists?(s.data().skip||[]):[]};done();syncMyCount();},e=>console.error(e)));
+  S.mineLoaded=false;S._mv=false;S._mt=false;
+  UNSUB.push(db.collection(`users/${S.uid}/myvotes`).onSnapshot(s=>{if(!s.fromCache)S._mv=true;S.mineLoaded=S._mv&&S._mt;const vids={};s.docs.forEach(d=>{vids[d.id]=(d.data()||{}).vid;});S.mine={...S.mine,rated:Object.keys(vids),vids};done();syncMyCount();},e=>console.error(e)));
+  UNSUB.push(db.doc(`users/${S.uid}/meta/yo`).onSnapshot(s=>{if(!s.fromCache)S._mt=true;S.mineLoaded=S._mv&&S._mt;S.mine={...S.mine,skip:s.exists?(s.data().skip||[]):[]};done();syncMyCount();},e=>console.error(e)));
 }
 (async()=>{
   let FB=null;try{FB=await window.__fb;}catch(_){}
