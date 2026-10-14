@@ -686,6 +686,9 @@ input[type=checkbox]{accent-color:var(--pitch)}
 }
 
 /* --- estadísticas --- */
+.mh-r{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.mdel{border:0;background:none;cursor:pointer;font-size:14px;opacity:.45;padding:2px 4px}.mdel:hover{opacity:1}
+.mdel-q{display:inline-flex;align-items:center;gap:6px;font-size:12px}
 nav.tabs .sm{display:none}
 @media (max-width:620px){nav.tabs .lg{display:none}nav.tabs .sm{display:inline}}
 .stats{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;margin-top:18px;align-items:start}
@@ -995,6 +998,7 @@ const T3=[
  ['Cerrar sesión','Esci','Sign out'],['No se pudo conectar','Impossibile connettersi','Couldn’t connect'],['Revisá tu conexión y recargá la página.','Controlla la connessione e ricarica la pagina.','Check your connection and reload the page.'],
  ['No tenés permiso para hacer eso.','Non hai il permesso di farlo.','You don’t have permission to do that.'],
  ['Este dominio todavía no está autorizado en Firebase.','Questo dominio non è ancora autorizzato in Firebase.','This domain isn’t authorised in Firebase yet.'],['No se pudo entrar. Probá de nuevo.','Accesso non riuscito. Riprova.','Couldn’t sign in. Try again.'],
+ ['¿Agregar este partido a las estadísticas?','Aggiungere questa partita alle statistiche?','Add this match to the stats?'],['¿Reemplazar el partido de hoy?','Sostituire la partita di oggi?','Replace today’s match?'],['Ya hay un partido guardado hoy. Se reemplazan los equipos.','C’è già una partita salvata oggi. Le squadre verranno sostituite.','There is already a match saved today. The teams will be replaced.'],['Hacelo solo si estos son los equipos confirmados.','Fallo solo se queste sono le squadre confermate.','Only do it if these are the confirmed teams.'],['Sí, agregar','Sì, aggiungi','Yes, add'],['Sí, reemplazar','Sì, sostituisci','Yes, replace'],['No','No','No'],['¿Borrar partido?','Eliminare la partita?','Delete match?'],['Sí, borrar','Sì, elimina','Yes, delete'],['Borrar partido','Elimina partita','Delete match'],['Partido borrado','Partita eliminata','Match deleted'],
  ['Estadísticas','Statistiche','Stats'],['Armar','Squadre','Teams'],['Stats','Stats','Stats'],['Partidos','Partite','Matches'],['jugado','giocata','played'],['jugados','giocate','played'],
  ['Tabla general','Classifica generale','Overall table'],['puntos','punti','points'],['Los que más vienen','Chi viene di più','Most present'],['Figuras','Migliori in campo','MVPs'],['Figura','Migliore in campo','MVP'],['Ganadores','Vincenti','Winners'],
  ['veces elegido figura','volte migliore in campo','times MVP'],['Todavía no se eligió ninguna figura.','Ancora nessun migliore in campo.','No MVP chosen yet.'],['Todavía no hay resultados cargados.','Ancora nessun risultato inserito.','No scores entered yet.'],
@@ -1002,7 +1006,7 @@ const T3=[
  ['Ganó con pechera','Vince con casacca','Bibs won'],['Ganó sin pechera','Vince senza casacca','No-bibs won'],['Empate','Pareggio','Draw'],['Sin resultado','Senza risultato','No result'],['Hoy · cargá el resultado cuando termine','Oggi · inserisci il risultato a fine partita','Today · enter the score when it ends'],
  ['Elegir…','Scegli…','Choose…'],['Figura del partido','Migliore in campo','Match MVP'],['⏰ 🚫 Marcar tardanzas y ausencias','⏰ 🚫 Segna ritardi e assenze','⏰ 🚫 Mark late arrivals and no-shows'],['Tocá a un jugador: ⏰ llegó tarde → 🚫 faltó sin avisar → normal','Tocca un giocatore: ⏰ in ritardo → 🚫 assente senza avvisare → normale','Tap a player: ⏰ late → 🚫 no-show → normal'],
  ['Guardar','Salva','Save'],['Muy desparejo','Molto squilibrata','Very uneven'],['Ver partidos anteriores','Vedi partite precedenti','See earlier matches'],['Ver menos','Mostra meno','Show less'],['Ver todos','Vedi tutti','See all'],
- ['Todavía no hay partidos','Ancora nessuna partita','No matches yet'],['Los partidos se guardan solos cuando un admin toca "Copiar para WhatsApp" al armar los equipos.','Le partite si salvano da sole quando un admin tocca "Copia per WhatsApp" dopo aver fatto le squadre.','Matches are saved automatically when an admin taps "Copy for WhatsApp" after making the teams.'],
+ ['Todavía no hay partidos','Ancora nessuna partita','No matches yet'],['Al tocar "Copiar para WhatsApp" en Armar equipos, la web pregunta si querés agregar el partido.','Quando tocchi "Copia per WhatsApp" in Squadre, il sito chiede se vuoi aggiungere la partita.','When you tap "Copy for WhatsApp" in Teams, the site asks whether to add the match.'],
  ['Solo un admin puede corregirlo','Solo un admin può correggerlo','Only an admin can change it'],['Resultado guardado','Risultato salvato','Score saved'],['Re-evaluación: ¿sigue igual?','Rivalutazione: è ancora così?','Re-rating: still the same?'],['Sigue igual / Guardar','È uguale / Salva','Still the same / Save'],['Saltear','Salta','Skip'],
  ['Datos de jugador','Dati del giocatore','Player details'],['Sobre mí','Su di me','About me'],['Número de camiseta','Numero di maglia','Shirt number'],['Altura','Altezza','Height'],['Menos','Meno','Less'],['Más','Più','More'],['Altura en cm','Altezza in cm','Height in cm'],['Posiciones','Posizioni','Positions'],['Cambiar foto','Cambia foto','Change photo'],['Cambiar foto personal','Cambia foto personale','Change personal photo'],['Todavía no hay jugadores. Agregalos arriba.','Ancora nessun giocatore. Aggiungili qui sopra.','No players yet. Add them above.'],['Todavía no hay jugadores. Solo los administradores agregan, editan o borran jugadores.','Ancora nessun giocatore. Solo gli amministratori aggiungono, modificano o eliminano giocatori.','No players yet. Only admins add, edit or delete players.'],['La altura tiene que estar entre 140 y 220 cm','L’altezza deve essere tra 140 e 220 cm','Height must be between 140 and 220 cm'],['El número de camiseta va de 1 a 99','Il numero di maglia va da 1 a 99','Shirt number goes from 1 to 99'],
  ['Solo los administradores agregan, editan o borran jugadores.','Solo gli amministratori aggiungono, modificano o eliminano giocatori.','Only admins add, edit or delete players.'],['Admin','Admin','Admin'],['Administrador','Amministratore','Admin'],['Hacer admin','Rendi admin','Make admin'],['Quitar admin','Togli admin','Remove admin'],
@@ -1398,6 +1402,10 @@ function render(){
   document.body.classList.toggle('needlogin',!!S.needLogin);
   try{html=S.needLogin?vLogin():S.fbError?`<div class="cancha-empty" style="margin-top:22px"><strong>No se pudo conectar</strong>Revisá tu conexión y recargá la página.</div>`:S.tab==='armar'?vArmar():S.tab==='encuesta'?vEncuesta():S.tab==='stats'?vStats():S.tab==='yo'?vYo():vPlantel();}
   catch(err){console.error(err);html=`<div class="cancha-empty" style="margin-top:22px"><strong>Algo falló al mostrar esta pantalla</strong>Recargá la página. Si vuelve a pasar, avisá con este detalle: <code>${esc(err&&err.message)}</code><br><br><button class="btn" data-act="reset-teams">Limpiar equipos y reintentar</button></div>`;}
+  if(S.askMatch&&S.teams){const ex=S.matches.some(x=>x._id===localDay());html+=`<div class="modal-bg" data-act="am-no"></div><div class="modal" role="dialog" aria-modal="true" aria-labelledby="am-t" style="text-align:center">
+   <h3 id="am-t" style="font-size:24px;text-transform:uppercase;margin:0 0 6px">${ex?'¿Reemplazar el partido de hoy?':'¿Agregar este partido a las estadísticas?'}</h3>
+   <p class="muted" style="margin:0 0 16px">${ex?'Ya hay un partido guardado hoy. Se reemplazan los equipos.':'Hacelo solo si estos son los equipos confirmados.'}</p>
+   <div class="row" style="justify-content:center;gap:10px"><button class="btn ghost" data-act="am-no">No</button><button class="btn primary" data-act="am-yes">${ex?'Sí, reemplazar':'Sí, agregar'}</button></div></div>`;}
   m.innerHTML=html;
   i18nDom(document.querySelector('.wrap'));
   if(fid){const n=document.getElementById(fid);if(n){if(typing&&'value' in n&&n.type!=='file')n.value=typing.v;n.focus({preventScroll:true});if(typing){try{n.setSelectionRange(typing.s,typing.e)}catch(_){}}}}
@@ -1649,7 +1657,7 @@ function statsAll(){
 const medal=i=>i<3?`<span class="rk-m">${['🥇','🥈','🥉'][i]}</span>`:`<span class="rk-m rk-n num">${i+1}</span>`;
 function vStats(){
   const {ms,P}=S._st||statsAll();
-  const empty=`<div class="cancha-empty" style="margin-top:22px"><strong>Todavía no hay partidos</strong>Los partidos se guardan solos cuando un admin toca "Copiar para WhatsApp" al armar los equipos.</div>`;
+  const empty=`<div class="cancha-empty" style="margin-top:22px"><strong>Todavía no hay partidos</strong>Al tocar "Copiar para WhatsApp" en Armar equipos, la web pregunta si querés agregar el partido.</div>`;
   if(!ms.length)return empty;
   const shown=S.allMatches?ms:ms.slice(0,5);
   const ids=Object.keys(P).filter(id=>S.players.has(id));
@@ -1699,7 +1707,7 @@ function vMatch(m){
   const canPar=signed&&!!S.myClaim&&all.includes(S.myClaim);
   const figOpts=all.filter(id=>!abs.has(id));
   return`<article class="mcard">
-   <div class="mh"><span class="md">${esc(fmtDate(m.d))}</span><span class="muted">${st}</span></div>
+   <div class="mh"><span class="md">${esc(fmtDate(m.d))}</span><span class="mh-r"><span class="muted">${st}</span>${S.mdel===m._id?`<span class="mdel-q"><span>¿Borrar partido?</span> <button type="button" class="btn small ghost" data-act="mdel-no">No</button><button type="button" class="btn small danger" data-act="mdel-yes" data-m="${m._id}">Sí, borrar</button></span>`:(signed||S.demo)?`<button type="button" class="mdel" data-act="mdel" data-m="${m._id}" title="Borrar partido" aria-label="Borrar partido">🗑</button>`:''}</span></div>
    <div class="msides">
     <div class="mside a"><span class="tn a">Con pechera</span><div class="mavs">${A.map(face).join('')}</div></div>
     <div class="mscore">
@@ -1726,8 +1734,10 @@ function vMatch(m){
   </article>`;
 }
 async function saveMatch(){
-  if(!S.teams||!canManage())return;
-  const {a,b,ord,form}=S.teams,day=localDay(),ref=S.db.doc('matches/'+day);
+  if(!S.teams)return;
+  const {a,b,ord,form}=S.teams,day=localDay();
+  if(S.demo){const o=S.matches.find(x=>x._id===day),nm={ga:null,gb:null,fig:null,late:[],abs:[],par:{},...(o||{}),_id:day,day,d:new Date().toISOString(),a:[...a],b:[...b],ord,form};S.matches=[nm,...S.matches.filter(x=>x._id!==day)];render();toast(`Equipos confirmados ✓ · partido del ${fmtDate(nm.d)} guardado`);return;}
+  if(!S.uid)return;const ref=S.db.doc('matches/'+day);
   let ex=null;try{ex=await ref.get();}catch(_){}
   const base=JSON.parse(JSON.stringify({d:new Date().toISOString(),day,a,b,ord:ord||null,form:form||null}));
   const ok=await write(()=>ex&&ex.exists?ref.update(base):ref.set({...base,ga:null,gb:null,fig:null,late:[],abs:[],par:{}}));
@@ -1986,7 +1996,7 @@ function copyTeams(){
   const side=(ids,emo,tit)=>{const L=layoutTeam(ids,ord,form);return`${emo} *${tr(tit)}*\n`+ids.slice().sort((x,y)=>ord[x]-ord[y]).map(id=>{const k=ord[id];return`${k}. ${name(id)}${k===1?' 🧤':''} · ${tr(ROL[L.pos[id]])} · ${tr('arco')} ${(k-1)*MINS}'-${k*MINS}'`;}).join('\n');};
   const txt=`${side(a,'🔵','CON PECHERA')}\n\n${side(b,'⚪','SIN PECHERA')}\n\n${tr(`Formación ${form}. El 1 arranca al arco y cada ${MINS}' pasa el siguiente.`)}`;
   try{navigator.clipboard.writeText(txt).then(()=>toast('Copiado'),()=>fallbackCopy(txt));}catch(e){fallbackCopy(txt);}
-  if(canManage())setTimeout(saveMatch,600);
+  if(S.uid||S.demo){S.askMatch=true;render();}
 }
 function fallbackCopy(txt){const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');toast('Copiado');}catch(e){toast('No se pudo copiar');}t.remove();}
 function startSurvey(){
@@ -2039,6 +2049,11 @@ break;
       let ref;const ok=await write(async()=>{ref=await S.db.collection('players').add({name:nm,active:true,base:null,c:Date.now(),info:{}});},`Agregué a ${nm} y lo marqué`);
       if(ok&&ref){S.sel.add(ref.id);S.pasteReview.splice(i,1);S.photoFor=S.assets?ref.id:null;resetTeams();render();}break;}
     case 'copy':copyTeams();break;
+    case 'am-no':S.askMatch=false;render();break;
+    case 'am-yes':S.askMatch=false;render();await saveMatch();break;
+    case 'mdel':S.mdel=t.dataset.m;render();break;
+    case 'mdel-no':S.mdel=null;render();break;
+    case 'mdel-yes':{const mid=t.dataset.m;S.mdel=null;if(S.demo){S.matches=S.matches.filter(x=>x._id!==mid);render();toast('Partido borrado');}else await write(()=>S.db.doc('matches/'+mid).delete(),'Partido borrado');break;}
     case 'save-match':await write(()=>S.db.collection('matches').add({d:new Date().toISOString(),a:S.teams.a,b:S.teams.b,ord:S.teams.ord,form:S.teams.form,ga:null,gb:null,par:null}),'Partido guardado');break;
     case 'demo':loadDemo();break;
     case 'exit-demo':S.demo=false;S.players=new Map(S.real.players);S.votes=S.real.votes;S.matches=S.real.matches||[];S.profiles=S.real.profiles||new Map();S.rules=S.real.rules||{sep:[],jun:[]};S.sel.clear();resetTeams();S.profile=null;computeStats();syncClaims();render();break;
