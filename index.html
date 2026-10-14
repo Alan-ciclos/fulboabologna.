@@ -639,6 +639,52 @@ input[type=checkbox]{accent-color:var(--pitch)}
 .plist input[type=checkbox]:focus-visible{outline:2px solid var(--pitch);outline-offset:2px}
 .pill.adm{color:var(--pitch);border-color:var(--pitch);background:none;margin-left:4px}
 
+/* --- ronda 7 --- */
+.meters{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.photos2{display:flex;justify-content:space-evenly;align-items:flex-start;flex-wrap:wrap;gap:16px 24px;margin-top:12px}
+.photos2 .pp{flex-basis:100%;order:3}
+.photo-big,.photos2 .card-photo-row{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.photos2 .card-photo-row .col{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:6px}
+.ph-edit{position:relative;display:inline-block;cursor:pointer;border-radius:50%}
+.ph-edit input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.ph-edit .ph-ov{position:absolute;inset:0;border-radius:50%;display:grid;place-items:center;background:rgba(7,9,13,.6);color:var(--pitch);font-size:34px;opacity:0;transition:opacity .15s;pointer-events:none}
+.ph-edit:hover .ph-ov,.ph-edit:focus-within .ph-ov{opacity:1}
+@media (hover:none){.ph-edit .ph-ov{opacity:1;inset:auto 0 0 auto;width:36px;height:36px;font-size:16px;background:var(--pitch);color:#07090d;border:2px solid var(--surface)}}
+.pos-wrap{flex-direction:column;align-items:center;gap:12px}
+.pos7{width:230px}
+.pos-opts{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.chipbtn{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600}
+.chipbtn[aria-pressed="true"]{background:var(--pitch);border-color:var(--pitch);color:#07090d}
+.p7{overflow:visible}
+.p7.r2{background:rgba(217,178,90,.35);color:#fff;border-color:var(--pitch)}
+.p7-n{position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:#07090d;color:var(--pitch);font-style:normal;font-size:11px;display:grid;place-items:center;border:1px solid var(--pitch);font-family:var(--f-display)}
+.stepper{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface-2)}
+.stepper button{border:0;background:var(--surface);color:var(--pitch);font-size:20px;width:40px;flex:none;font-weight:700;touch-action:none;user-select:none}
+.stepper button:active{background:var(--pitch);color:#07090d}
+.stepper input{border:0!important;border-radius:0!important;text-align:center;flex:1;min-width:0;font-family:var(--f-display);font-size:17px;background:transparent!important}
+.stepper .unit{display:grid;place-items:center;padding-right:8px;color:var(--muted);font-size:13px}
+.items-all{margin-top:12px}
+.ficha .b2-wrap{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+.addbar{padding:12px;margin-bottom:14px;border-radius:var(--r);background:var(--pitch-soft)}
+.addrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.addrow .label{flex:none;margin-right:4px}
+.addrow #new-name{flex:2;min-width:150px;width:auto}
+.addrow #new-base{width:auto;flex:none}
+.addrow #new-nat{flex:1.5;min-width:150px;width:auto}
+.addrow .btn{flex:none}
+.addmany{margin-top:8px}
+.addmany summary{font-size:13px}
+
+.photos2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));justify-items:center;align-items:start}
+.photos2 .pp{grid-column:1/-1}
+@media (max-width:620px){
+ .photos2 .av.xl{width:96px;height:96px;font-size:30px}
+ .photos2 .cut-prev.sm{width:78px;height:98px}
+ .photos2 .card-photo-row .col{flex-direction:column;align-items:center}
+ .addrow .label{flex-basis:100%}
+ .addrow #new-name,.addrow #new-nat{flex-basis:100%}
+}
+
 /* --- web propia: login --- */
 body.needlogin nav.tabs, body.needlogin .me-btn{display:none}
 .login{max-width:440px;margin:40px auto 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
@@ -647,7 +693,7 @@ body.needlogin nav.tabs, body.needlogin .me-btn{display:none}
 .login p{margin:0;color:var(--muted);max-width:36ch}
 .gbtn{display:inline-flex;align-items:center;gap:10px;font-size:17px;padding:14px 22px;font-family:var(--f-display);letter-spacing:.06em;text-transform:uppercase}
 .gbtn svg{width:20px;height:20px;background:#fff;border-radius:50%;padding:2px}
-.signout{margin-top:18px;text-align:right}
+.signout{margin-top:14px;text-align:center}
 </style>
 </head>
 <body>
@@ -746,7 +792,8 @@ const ARCO_YO={si:'Me gusta atajar',toca:'Si me toca, atajo',no:'Prefiero no ata
 const PIE={der:'Derecho',izq:'Zurdo',amb:'Ambos'};
 const MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const MIN_V=6, FULL_V=8, OPT_V=12, TANDA=5, MAX_N=22, MINS=5;
-const INFO_KEYS=['photo','cardPhoto','nat','dorsal','pie','alt','pos','arco','club','idolo','festejo','frase','cumple'];
+const INFO_KEYS=['photo','cardPhoto','nat','dorsal','pie','alt','pos','pos2','arco','club','idolo','festejo','frase','cumple'];
+const DONE_KEYS=INFO_KEYS.filter(k=>k!=='pos2');
 const POS7={ARQ:'Arquero',LI:'Lateral izquierdo',DFC:'Defensor central',LD:'Lateral derecho',MI:'Volante por izquierda',MC:'Volante central',MD:'Volante por derecha',DC:'Delantero',igual:'Me da igual'};
 const POS7_XY={DC:[50,15],MI:[19,40],MC:[50,44],MD:[81,40],LI:[19,67],DFC:[50,71],LD:[81,67],ARQ:[50,91]};
 const LINE_OF={def:'D',med:'M',ata:'A',LI:'D',DFC:'D',LD:'D',MI:'M',MC:'M',MD:'M',DC:'A'};
@@ -896,6 +943,7 @@ const T3=[
  ['Cerrar sesión','Esci','Sign out'],['No se pudo conectar','Impossibile connettersi','Couldn’t connect'],['Revisá tu conexión y recargá la página.','Controlla la connessione e ricarica la pagina.','Check your connection and reload the page.'],
  ['No tenés permiso para hacer eso.','Non hai il permesso di farlo.','You don’t have permission to do that.'],
  ['Este dominio todavía no está autorizado en Firebase.','Questo dominio non è ancora autorizzato in Firebase.','This domain isn’t authorised in Firebase yet.'],['No se pudo entrar. Probá de nuevo.','Accesso non riuscito. Riprova.','Couldn’t sign in. Try again.'],
+ ['Datos de jugador','Dati del giocatore','Player details'],['Sobre mí','Su di me','About me'],['Número de camiseta','Numero di maglia','Shirt number'],['Altura','Altezza','Height'],['Menos','Meno','Less'],['Más','Più','More'],['Altura en cm','Altezza in cm','Height in cm'],['Posiciones','Posizioni','Positions'],['Cambiar foto','Cambia foto','Change photo'],['Cambiar foto personal','Cambia foto personale','Change personal photo'],['Todavía no hay jugadores. Agregalos arriba.','Ancora nessun giocatore. Aggiungili qui sopra.','No players yet. Add them above.'],['Todavía no hay jugadores. Solo los administradores agregan, editan o borran jugadores.','Ancora nessun giocatore. Solo gli amministratori aggiungono, modificano o eliminano giocatori.','No players yet. Only admins add, edit or delete players.'],['La altura tiene que estar entre 140 y 220 cm','L’altezza deve essere tra 140 e 220 cm','Height must be between 140 and 220 cm'],['El número de camiseta va de 1 a 99','Il numero di maglia va da 1 a 99','Shirt number goes from 1 to 99'],
  ['Solo los administradores agregan, editan o borran jugadores.','Solo gli amministratori aggiungono, modificano o eliminano giocatori.','Only admins add, edit or delete players.'],['Admin','Admin','Admin'],['Administrador','Amministratore','Admin'],['Hacer admin','Rendi admin','Make admin'],['Quitar admin','Togli admin','Remove admin'],
 ];
 const I18N={it:{},en:{}};for(const [es,it,en] of T3){I18N.it[es]=it;I18N.en[es]=en;}
@@ -945,6 +993,7 @@ const I18P=[
  P(/^Agregar (.+) como jugador nuevo$/,m=>`Aggiungi ${m[1]} come nuovo giocatore`,m=>`Add ${m[1]} as a new player`),
  P(/^Ver ficha de (.+)$/,m=>`Vedi scheda di ${m[1]}`,m=>`See ${m[1]}’s profile`),
  P(/^Puesto (\d+)$/,m=>`Posto ${m[1]}`,m=>`Place ${m[1]}`),
+ P(/^Nota inicial \(opcional\): se usa hasta que junta (\d+) votos$/,m=>`Voto iniziale (facoltativo): si usa finché non arriva a ${m[1]} voti`,m=>`Starting rating (optional): used until they reach ${m[1]} votes`),
  P(/^Nota (\d)$/,m=>`Voto ${m[1]}`,m=>`Rating ${m[1]}`),
  P(/^Pie (.+)$/,m=>m[1]==='derecho'?'Piede destro':m[1]==='zurdo'?'Piede sinistro':'Ambidestro',m=>m[1]==='derecho'?'Right foot':m[1]==='zurdo'?'Left foot':'Both feet'),
  P(/^Formación (.+)\. El 1 arranca al arco y cada (\d+)' pasa el siguiente\.$/,m=>`Modulo ${m[1]}. L’1 parte in porta e ogni ${m[2]}' tocca al successivo.`,m=>`Formation ${m[1]}. No. 1 starts in goal and every ${m[2]}' the next one takes over.`),
@@ -1021,7 +1070,7 @@ function info(id){
   return{...clean({photo:p.photo,pos:p.pos,arco:p.arco}),...clean(p.info),...clean(pr)};
 }
 const sameInfo=(x,y)=>INFO_KEYS.every(k=>String(x[k]??'')===String(y[k]??''));
-const completeness=inf=>INFO_KEYS.filter(k=>inf[k]!==undefined).length;
+const completeness=inf=>DONE_KEYS.filter(k=>inf[k]!==undefined).length;
 function syncClaims(){
   S.claims=new Map();
   for(const [uid,pr] of S.profiles)if(pr&&pr.player&&S.players.has(pr.player)&&!S.claims.has(pr.player))S.claims.set(pr.player,uid);
@@ -1056,8 +1105,13 @@ const ROL_N={G:'arranca al arco',D:'defensa',M:'medio',A:'ataque'};
 const PREF={def:'D',med:'M',ata:'A'};
 const FORMS={'2-3-1':[2,3,1],'3-2-1':[3,2,1],'2-2-2':[2,2,2]};
 function rawRole(id){const v=S.stats[id].v;return{D:avg([v.mar,v.ubi,v.hue]),M:avg([v.pc,v.pl,v.eq,v.ten]),A:avg([v.def,v.gam,v.piq]),G:v.arq};}
-const likesGoal=p=>p.arco==='si'||p.pos==='ARQ';
-function roleScores(id){const r=rawRole(id),p=info(id);if(LINE_OF[p.pos])r[LINE_OF[p.pos]]+=0.5;if(likesGoal(p))r.G+=0.5;if(p.arco==='no')r.G-=0.5;return r;}
+const likesGoal=p=>p.arco==='si'||p.pos==='ARQ'||p.pos2==='ARQ';
+function jit(str){let h=2166136261;for(const c of str)h=Math.imul(h^c.charCodeAt(0),16777619);return((h>>>0)%1000)/1000-0.5;}
+function roleScores(id){const r=rawRole(id),p=info(id);
+  if(LINE_OF[p.pos])r[LINE_OF[p.pos]]+=0.2;if(LINE_OF[p.pos2])r[LINE_OF[p.pos2]]+=0.1;
+  if(likesGoal(p))r.G+=0.3;if(p.arco==='no')r.G-=0.3;
+  const seed=S.teams&&S.teams.seed;if(seed)for(const k of ['D','M','A'])r[k]+=0.3*jit(seed+id+k);
+  return r;}
 function posLabel(id,inf){if(inf.pos&&POS7[inf.pos]&&inf.pos!=='igual')return inf.pos;if(PREF[inf.pos])return ROL[PREF[inf.pos]];return ROL[naturalRole(id)];}
 function naturalRole(id){const r=rawRole(id);return['D','M','A'].reduce((a,b)=>r[b]>r[a]?b:a,'M');}
 function formCounts(form,f){
@@ -1104,7 +1158,8 @@ function setTeams(t,manual,keepOrd){
   if(!t){S.teams=null;return;}
   const prev=keepOrd&&S.teams?S.teams.ord:null;
   const ord={...numberSide(t.a,prev),...numberSide(t.b,prev)};
-  S.teams={a:t.a,b:t.b,ord,form:pickForm(t.a,t.b,ord)};S.manual=!!manual;
+  const seed=keepOrd&&S.teams&&S.teams.seed?S.teams.seed:Math.random().toString(36).slice(2,8);
+  S.teams={a:t.a,b:t.b,ord,seed};S.teams.form=pickForm(t.a,t.b,ord);S.manual=!!manual;
 }
 
 /* ---------- Balanceo ---------- */
@@ -1234,9 +1289,9 @@ function card(id,inf,opt={}){
   const st=[['ATA',[v.def,v.gam,v.piq]],['DEF',[v.mar,v.ubi]],['PAS',[v.pc,v.pl]],['FÍS',[v.desp,v.hue]],['GAM',[v.ten,v.gam]],['ARQ',[v.arq]]]
     .map(([k,a])=>`<span><b class="num">${to99(avg(a))}</b>${k}</span>`).join('');
   const ph=inf.photo&&photoSrc(inf.photo)?`<img src="${photoSrc(inf.photo)}" alt="" onerror="this.remove()">`:`<span>${esc(initials(p.name))}</span>`;
-  const full=completeness(inf)===INFO_KEYS.length;
+  const full=completeness(inf)===DONE_KEYS.length;
   const meta=[inf.pie?'Pie '+PIE[inf.pie].toLowerCase():'',inf.alt?inf.alt+' cm':''].filter(Boolean).map(t=>`<span>${esc(t)}</span>`).join('');
-  const back=[['Hincha de',inf.club],['Ídolo',inf.idolo],['Festejo',inf.festejo],['Cumple',inf.cumple?fmtCumple(inf.cumple):''],['Nació en',inf.nat?countryName(inf.nat):'']].filter(x=>x[1]);
+  const back=[['Posiciones',[inf.pos,inf.pos2].filter(x=>x&&POS7[x]&&x!=='igual').map(x=>tr(x)).join(' · ')],['Hincha de',inf.club],['Ídolo',inf.idolo],['Festejo',inf.festejo],['Cumple',inf.cumple?fmtCumple(inf.cumple):''],['Nació en',inf.nat?countryName(inf.nat):'']].filter(x=>x[1]);
   return`<div class="pcard ${tier} ${S.flip===id?'flipped':''}" data-act="flip" data-id="${id}" role="button" tabindex="0" aria-label="Carta de ${esc(p.name)}, tocá para darla vuelta">
   <div class="pc-in">
    <div class="pc-face pc-front">
@@ -1398,10 +1453,10 @@ function vFicha(){
   const s=S.stats[id],p=S.players.get(id)||{};
   const grp=g=>ITEMS.filter(it=>it.g===g&&(!it.priv||isAdmin())).map(it=>`<div class="attr ${it.inv?'hot':''}"><span>${it.n}${it.priv?' 🔒':''}</span><span class="track"><i style="width:${(s.v[it.k]-1)/4*100}%"></i></span><span class="v num">${f1(s.v[it.k])}</span></div>`).join('');
   return`<button class="drawer-x" data-act="close-ficha" aria-label="Cerrar ficha">✕</button><span class="label">Ficha</span><div style="margin-top:8px">${card(id)}</div><p class="flip-hint">Tocá la carta para darla vuelta.</p>
-   <div class="b2-wrap">${voteBars(id)}</div>
    ${s.n<MIN_V?`<p class="muted" style="font-size:12px;margin:8px 0 0">Con menos de ${MIN_V} votos el nivel se completa con ${p.base?'la nota inicial ('+p.base+')':'un nivel promedio'}.</p>`:''}
    ${isAdmin()&&s.v.cal>=3.5?'<p style="margin:8px 0 0"><span class="pill hot">Se calienta</span></p>':''}
-   <details class="paste"><summary>Ver los 16 ítems de la encuesta</summary>${Object.keys(GRUPOS).map(g=>`<div class="grp"><span class="label">${GRUPOS[g]}</span>${grp(g)}</div>`).join('')}</details>`;
+   <div class="items-all">${Object.keys(GRUPOS).map(g=>`<div class="grp"><span class="label">${GRUPOS[g]}</span>${grp(g)}</div>`).join('')}</div>
+   <div class="b2-wrap">${voteBars(id)}</div>`;
 }
 function vPartidos(){
   if(!canManage()||!S.matches.length)return'';
@@ -1519,22 +1574,22 @@ function vPlantel(){
     <div class="row">${photoBtn(S.photoFor,'Elegir o sacar foto')}<button class="btn small ghost" data-act="photo-later">Después</button></div></div>`:'';
   const missing=ids.filter(id=>!info(id).photo).length;
   return`<div class="plantel">
-   <section class="panel">${ask}<div class="row" style="justify-content:space-between"><h2 style="font-size:26px;text-transform:uppercase">Plantel <span class="muted num" style="font-size:20px">${ids.length}</span></h2>
+   <section class="panel">${ro?'':`<div class="addbar">
+     <form id="addone" class="addrow">
+      <span class="label">Agregar jugador</span>
+      <input type="text" id="new-name" placeholder="Nombre o apodo" aria-label="Nombre" autocomplete="off">
+      <select id="new-base" aria-label="Nota inicial" title="Nota inicial (opcional): se usa hasta que junta ${FULL_V} votos"><option value="">Nota —</option>${[1,2,3,4,5].map(v=>`<option value="${v}">Nota ${v}</option>`).join('')}</select>
+      <input type="text" id="new-nat" list="cc-list" placeholder="Nacionalidad (opcional)" aria-label="Nacionalidad" autocomplete="off">
+      <button class="btn primary" type="submit">Agregar</button>
+     </form>
+     <details class="paste addmany"><summary>Agregar varios de una</summary>
+      <p class="muted" style="font-size:13px;margin:6px 0 0">Uno por línea. Útil para la primera carga.</p>
+      <textarea id="newp" placeholder="Tano&#10;Colo&#10;Flaco"></textarea><button class="btn small" data-act="addp" style="margin-top:6px">Agregar todos</button></details>
+    </div>`}${ask}<div class="row" style="justify-content:space-between"><h2 style="font-size:26px;text-transform:uppercase">Plantel <span class="muted num" style="font-size:20px">${ids.length}</span></h2>
     <span class="muted" style="font-size:13px">Tocá un jugador para ver su carta.${missing?` ${missing} sin foto (en gris).`:''}</span></div>
-    ${ids.length?`<div class="ptable-wrap"><table class="ptable"><thead><tr><th>Jugador</th><th>Nivel</th><th>Votos</th><th>Activo</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`:'<p class="empty">Todavía no hay jugadores. Agregalos a la derecha.</p>'}
+    ${ids.length?`<div class="ptable-wrap"><table class="ptable"><thead><tr><th>Jugador</th><th>Nivel</th><th>Votos</th><th>Activo</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`:`<p class="empty">${ro?'Todavía no hay jugadores. Solo los administradores agregan, editan o borran jugadores.':'Todavía no hay jugadores. Agregalos arriba.'}</p>`}
    </section>
    <aside class="side">
-    ${ro&&!S.demo?`<div class="panel"><h3>Plantel</h3><p class="muted" style="margin:6px 0 0;font-size:13px">Solo los administradores agregan, editan o borran jugadores.${S.admins.size||S.owner?'':''}</p></div>`:`<div class="panel"><h3>Agregar jugador</h3>
-     <form id="addone" class="addone" style="margin-top:6px">
-      <input type="text" id="new-name" placeholder="Nombre o apodo" aria-label="Nombre" autocomplete="off" ${ro?'disabled':''}>
-      <select id="new-base" aria-label="Nota inicial" ${ro?'disabled':''}><option value="">Nota —</option>${[1,2,3,4,5].map(v=>`<option value="${v}">Nota ${v}</option>`).join('')}</select>
-      <input type="text" id="new-nat" list="cc-list" placeholder="Nacionalidad (opcional)" aria-label="Nacionalidad" autocomplete="off" style="grid-column:1/-1" ${ro?'disabled':''}>
-      <button class="btn primary" type="submit" style="grid-column:1/-1" ${ro?'disabled':''}>Agregar</button>
-     </form>
-     <p class="muted" style="font-size:12px;margin:8px 0 0">La nota inicial (1 a 5) es opcional y se usa hasta que junta ${FULL_V} votos. Después de agregarlo te pido la foto.</p>
-     <details class="paste"><summary>Agregar varios de una</summary>
-      <p class="muted" style="font-size:13px;margin:6px 0 0">Uno por línea. Útil para la primera carga.</p>
-      <textarea id="newp" placeholder="Tano&#10;Colo&#10;Flaco" ${ro?'disabled':''}></textarea><button class="btn small" data-act="addp" style="margin-top:6px" ${ro?'disabled':''}>Agregar todos</button></details></div>`}
     <div class="backdrop ${S.profile?'open':''}" data-act="close-ficha"></div><div class="panel ficha ${S.profile?'open':''}" id="ficha-plantel">${vFicha()}</div>
    </aside></div>`;
 }
@@ -1562,7 +1617,7 @@ function vYo(){
   const natTxt=d._natTxt!==undefined?d._natTxt:countryName(d.nat);
   const canPhoto=!!S.assets,busy=!!S.uploading;
   const avBig=`<span class="av xl" style="--av:${avColor(p.name)}">${d.photo&&photoSrc(d.photo)?`<img src="${photoSrc(d.photo)}" alt="" onerror="this.remove()">`:esc(initials(p.name))}</span>`;
-  const photo=`<div class="photo-big"><span class="ph-lab">Personal</span>${avBig}${canPhoto?`<label class="btn small filebtn">${S.uploading==='yo'?'Subiendo…':'✎ Editar'}<input type="file" accept="image/*" data-act="yphoto" id="y-photo-in" ${busy?'disabled':''}></label>`:''}</div>
+  const photo=`<div class="photo-big"><span class="ph-lab">Personal</span>${canPhoto?`<label class="ph-edit" title="Cambiar foto">${avBig}<span class="ph-ov" aria-hidden="true">${S.uploading==='yo'?'…':'✎'}</span><input type="file" accept="image/*" data-act="yphoto" id="y-photo-in" aria-label="Cambiar foto personal" ${busy?'disabled':''}></label>`:avBig}</div>
      ${S.pending?`<div class="pp"><div class="pp-circle"><img src="${S.pending.url}" alt="Vista previa"></div><div><strong>¿Así queda bien?</strong>
        <div class="row" style="margin-top:8px"><button class="btn primary small" data-act="yphoto-ok" ${busy?'disabled':''}>${S.uploading==='yo'?'Subiendo…':'Usar esta foto'}</button><label class="btn small filebtn">Elegir otra<input type="file" accept="image/*" data-act="yphoto"></label><button class="btn small ghost" data-act="yphoto-cancel">Cancelar</button></div></div></div>`:''}`;
   const pc=S.pendingCard;
@@ -1585,33 +1640,32 @@ function vYo(){
     </ol>
     ${cardPrev}
    </div>`:'';
-  const posBtns=Object.entries(POS7_XY).map(([k,[x,y]])=>`<button type="button" class="p7 ${d.pos===k?'on':''}" style="left:${x}%;top:${y}%" data-act="pos7" data-v="${k}" aria-pressed="${d.pos===k}" title="${POS7[k]}">${k}</button>`).join('');
+  const rank=k=>d.pos===k?1:d.pos2===k?2:0;
+  const posBtns=Object.entries(POS7_XY).map(([k,[x,y]])=>`<button type="button" class="p7 ${rank(k)?'on r'+rank(k):''}" style="left:${x}%;top:${y}%" data-act="pos7" data-v="${k}" aria-pressed="${!!rank(k)}" title="${POS7[k]}">${k}${rank(k)?`<i class="p7-n">${rank(k)}</i>`:''}</button>`).join('');
   return`<div class="yo">
    <section class="panel">
     <span class="label">${editingOther?'Editando como organizador':'Mi ficha'}</span><h2 style="margin-top:2px">${esc(p.name)}${bday(t)}</h2>
     ${editingOther?`<div class="owner-note"><p>Estás editando la ficha de <strong>${esc(p.name)}</strong>.${S.claims.has(t)?' La reclamó su dueño: tus cambios se guardan en su ficha.':''}</p><button class="btn small" data-act="yo-back">Volver al plantel</button></div>`:''}
     <div class="meters">
-     ${bar2('Carta completa',filled,INFO_KEYS.length,{txt:`${filled}/${INFO_KEYS.length}`})}${voteBars(t)}
+     ${bar2('Carta completa',filled,DONE_KEYS.length,{txt:`${filled}/${DONE_KEYS.length}`})}${voteBars(t)}
     </div>
     <div class="fsec"><span class="label">Fotos</span><div class="photos2">${photo}${cardPhoto}</div></div>
     <div class="fsec"><span class="label">Posición preferida</span>
      <div class="pos-wrap">
       <div class="pos7" role="group" aria-label="Elegí tu posición en la cancha de 7">${posBtns}<span class="p7-dir">Ataque ↑</span></div>
-      <div class="pos-side">
-       <p style="margin:0;font-weight:700">${d.pos?esc(POS7[d.pos]||POS[d.pos]||''):'Tocá tu posición'}</p>
-       <button type="button" class="btn small ${d.pos==='igual'?'primary':''}" data-act="pos7" data-v="igual" aria-pressed="${d.pos==='igual'}">Me da igual</button>
-       <label class="row" style="font-size:13px;gap:6px;flex-wrap:nowrap"><input type="checkbox" id="y-noarco" data-y="noarco" ${d.arco==='no'?'checked':''}> Prefiero no atajar</label>
-       <p class="muted" style="font-size:12px;margin:0">Si elegís ARQ, arrancás primero en la rotación del arco. Con "prefiero no atajar" vas al final.</p>
+      <div class="pos-opts">
+       <button type="button" class="chipbtn" data-act="pos7" data-v="igual" aria-pressed="${d.pos==='igual'}">Me da igual</button>
+       <button type="button" class="chipbtn" data-act="noarco" aria-pressed="${d.arco==='no'}">Prefiero no atajar</button>
       </div>
      </div>
     </div>
-    <div class="fsec"><span class="label">En la carta</span><div class="fgrid">
+    <div class="fsec"><span class="label">Datos de jugador</span><div class="fgrid">
       <label>Nacionalidad<span class="row" style="flex-wrap:nowrap">${d.nat?flag(d.nat,22):''}<input type="text" id="y-nat" list="cc-list" data-y="nat" value="${esc(natTxt)}" placeholder="Escribí y elegí…" autocomplete="off"></span></label>
-      <label>Dorsal<input type="number" id="y-dorsal" data-y="dorsal" min="1" max="99" value="${esc(d.dorsal??'')}" placeholder="10"></label>
+      <label>Número de camiseta<input type="text" inputmode="numeric" maxlength="2" id="y-dorsal" data-y="dorsal" value="${esc(d.dorsal??'')}" placeholder="10"></label>
       <label>Pie hábil<select id="y-pie" data-y="pie">${opt(PIE,d.pie)}</select></label>
-      <label>Altura (cm)<input type="number" id="y-alt" data-y="alt" min="120" max="230" value="${esc(d.alt??'')}" placeholder="175"></label>
+      <label>Altura<span class="stepper"><button type="button" data-step="-1" aria-label="Menos">−</button><input type="text" inputmode="numeric" maxlength="3" id="y-alt" data-y="alt" value="${esc(d.alt??'')}" placeholder="173" aria-label="Altura en cm"><span class="unit">cm</span><button type="button" data-step="1" aria-label="Más">+</button></span></label>
     </div></div>
-    <div class="fsec"><span class="label">En el reverso</span><div class="fgrid">
+    <div class="fsec"><span class="label">Sobre mí</span><div class="fgrid">
       <label>Hincha de<input type="text" id="y-club" data-y="club" maxlength="40" value="${esc(d.club??'')}" placeholder="Tu club"></label>
       <label>Ídolo<input type="text" id="y-idolo" data-y="idolo" maxlength="40" value="${esc(d.idolo??'')}" placeholder="Tu jugador favorito"></label>
       <label class="full">Festejo característico<input type="text" id="y-festejo" data-y="festejo" maxlength="50" value="${esc(d.festejo??'')}" placeholder="El avioncito, el puñito…"></label>
@@ -1621,8 +1675,7 @@ function vYo(){
     </div></div>
     <div class="savebar"><span class="muted" style="font-size:13px">${S.saving?'Guardando…':dirty?'Tenés cambios sin guardar':'Todo guardado'}</span><button class="btn primary" data-act="ysave" ${dirty&&!S.saving?'':'disabled'}>Guardar ficha</button></div>
    </section>
-   ${editingOther?'':`<div class="signout"><button class="btn small ghost" data-act="signout">Cerrar sesión</button></div>`}
-   <aside class="preview"><span class="label">Así se ve tu carta</span><div style="margin-top:8px">${card(t,clean(d),{cardUrl:pc&&pc.transparent!==undefined?pc.url:''})}</div><p class="flip-hint">Tocá la carta para ver el reverso.</p></aside>
+   <aside class="preview"><span class="label">Así se ve tu carta</span><div style="margin-top:8px">${card(t,clean(d),{cardUrl:pc&&pc.transparent!==undefined?pc.url:''})}</div><p class="flip-hint">Tocá la carta para ver el reverso.</p>${editingOther?'':`<div class="signout"><button class="btn small ghost" data-act="signout">Cerrar sesión</button></div>`}</aside>
   </div>${modal}`;
 }
 async function loadImg(url){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=url;});}
@@ -1821,7 +1874,15 @@ break;
     case 'signout':try{await S.FB.signOut();}catch(_){}break;
     case 'toggle-admin':{if(!S.owner)break;const u=S.claims.get(id);if(!u)break;const set=new Set(S.admins);set.has(u)?set.delete(u):set.add(u);
       await write(()=>S.db.doc('staff/admins').set({uids:[...set]}),set.has(u)?`${name(id)} ahora es admin`:`${name(id)} ya no es admin`);break;}
-    case 'pos7':{const v=t.dataset.v;if(S.draft.pos===v)delete S.draft.pos;else S.draft.pos=v;render();break;}
+    case 'pos7':{const v=t.dataset.v,d=S.draft;
+      if(v==='igual'){if(d.pos==='igual')delete d.pos;else{d.pos='igual';delete d.pos2;}}
+      else if(d.pos===v){if(d.pos2){d.pos=d.pos2;delete d.pos2;}else delete d.pos;}
+      else if(d.pos2===v)delete d.pos2;
+      else if(!d.pos||d.pos==='igual')d.pos=v;
+      else d.pos2=v;
+      render();break;}
+    case 'noarco':{const d=S.draft;if(d.arco==='no')delete d.arco;else d.arco='no';render();break;}
+    case 'alt-step':break;
     case 'copyprompt':copyText(promptText(),'Prompt copiado. Pegalo en ChatGPT');S.copied=true;render();break;
     case 'cardmodal':S.cardModal=true;S.copied=false;render();break;
     case 'cardmodal-close':S.cardModal=false;render();break;
@@ -1868,6 +1929,21 @@ document.addEventListener('submit',async e=>{
   if(ok&&ref){S.photoFor=S.assets?ref.id:null;const f=$('#new-nat');if(f)f.value='';const nn=$('#new-name');if(nn)nn.value='';render();setTimeout(()=>$('#new-name')?.focus(),0);}
 });
 document.addEventListener('toggle',e=>{if(e.target.id==='rules-box')S.rulesOpen=e.target.open;if(e.target.id==='mis-evals')S.misOpen=e.target.open;},true);
+function setNum(k,raw){
+  const d=S.draft;if(!d)return;const v=String(raw).replace(/\D/g,'');
+  if(v===''){delete d[k];render();return;}
+  const n=+v,[lo,hi,msg]=k==='alt'?[140,220,'La altura tiene que estar entre 140 y 220 cm']:[1,99,'El número de camiseta va de 1 a 99'];
+  if(n<lo||n>hi){toast(msg);render();return;}
+  d[k]=n;render();
+}
+document.addEventListener('change',e=>{const k=e.target.dataset&&e.target.dataset.y;if(k==='dorsal'||k==='alt')setNum(k,e.target.value);},true);
+let STEP_T=null,STEP_I=null;
+function stepAlt(dir){const d=S.draft;if(!d)return;const cur=+d.alt||173;const n=Math.max(140,Math.min(220,(d.alt?cur+dir:173)));d.alt=n;const inp=document.getElementById('y-alt');if(inp)inp.value=n;}
+function stopStep(){clearTimeout(STEP_T);clearInterval(STEP_I);STEP_T=STEP_I=null;}
+document.addEventListener('pointerdown',e=>{const b=e.target.closest('[data-step]');if(!b)return;e.preventDefault();const dir=+b.dataset.step;stepAlt(dir);
+  STEP_T=setTimeout(()=>{STEP_I=setInterval(()=>stepAlt(dir),70);},400);});
+['pointerup','pointercancel','pointerleave'].forEach(ev=>document.addEventListener(ev,e=>{if(STEP_T||STEP_I){stopStep();render();}},true));
+document.addEventListener('click',e=>{const b=e.target.closest('[data-step]');if(b&&e.detail===0){stepAlt(+b.dataset.step);render();}});
 document.addEventListener('input',e=>{
   const t=e.target;
   if(t.id==='paste'){S.pasteTxt=t.value;return;}
@@ -1875,10 +1951,9 @@ document.addEventListener('input',e=>{
   const k=t.dataset.y;
   if(k&&S.draft){
     const d=S.draft,v=t.value;
-    if(k==='noarco'){if(t.checked)d.arco='no';else if(d.arco==='no')delete d.arco;}
+    if(k==='dorsal'||k==='alt'){const clean=v.replace(/\D/g,'');if(clean!==v)t.value=clean;return;}
     else if(k==='nat'){d._natTxt=v;const cc=ccFromText(v);if(cc){d.nat=cc;d._natTxt=undefined;}else if(!v.trim())delete d.nat;}
     else if(k==='cd'||k==='cm'){const [cm0,cd0]=d.cumple?d.cumple.split('-'):[d._cm||'',d._cd||''];const m=k==='cm'?v:cm0,dd=k==='cd'?v:cd0;if(m&&dd){d.cumple=m+'-'+dd;delete d._cm;delete d._cd;}else{delete d.cumple;d._cm=m;d._cd=dd;}}
-    else if(k==='dorsal'||k==='alt'){if(v==='')delete d[k];else d[k]=Math.round(+v);}
     else{if(v==='')delete d[k];else d[k]=v;}
     render();
   }
