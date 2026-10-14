@@ -301,7 +301,13 @@ header.top .right{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
 .pc-face::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1.5px);background-size:7px 7px;pointer-events:none}
 .pc-face::after{content:"";position:absolute;right:-28%;top:-20%;width:55%;height:150%;background:linear-gradient(180deg,var(--t1),var(--t2));opacity:.18;transform:rotate(16deg);pointer-events:none}
 .pc-face > *{position:relative;z-index:1}
-.pc-back{transform:rotateY(180deg)}
+.pc-back{transform:rotateY(180deg) translateZ(1px)}
+.pc-front{transform:rotateY(0deg) translateZ(1px)}
+.pc-face *,.pc-face::before,.pc-face::after{-webkit-backface-visibility:hidden;backface-visibility:hidden}
+/* Safari: además ocultar la cara que queda atrás a mitad del giro */
+.pc-front{visibility:visible;transition:visibility 0s .27s}.pcard.flipped .pc-front{visibility:hidden}
+.pc-back{visibility:hidden;transition:visibility 0s .27s}.pcard.flipped .pc-back{visibility:visible}
+@media (prefers-reduced-motion:reduce){.pc-front,.pc-back{transition:none}}
 .pc-top{display:flex;gap:10px;align-items:flex-start}
 .pc-side{display:flex;flex-direction:column;align-items:center;gap:5px;width:56px;flex:none}
 .pc-r{font-family:var(--f-display);font-size:50px;line-height:.85;font-weight:800;color:var(--t2)}
@@ -323,7 +329,7 @@ header.top .right{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
 .pcard .vtrack b{background:#fff}
 .pcard .vt{color:rgba(255,255,255,.7)}
 .pc-tier{align-self:center;font-family:var(--f-display);text-transform:uppercase;letter-spacing:.2em;font-size:13px;color:var(--t2)}
-.pc-back dl{margin:12px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 10px;font-size:14px}
+.pc-back dl{margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:13px}
 .pc-back dt{color:var(--t2);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
 .pc-back dd{margin:0;overflow-wrap:anywhere}
 .pc-back blockquote{margin:14px 0 0;font-family:var(--f-display);font-size:20px;line-height:1.15;text-align:center;color:var(--t2)}
@@ -690,7 +696,8 @@ input[type=checkbox]{accent-color:var(--pitch)}
 .mdel{border:0;background:none;cursor:pointer;font-size:14px;opacity:.45;padding:2px 4px}.mdel:hover{opacity:1}
 .mdel-q{display:inline-flex;align-items:center;gap:6px;font-size:12px}
 nav.tabs .sm{display:none}
-@media (max-width:620px){nav.tabs .lg{display:none}nav.tabs .sm{display:inline}}
+@media (min-width:1100px){header.top.hero nav.tabs button{letter-spacing:.07em;padding:8px 11px}header.top.hero{flex-wrap:nowrap}header.top.hero .right{flex-wrap:nowrap}}
+@media (max-width:1240px){nav.tabs .lg{display:none}nav.tabs .sm{display:inline}}
 .stats{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;margin-top:18px;align-items:start}
 @media (max-width:900px){.stats{grid-template-columns:minmax(0,1fr)}}
 .st-right{display:flex;flex-direction:column;gap:16px;min-width:0}
@@ -833,7 +840,7 @@ const ITEMS=[
  {k:'hue',g:'act',n:'Huevos',lo:'Saca la pierna, no va a las divididas',hi:'Va a todas, pone la pierna y el pecho'},
  {k:'eq',g:'act',n:'Juego en equipo',lo:'Morfón, no la pasa nunca',hi:'Siempre ve al compañero mejor ubicado'},
  {k:'hab',g:'act',n:'Habla / ordena',lo:'Mudo, no dice nada',hi:'Ordena, avisa marcas, organiza'},
- {k:'reg',g:'act',n:'Regularidad',lo:'Depende del día: a veces no aparece',hi:'Rinde siempre igual'},
+ {k:'reg',g:'act',n:'Nivel constante',lo:'Depende del día: un partido la rompe y otro no la toca',hi:'Juega siempre al mismo nivel'},
  {k:'cal',g:'act',n:'Se calienta',lo:'Tranquilo, no se engancha nunca',hi:'Se calienta fácil, discute, se pelea',inv:true,priv:true},
  {k:'arq',g:'arco',n:'Como arquero',lo:'Cuando ataja es un colador',hi:'Ataja de verdad, sale bien, ordena'},
  {k:'gen',g:'gen',n:'Nivel general',lo:'Si armás equipo, lo elegís de los últimos',hi:'Lo elegís de los primeros'},
@@ -940,7 +947,7 @@ const T3=[
  ['Huevos','Grinta','Guts'],['Saca la pierna, no va a las divididas','Tira via la gamba, evita i contrasti','Pulls out of tackles, avoids 50-50s'],['Va a todas, pone la pierna y el pecho','Va su tutte, ci mette gamba e petto','Goes for everything, puts their body on the line'],
  ['Juego en equipo','Gioco di squadra','Team play'],['Morfón, no la pasa nunca','Egoista, non la passa mai','Ball hog, never passes'],['Siempre ve al compañero mejor ubicado','Vede sempre il compagno meglio piazzato','Always spots the best-placed teammate'],
  ['Habla / ordena','Parla / organizza','Talks / organises'],['Mudo, no dice nada','Muto, non dice niente','Silent, says nothing'],['Ordena, avisa marcas, organiza','Organizza, chiama le marcature, guida','Organises, calls out marking, leads'],
- ['Regularidad','Costanza','Consistency'],['Depende del día: a veces no aparece','Dipende dal giorno: a volte non si vede','Depends on the day: sometimes doesn’t show up'],['Rinde siempre igual','Rende sempre uguale','Always performs the same'],
+ ['Nivel constante','Rendimento costante','Consistent level'],['Depende del día: un partido la rompe y otro no la toca','Dipende dal giorno: una partita spacca e un’altra non la tocca','Depends on the day: great one match, invisible the next'],['Juega siempre al mismo nivel','Gioca sempre allo stesso livello','Always plays at the same level'],
  ['Tranquilo, no se engancha nunca','Tranquillo, non ci casca mai','Calm, never gets wound up'],['Se calienta fácil, discute, se pelea','Si scalda facile, discute, litiga','Gets heated easily, argues, fights'],
  ['Como arquero','Come portiere','As goalkeeper'],['Cuando ataja es un colador','Quando para è un colabrodo','In goal they’re a sieve'],['Ataja de verdad, sale bien, ordena','Para davvero, esce bene, organizza','Real keeper, comes out well, organises'],
  ['Si armás equipo, lo elegís de los últimos','Se fai la squadra, lo scegli tra gli ultimi','If you were picking, you’d pick them last'],['Lo elegís de los primeros','Lo scegli tra i primi','You’d pick them first'],
@@ -999,6 +1006,7 @@ const T3=[
  ['No tenés permiso para hacer eso.','Non hai il permesso di farlo.','You don’t have permission to do that.'],
  ['Este dominio todavía no está autorizado en Firebase.','Questo dominio non è ancora autorizzato in Firebase.','This domain isn’t authorised in Firebase yet.'],['No se pudo entrar. Probá de nuevo.','Accesso non riuscito. Riprova.','Couldn’t sign in. Try again.'],
  ['¿Agregar este partido a las estadísticas?','Aggiungere questa partita alle statistiche?','Add this match to the stats?'],['¿Reemplazar el partido de hoy?','Sostituire la partita di oggi?','Replace today’s match?'],['Ya hay un partido guardado hoy. Se reemplazan los equipos.','C’è già una partita salvata oggi. Le squadre verranno sostituite.','There is already a match saved today. The teams will be replaced.'],['Hacelo solo si estos son los equipos confirmados.','Fallo solo se queste sono le squadre confermate.','Only do it if these are the confirmed teams.'],['Sí, agregar','Sì, aggiungi','Yes, add'],['Sí, reemplazar','Sì, sostituisci','Yes, replace'],['No','No','No'],['¿Borrar partido?','Eliminare la partita?','Delete match?'],['Sí, borrar','Sì, elimina','Yes, delete'],['Borrar partido','Elimina partita','Delete match'],['Partido borrado','Partita eliminata','Match deleted'],
+ ['Pie','Piede','Foot'],['Altura','Altezza','Height'],['Camiseta','Maglia','Shirt'],['Al arco','In porta','In goal'],['Puntos','Punti','Points'],['Derecho','Destro','Right'],['Zurdo','Mancino','Left'],['Ambos','Entrambi','Both'],
  ['Estadísticas','Statistiche','Stats'],['Armar','Squadre','Teams'],['Stats','Stats','Stats'],['Partidos','Partite','Matches'],['jugado','giocata','played'],['jugados','giocate','played'],
  ['Tabla general','Classifica generale','Overall table'],['puntos','punti','points'],['Los que más vienen','Chi viene di più','Most present'],['Figuras','Migliori in campo','MVPs'],['Figura','Migliore in campo','MVP'],['Ganadores','Vincenti','Winners'],
  ['veces elegido figura','volte migliore in campo','times MVP'],['Todavía no se eligió ninguna figura.','Ancora nessun migliore in campo.','No MVP chosen yet.'],['Todavía no hay resultados cargados.','Ancora nessun risultato inserito.','No scores entered yet.'],
@@ -1063,6 +1071,8 @@ const I18P=[
  P(/^(\d+)G (\d+)E (\d+)P$/,m=>`${m[1]}V ${m[2]}N ${m[3]}P`,m=>`${m[1]}W ${m[2]}D ${m[3]}L`),
  P(/^Equipos confirmados ✓ · partido del (.+) guardado$/,m=>`Squadre confermate ✓ · partita del ${m[1]} salvata`,m=>`Teams confirmed ✓ · match on ${m[1]} saved`),
  P(/^(\d+) jugados?$/,m=>`${m[1]} giocat${m[1]==='1'?'a':'e'}`,m=>`${m[1]} played`),
+ P(/^(\d+) PJ(?: · (\d+)G (\d+)E (\d+)P)?( · ⭐ \d+)?$/,m=>`${m[1]} PG${m[2]?` · ${m[2]}V ${m[3]}N ${m[4]}P`:''}${m[5]||''}`,m=>`${m[1]} MP${m[2]?` · ${m[2]}W ${m[3]}D ${m[4]}L`:''}${m[5]||''}`),
+ P(/^(\d+)G (\d+)E (\d+)P · (.*)$/,m=>`${m[1]}V ${m[2]}N ${m[3]}P · ${m[4]}`,m=>`${m[1]}W ${m[2]}D ${m[3]}L · ${m[4]}`),
  P(/^Ignorar$/,m=>'Ignora',m=>'Ignore'),
  P(/^Agregar (.+) como jugador nuevo$/,m=>`Aggiungi ${m[1]} come nuovo giocatore`,m=>`Add ${m[1]} as a new player`),
  P(/^Ver ficha de (.+)$/,m=>`Vedi scheda di ${m[1]}`,m=>`See ${m[1]}’s profile`),
@@ -1367,7 +1377,10 @@ function card(id,inf,opt={}){
   const full=completeness(inf)===DONE_KEYS.length;
   const pjN=S._st&&S._st.P[id]?S._st.P[id].pj:0;
   const meta=[pjN?`PJ ${pjN}`:'',inf.pie?'Pie '+PIE[inf.pie].toLowerCase():'',inf.alt?inf.alt+' cm':''].filter(Boolean).map(t=>`<span>${esc(t)}</span>`).join('');
-  const back=[['Posiciones',[inf.pos,inf.pos2].filter(x=>x&&POS7[x]&&x!=='igual').map(x=>tr(x)).join(' · ')],['Hincha de',inf.club],['Ídolo',inf.idolo],['Festejo',inf.festejo],['Cumple',inf.cumple?fmtCumple(inf.cumple):''],['Nació en',inf.nat?countryName(inf.nat):'']].filter(x=>x[1]);
+  const stP=S._st&&S._st.P[id];
+  const back=[['Posiciones',[inf.pos,inf.pos2].filter(x=>x&&POS7[x]&&x!=='igual').map(x=>tr(POS7[x])).join(' · ')],
+   ['Pie',inf.pie&&PIE[inf.pie]?tr(PIE[inf.pie]):''],['Altura',inf.alt?inf.alt+' cm':''],['Al arco',inf.arco==='no'?tr('Prefiero no atajar'):''],
+   ['Partidos',stP&&stP.pj?[`${stP.pj} PJ`,stP.res?`${stP.w}G ${stP.e}E ${stP.l}P`:'',stP.fig?`⭐ ${stP.fig}`:''].filter(Boolean).join(' · '):''],['Hincha de',inf.club],['Ídolo',inf.idolo],['Festejo',inf.festejo],['Cumple',inf.cumple?fmtCumple(inf.cumple):''],['Nació en',inf.nat?countryName(inf.nat):'']].filter(x=>x[1]);
   return`<div class="pcard ${tier} ${S.flip===id?'flipped':''}" data-act="flip" data-id="${id}" role="button" tabindex="0" aria-label="Carta de ${esc(p.name)}, tocá para darla vuelta">
   <div class="pc-in">
    <div class="pc-face pc-front">
