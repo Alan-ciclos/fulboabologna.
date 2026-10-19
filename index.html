@@ -692,6 +692,26 @@ input[type=checkbox]{accent-color:var(--pitch)}
  .addrow #new-name,.addrow #new-nat{flex-basis:100%}
 }
 
+/* --- cómo se armó --- */
+.how{margin-top:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 16px}
+.how summary{cursor:pointer;display:flex;align-items:center;gap:8px;list-style:none}.how summary::-webkit-details-marker{display:none}
+.how .how-hint{margin-left:auto;font-size:13px;font-weight:700;color:var(--pitch)}.how .chev{color:var(--pitch);transition:transform .2s}.how[open] .chev{transform:rotate(180deg)}
+.how-body{margin-top:12px}
+.hw{display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1fr);gap:6px 10px;align-items:center}
+.hw-h{font-family:var(--f-display);font-size:12px;letter-spacing:.1em;text-transform:uppercase}.hw-h.a{color:var(--bib);text-align:right}.hw-h.b{color:var(--nobib)}
+.hw-s{display:flex;align-items:center;gap:8px;height:22px}.hw-s.a{justify-content:flex-end}
+.hw-s i{display:block;height:14px;border-radius:4px}.hw-s.a i{background:var(--bib)}.hw-s.b i{background:var(--nobib)}
+.hw-s span{font-family:var(--f-display);font-size:15px;min-width:22px}.hw-s.a span{text-align:right}
+.hw-m{text-align:center;line-height:1.05}.hw-m b{display:block;font-family:var(--f-display);font-size:13px;letter-spacing:.05em}.hw-m small{font-size:11px;font-weight:700}
+.hw-leg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:10px 0 0}
+.hw-leg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.hw-leg i.g{background:var(--good)}.hw-leg i.w{background:var(--warn)}.hw-leg i.x{background:var(--bad)}
+.hw-list{list-style:none;margin:6px 0 0;padding:0}
+.hw-list li{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.hw-list li:first-child{border-top:0}
+.hw-ic{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800}
+.hw-ic.ok{background:#1f4a2e;color:var(--good)}.hw-ic.no{background:#4a3c17;color:var(--warn)}.hw-ic.inf{background:#1a2236;color:var(--muted)}
+.hw-t{font-weight:600;min-width:0}.hw-d{display:block;font-size:12px;color:var(--muted);font-weight:400}
+.hw-w{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:1px 8px;white-space:nowrap}
 /* --- mis evaluaciones --- */
 .linkbtn{border:0;background:none;padding:0;margin-top:6px;color:var(--pitch);font:inherit;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .ev-new{border-color:var(--pitch);color:var(--pitch);margin-right:6px}
@@ -1015,6 +1035,7 @@ const T3=[
  ['Pie','Piede','Foot'],['Altura','Altezza','Height'],['Camiseta','Maglia','Shirt'],['Al arco','In porta','In goal'],['Puntos','Punti','Points'],['Derecho','Destro','Right'],['Zurdo','Mancino','Left'],['Ambos','Entrambi','Both'],
  ['Físico','Fisico','Physical'],['Velocidad','Velocità','Speed'],['Lento, lo pasan en cualquier carrera','Lento, lo superano in ogni scatto','Slow, gets beaten in every sprint'],['Rapidísimo, gana todas las carreras','Velocissimo, vince ogni scatto','Very fast, wins every sprint'],['Estado físico','Condizione fisica','Fitness'],['A los 10 minutos ya no da más','Dopo 10 minuti non ne ha più','Gassed after 10 minutes'],['Termina como empezó, no se cansa nunca','Finisce come ha iniziato, non si stanca mai','Finishes like he started, never tires'],['Ver y editar mis evaluaciones','Vedi e modifica le mie valutazioni','See and edit my ratings'],['Tocá ✎ para ver lo que votaste y cambiarlo.','Tocca ✎ per vedere cosa hai votato e cambiarlo.','Tap ✎ to see what you voted and change it.'],['Faltan las nuevas','Mancano le nuove','New ones missing'],['✎ Completar','✎ Completa','✎ Complete'],['Completar','Completa','Complete'],
  ['Ocultar mis evaluaciones ▴','Nascondi le mie valutazioni ▴','Hide my ratings ▴'],['Ver y editar mis evaluaciones ▾','Vedi e modifica le mie valutazioni ▾','See and edit my ratings ▾'],['Ocultar','Nascondi','Hide'],['Ver y editar','Vedi e modifica','See and edit'],
+ ['¿Cómo se armó?','Come sono state fatte?','How were they made?'],['Ver detalle','Vedi dettaglio','See details'],['Qué se tuvo en cuenta','Cosa è stato considerato','What was taken into account'],['diferencia chica','differenza piccola','small difference'],['media','media','medium'],['grande','grande','large'],['Nivel general parejo','Livello generale equilibrato','Even overall level'],['Arco parejo','Porta equilibrata','Even in goal'],['Arco algo desparejo','Porta un po’ squilibrata','Goal a bit uneven'],['Ataque, defensa, físico y pase','Attacco, difesa, fisico e passaggio','Attack, defence, physical and passing'],['Líneas equilibradas','Reparti equilibrati','Balanced lines'],['Actitudes repartidas','Atteggiamenti distribuiti','Attitudes spread out'],['Distinto al partido anterior','Diverso dalla partita precedente','Different from last match'],['Parecido al partido anterior','Simile alla partita precedente','Similar to last match'],['Modificado a mano','Modificato a mano','Changed by hand'],['Los números son de los equipos como quedaron después de mover jugadores','I numeri sono delle squadre dopo aver spostato giocatori','Numbers are for the teams after players were moved'],['Por eso "Volver a armar" da otra combinación pareja','Per questo "Rifai" dà un’altra combinazione equilibrata','That’s why "Shuffle again" gives another even split'],['Quedaron juntos','Sono rimasti insieme','They ended up together'],['Quedaron separados','Sono rimasti separati','They ended up apart'],['Cumplido: cada uno en un equipo','Fatto: ognuno in una squadra','Done: one in each team'],['Cumplido: juegan juntos','Fatto: giocano insieme','Done: they play together'],['regla','regola','rule'],['poco','poco','low'],
  ['Estadísticas','Statistiche','Stats'],['Armar','Squadre','Teams'],['Stats','Stats','Stats'],['Partidos','Partite','Matches'],['jugado','giocata','played'],['jugados','giocate','played'],
  ['Tabla general','Classifica generale','Overall table'],['puntos','punti','points'],['Los que más vienen','Chi viene di più','Most present'],['Figuras','Migliori in campo','MVPs'],['Figura','Migliore in campo','MVP'],['Ganadores','Vincenti','Winners'],
  ['veces elegido figura','volte migliore in campo','times MVP'],['Todavía no se eligió ninguna figura.','Ancora nessun migliore in campo.','No MVP chosen yet.'],['Todavía no hay resultados cargados.','Ancora nessun risultato inserito.','No scores entered yet.'],
@@ -1081,6 +1102,17 @@ const I18P=[
  P(/^(\d+) jugados?$/,m=>`${m[1]} giocat${m[1]==='1'?'a':'e'}`,m=>`${m[1]} played`),
  P(/^(\d+) PJ(?: · (\d+)G (\d+)E (\d+)P)?( · ⭐ \d+)?$/,m=>`${m[1]} PG${m[2]?` · ${m[2]}V ${m[3]}N ${m[4]}P`:''}${m[5]||''}`,m=>`${m[1]} MP${m[2]?` · ${m[2]}W ${m[3]}D ${m[4]}L`:''}${m[5]||''}`),
  P(/^(\d+)G (\d+)E (\d+)P · (.*)$/,m=>`${m[1]}V ${m[2]}N ${m[3]}P · ${m[4]}`,m=>`${m[1]}W ${m[2]}D ${m[3]}L · ${m[4]}`),
+ P(/^(\d+) contra (\d+) · es lo que más pesa$/,m=>`${m[1]} contro ${m[2]} · è ciò che pesa di più`,m=>`${m[1]} vs ${m[2]} · this weighs the most`),
+ P(/^Los que mejor atajan: (.+) \(con pechera\) y (.+) \(sin pechera\)$/,m=>`I migliori in porta: ${m[1]} (con casacca) e ${m[2]} (senza casacca)`,m=>`Best keepers: ${m[1]} (bibs) and ${m[2]} (no bibs)`),
+ P(/^Diferencia al arco: (\d+) puntos$/,m=>`Differenza in porta: ${m[1]} punti`,m=>`Goalkeeping difference: ${m[1]} points`),
+ P(/^Todas las diferencias son de (\d+) puntos o menos$/,m=>`Tutte le differenze sono di ${m[1]} punti o meno`,m=>`All differences are ${m[1]} points or less`),
+ P(/^La mayor diferencia es en (.+): (\d+) puntos$/,m=>`La differenza maggiore è in ${m[1]}: ${m[2]} punti`,m=>`Biggest difference is in ${m[1]}: ${m[2]} points`),
+ P(/^Formación (.+) en los dos equipos, con defensa, medio y ataque parejos$/,m=>`Modulo ${m[1]} in entrambe, con difesa, centrocampo e attacco equilibrati`,m=>`${m[1]} formation in both, with even defence, midfield and attack`),
+ P(/^(Separar|Juntar) a (.+) y (.+)$/,m=>`${m[1]==='Separar'?'Separare':'Unire'} ${m[2]} e ${m[3]}`,m=>`${m[1]==='Separar'?'Separate':'Keep together'} ${m[2]} and ${m[3]}`),
+ P(/^morfones (\d+)–(\d+) · hablan y ordenan (\d+)–(\d+)(?: · se calientan (\d+)–(\d+))?$/,m=>`egoisti ${m[1]}–${m[2]} · parlano e organizzano ${m[3]}–${m[4]}${m[5]?` · si scaldano ${m[5]}–${m[6]}`:''}`,m=>`ball hogs ${m[1]}–${m[2]} · talkers ${m[3]}–${m[4]}${m[5]?` · hotheads ${m[5]}–${m[6]}`:''}`),
+ P(/^(\d+) de (\d+) repiten equipo respecto del (.+)$/,m=>`${m[1]} su ${m[2]} ripetono squadra rispetto al ${m[3]}`,m=>`${m[1]} of ${m[2]} on the same team as on ${m[3]}`),
+ P(/^Elegida entre (\d+) opciones igual de parejas$/,m=>`Scelta tra ${m[1]} opzioni ugualmente equilibrate`,m=>`Picked among ${m[1]} equally even options`),
+ P(/^(Con|Sin) pechera más flojo en (defensa|medio|ataque)$/,m=>`${m[1]==='Con'?'Con casacca':'Senza casacca'} più debole in ${{defensa:'difesa',medio:'centrocampo',ataque:'attacco'}[m[2]]}`,m=>`${m[1]==='Con'?'Bibs':'No bibs'} weaker in ${{defensa:'defence',medio:'midfield',ataque:'attack'}[m[2]]}`),
  P(/^Ignorar$/,m=>'Ignora',m=>'Ignore'),
  P(/^Agregar (.+) como jugador nuevo$/,m=>`Aggiungi ${m[1]} come nuovo giocatore`,m=>`Add ${m[1]} as a new player`),
  P(/^Ver ficha de (.+)$/,m=>`Vedi scheda di ${m[1]}`,m=>`See ${m[1]}’s profile`),
@@ -1528,14 +1560,54 @@ function vTeams(n){
   if(Math.abs(mA.cal-mB.cal)>=2&&isAdmin())warns.push('Los que se calientan quedaron cargados de un lado.');
   for(const [x,y] of S.rules.sep)if((a.includes(x)&&a.includes(y))||(b.includes(x)&&b.includes(y)))warns.push(`${esc(name(x))} y ${esc(name(y))} quedaron juntos (marcados para separar).`);
   for(const [x,y] of S.rules.jun)if((a.includes(x)&&b.includes(y))||(b.includes(x)&&a.includes(y)))warns.push(`${esc(name(x))} y ${esc(name(y))} quedaron separados (marcados para juntar).`);
-  const VERD=`<span class="big dif ${verdict[1]}">${verdict[0]}</span><span class="muted vd-d">Diferencia de nivel: <strong class="num">${dif99(dF)}</strong> ${dif99(dF)===1?'punto':'puntos'}${S.manual?' · <span class="pill">Modificado a mano</span>':''}</span>
+  const VERD=`<span class="big dif ${verdict[1]}">${verdict[0]}</span><span class="muted vd-d">Diferencia de nivel: <strong class="num">${Math.abs(to99(mA.f)-to99(mB.f))}</strong> ${Math.abs(to99(mA.f)-to99(mB.f))===1?'punto':'puntos'}${S.manual?' · <span class="pill">Modificado a mano</span>':''}</span>
    <span class="row vd-b"><button class="btn small" data-act="copy">Copiar para WhatsApp</button></span>`;
   S._verd=VERD;
   return head+pitch+`<div class="teams">${col('A',a,LA,mA)}${col('B',b,LB,mB)}</div>
    <div class="verdict verdict-top">${VERD}</div>
    ${warns.length?`<ul class="warns">${warns.map(w=>`<li>${w}</li>`).join('')}</ul>`:''}
-   <div class="metrics"><table><thead><tr><th></th><th>Con pechera</th><th>Sin pechera</th><th>Diferencia</th></tr></thead><tbody>${rows}</tbody></table></div>
+   ${vHow(a,b,mA,mB,QA,QB,fl)}
    `;
+}
+function vHow(a,b,mA,mB,QA,QB,form){
+  const st=ids=>ids.map(id=>S.stats[id]).filter(Boolean),cat=(ids,k)=>avg(st(ids).map(s=>s.cats[k]));
+  const R=[['Nivel',mA.f,mB.f],['ATA',cat(a,'ata'),cat(b,'ata')],['DEF',cat(a,'def'),cat(b,'def')],['FÍS',mA.fis,mB.fis],['PAS',cat(a,'jue'),cat(b,'jue')],['ARQ',mA.arq,mB.arq]];
+  const lo=Math.min(...R.flatMap(r=>[to99(r[1]),to99(r[2])]))-12,hi=Math.max(...R.flatMap(r=>[to99(r[1]),to99(r[2])])),w=v=>Math.max(6,(to99(v)-lo)/Math.max(1,hi-lo)*100);
+  const D99=(x,y)=>Math.abs(to99(x)-to99(y));
+  const bars=R.map(([k,x,y])=>{const d=D99(x,y),cl=d<3?'g':d<6?'w':'x';
+    return`<div class="hw-s a"><span class="num">${to99(x)}</span><i style="width:${w(x)}%"></i></div><div class="hw-m"><b>${k}</b><small class="dif ${cl} num">${d<1?'=':'±'+d}</small></div><div class="hw-s b"><i style="width:${w(y)}%"></i><span class="num">${to99(y)}</span></div>`;}).join('');
+  const it=[],ok=(c,t,d,wt)=>it.push([c,t,d,wt]);
+  const dF=D99(mA.f,mB.f);
+  ok(dF<=3,'Nivel general parejo',`${to99(mA.f)} contra ${to99(mB.f)} · es lo que más pesa`,'×3');
+  const bestGk=ids=>ids.filter(id=>S.stats[id]&&S.stats[id].v.arq).sort((x,y)=>S.stats[y].v.arq-S.stats[x].v.arq)[0];
+  const ga=bestGk(a),gb=bestGk(b),dA=D99(mA.arq,mB.arq);
+  ok(dA<=5,dA<=5?'Arco parejo':'Arco algo desparejo',ga&&gb?`Los que mejor atajan: ${name(ga)} (con pechera) y ${name(gb)} (sin pechera)`:`Diferencia al arco: ${dA} puntos`,'×1,2');
+  const cs=R.slice(1,5).map(([k,x,y])=>[k,D99(x,y)]).sort((p,q)=>q[1]-p[1]);
+  ok(cs[0][1]<=5,'Ataque, defensa, físico y pase',cs[0][1]<=3?`Todas las diferencias son de ${cs[0][1]} puntos o menos`:`La mayor diferencia es en ${cs[0][0]}: ${cs[0][1]} puntos`,'×0,6');
+  const lines=[['D','defensa'],['M','medio'],['A','ataque']].map(([r,l])=>[l,QA[r]-QB[r]]).filter(([,d])=>Math.abs(d)>0.5);
+  ok(!lines.length,'Líneas equilibradas',lines.length?lines.map(([l,d])=>`${d<0?'Con pechera':'Sin pechera'} más flojo en ${l}`).join(' · '):`Formación ${form} en los dos equipos, con defensa, medio y ataque parejos`,'');
+  const inA=new Set(a),inB=new Set(b),here=id=>inA.has(id)||inB.has(id),same=(x,y)=>(inA.has(x)&&inA.has(y))||(inB.has(x)&&inB.has(y));
+  for(const [x,y] of S.rules.sep)if(here(x)&&here(y))ok(!same(x,y),`Separar a ${name(x)} y ${name(y)}`,same(x,y)?'Quedaron juntos':'Cumplido: cada uno en un equipo','regla');
+  for(const [x,y] of S.rules.jun)if(here(x)&&here(y))ok(same(x,y),`Juntar a ${name(x)} y ${name(y)}`,same(x,y)?'Cumplido: juegan juntos':'Quedaron separados','regla');
+  const parts=[`morfones ${mA.morf}–${mB.morf}`,`hablan y ordenan ${mA.hab}–${mB.hab}`];if(isAdmin())parts.push(`se calientan ${mA.cal}–${mB.cal}`);
+  const badMix=Math.abs(mA.morf-mB.morf)>=2||(mA.hab+mB.hab>=2&&(!mA.hab||!mB.hab))||(isAdmin()&&Math.abs(mA.cal-mB.cal)>=2);
+  ok(!badMix,'Actitudes repartidas',parts.join(' · '),'poco');
+  const last=S.matches.find(m=>m.a&&m.b&&m.day!==localDay())||null;
+  if(last){const both=[...a,...b].filter(id=>last.a.includes(id)||last.b.includes(id));
+    if(both.length>=8){let sm=0;for(const id of both)if(inA.has(id)===last.a.includes(id))sm++;const rep=Math.max(sm,both.length-sm);
+      ok(rep/both.length<=0.85,rep/both.length<=0.85?'Distinto al partido anterior':'Parecido al partido anterior',`${rep} de ${both.length} repiten equipo respecto del ${fmtDate(last.d)}`,'poco');}}
+  const nOpt=(S.options||[]).length;
+  if(S.manual)it.push(['w','Modificado a mano','Los números son de los equipos como quedaron después de mover jugadores','']);
+  else if(nOpt>1)it.push(['i',`Elegida entre ${nOpt} opciones igual de parejas`,'Por eso "Volver a armar" da otra combinación pareja','']);
+  const li=it.map(([c,t,d,wt])=>{const k=c===true?'ok':c===false?'no':c==='w'?'no':'inf';
+    return`<li><span class="hw-ic ${k}">${k==='ok'?'✓':k==='no'?'!':'i'}</span><span class="hw-t">${esc(t)}<span class="hw-d">${esc(d)}</span></span>${wt?`<span class="hw-w">${wt}</span>`:'<span></span>'}</li>`;}).join('');
+  return`<details class="how" id="how-box"${S.howOpen?' open':''}><summary><span class="label">¿Cómo se armó?</span><span class="how-hint">${S.howOpen?'Ocultar':'Ver detalle'}</span><span class="chev" aria-hidden="true">▾</span></summary>
+   <div class="how-body">
+    <div class="hw"><span class="hw-h a">Con pechera</span><span></span><span class="hw-h b">Sin pechera</span>${bars}</div>
+    <p class="hw-leg"><span><i class="g"></i>diferencia chica</span><span><i class="w"></i>media</span><span><i class="x"></i>grande</span></p>
+    <span class="label" style="display:block;margin-top:16px">Qué se tuvo en cuenta</span>
+    <ul class="hw-list">${li}</ul>
+   </div></details>`;
 }
 function chip(id,no,pos){
   const s=S.stats[id];
@@ -2178,7 +2250,7 @@ document.addEventListener('submit',async e=>{
   let ref;const ok=await write(async()=>{ref=await S.db.collection('players').add({name:nm,active:true,base:base?+base:null,c:Date.now(),info:nat?{nat}:{}});},`Agregué a ${nm}`);
   if(ok&&ref){S.photoFor=S.assets?ref.id:null;const f=$('#new-nat');if(f)f.value='';const nn=$('#new-name');if(nn)nn.value='';render();setTimeout(()=>$('#new-name')?.focus(),0);}
 });
-document.addEventListener('toggle',e=>{if(e.target.id==='rules-box')S.rulesOpen=e.target.open;if(e.target.id==='mis-evals'&&S.misOpen!==e.target.open){S.misOpen=e.target.open;render();}},true);
+document.addEventListener('toggle',e=>{if(e.target.id==='rules-box')S.rulesOpen=e.target.open;if(e.target.id==='mis-evals'&&S.misOpen!==e.target.open){S.misOpen=e.target.open;render();}if(e.target.id==='how-box'&&S.howOpen!==e.target.open){S.howOpen=e.target.open;render();}},true);
 function setNum(k,raw){
   const d=S.draft;if(!d)return;const v=String(raw).replace(/\D/g,'');
   if(v===''){delete d[k];render();return;}
