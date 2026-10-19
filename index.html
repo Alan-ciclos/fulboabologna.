@@ -702,7 +702,7 @@ input[type=checkbox]{accent-color:var(--pitch)}
 .hw-s{display:flex;align-items:center;gap:8px;height:22px}.hw-s.a{justify-content:flex-end}
 .hw-s i{display:block;height:14px;border-radius:4px}.hw-s.a i{background:var(--bib)}.hw-s.b i{background:var(--nobib)}
 .hw-s span{font-family:var(--f-display);font-size:15px;min-width:22px}.hw-s.a span{text-align:right}
-.hw-m{text-align:center;line-height:1.05}.hw-m b{display:block;font-family:var(--f-display);font-size:13px;letter-spacing:.05em}.hw-m small{font-size:11px;font-weight:700}
+.hw-m small.n{color:var(--muted)}.hw-m{text-align:center;line-height:1.05}.hw-m b{display:block;font-family:var(--f-display);font-size:13px;letter-spacing:.05em}.hw-m small{font-size:11px;font-weight:700}
 .hw-leg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:10px 0 0}
 .hw-leg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.hw-leg i.g{background:var(--good)}.hw-leg i.w{background:var(--warn)}.hw-leg i.x{background:var(--bad)}
 .hw-list{list-style:none;margin:6px 0 0;padding:0}
@@ -1036,6 +1036,7 @@ const T3=[
  ['Físico','Fisico','Physical'],['Velocidad','Velocità','Speed'],['Lento, lo pasan en cualquier carrera','Lento, lo superano in ogni scatto','Slow, gets beaten in every sprint'],['Rapidísimo, gana todas las carreras','Velocissimo, vince ogni scatto','Very fast, wins every sprint'],['Estado físico','Condizione fisica','Fitness'],['A los 10 minutos ya no da más','Dopo 10 minuti non ne ha più','Gassed after 10 minutes'],['Termina como empezó, no se cansa nunca','Finisce come ha iniziato, non si stanca mai','Finishes like he started, never tires'],['Ver y editar mis evaluaciones','Vedi e modifica le mie valutazioni','See and edit my ratings'],['Tocá ✎ para ver lo que votaste y cambiarlo.','Tocca ✎ per vedere cosa hai votato e cambiarlo.','Tap ✎ to see what you voted and change it.'],['Faltan las nuevas','Mancano le nuove','New ones missing'],['✎ Completar','✎ Completa','✎ Complete'],['Completar','Completa','Complete'],
  ['Ocultar mis evaluaciones ▴','Nascondi le mie valutazioni ▴','Hide my ratings ▴'],['Ver y editar mis evaluaciones ▾','Vedi e modifica le mie valutazioni ▾','See and edit my ratings ▾'],['Ocultar','Nascondi','Hide'],['Ver y editar','Vedi e modifica','See and edit'],
  ['¿Cómo se armó?','Come sono state fatte?','How were they made?'],['Ver detalle','Vedi dettaglio','See details'],['Qué se tuvo en cuenta','Cosa è stato considerato','What was taken into account'],['diferencia chica','differenza piccola','small difference'],['media','media','medium'],['grande','grande','large'],['Nivel general parejo','Livello generale equilibrato','Even overall level'],['Arco parejo','Porta equilibrata','Even in goal'],['Arco algo desparejo','Porta un po’ squilibrata','Goal a bit uneven'],['Ataque, defensa, físico y pase','Attacco, difesa, fisico e passaggio','Attack, defence, physical and passing'],['Líneas equilibradas','Reparti equilibrati','Balanced lines'],['Actitudes repartidas','Atteggiamenti distribuiti','Attitudes spread out'],['Distinto al partido anterior','Diverso dalla partita precedente','Different from last match'],['Parecido al partido anterior','Simile alla partita precedente','Similar to last match'],['Modificado a mano','Modificato a mano','Changed by hand'],['Los números son de los equipos como quedaron después de mover jugadores','I numeri sono delle squadre dopo aver spostato giocatori','Numbers are for the teams after players were moved'],['Por eso "Volver a armar" da otra combinación pareja','Per questo "Rifai" dà un’altra combinazione equilibrata','That’s why "Shuffle again" gives another even split'],['Quedaron juntos','Sono rimasti insieme','They ended up together'],['Quedaron separados','Sono rimasti separati','They ended up apart'],['Cumplido: cada uno en un equipo','Fatto: ognuno in una squadra','Done: one in each team'],['Cumplido: juegan juntos','Fatto: giocano insieme','Done: they play together'],['regla','regola','rule'],['poco','poco','low'],
+ ['Arco (todos rotan)','Porta (ruotano tutti)','Goal (everyone rotates)'],
  ['Estadísticas','Statistiche','Stats'],['Armar','Squadre','Teams'],['Stats','Stats','Stats'],['Partidos','Partite','Matches'],['jugado','giocata','played'],['jugados','giocate','played'],
  ['Tabla general','Classifica generale','Overall table'],['puntos','punti','points'],['Los que más vienen','Chi viene di più','Most present'],['Figuras','Migliori in campo','MVPs'],['Figura','Migliore in campo','MVP'],['Ganadores','Vincenti','Winners'],
  ['veces elegido figura','volte migliore in campo','times MVP'],['Todavía no se eligió ninguna figura.','Ancora nessun migliore in campo.','No MVP chosen yet.'],['Todavía no hay resultados cargados.','Ancora nessun risultato inserito.','No scores entered yet.'],
@@ -1113,6 +1114,7 @@ const I18P=[
  P(/^(\d+) de (\d+) repiten equipo respecto del (.+)$/,m=>`${m[1]} su ${m[2]} ripetono squadra rispetto al ${m[3]}`,m=>`${m[1]} of ${m[2]} on the same team as on ${m[3]}`),
  P(/^Elegida entre (\d+) opciones igual de parejas$/,m=>`Scelta tra ${m[1]} opzioni ugualmente equilibrate`,m=>`Picked among ${m[1]} equally even options`),
  P(/^(Con|Sin) pechera más flojo en (defensa|medio|ataque)$/,m=>`${m[1]==='Con'?'Con casacca':'Senza casacca'} più debole in ${{defensa:'difesa',medio:'centrocampo',ataque:'attacco'}[m[2]]}`,m=>`${m[1]==='Con'?'Bibs':'No bibs'} weaker in ${{defensa:'defence',medio:'midfield',ataque:'attack'}[m[2]]}`),
+ P(/^Promedio como arquero: (\d+) contra (\d+) · cuenta poco$/,m=>`Media in porta: ${m[1]} contro ${m[2]} · conta poco`,m=>`Average in goal: ${m[1]} vs ${m[2]} · counts little`),
  P(/^Ignorar$/,m=>'Ignora',m=>'Ignore'),
  P(/^Agregar (.+) como jugador nuevo$/,m=>`Aggiungi ${m[1]} come nuovo giocatore`,m=>`Add ${m[1]} as a new player`),
  P(/^Ver ficha de (.+)$/,m=>`Vedi scheda di ${m[1]}`,m=>`See ${m[1]}’s profile`),
@@ -1306,7 +1308,7 @@ function balance(ids){
     for(const i of combo){const p=P[i];for(const K of KEYS)sA[K]+=p[K];}
     const d=K=>Math.abs(sA[K]/nA-(tot[K]-sA[K])/nB);
     const dc=K=>Math.abs(sA[K]-(tot[K]-sA[K]));
-    let c=3*d('f')+1.2*d('arq')+0.6*(d('ata')+d('def')+d('fis')+d('jue'))+0.25*(dc('morf')+dc('cal')+dc('hab'));
+    let c=3*d('f')+0.3*d('arq')+1.0*(d('ata')+d('def')+d('fis')+d('jue'))+0.25*(dc('morf')+dc('cal')+dc('hab'));
     if(tot.hab>=2&&(sA.hab===0||sA.hab===tot.hab))c+=0.5;
     for(const [a,b] of sep)if(inA[a]===inA[b])c+=5;
     for(const [a,b] of jun)if(inA[a]!==inA[b])c+=5;
@@ -1574,18 +1576,17 @@ function vHow(a,b,mA,mB,QA,QB,form){
   const R=[['Nivel',mA.f,mB.f],['ATA',cat(a,'ata'),cat(b,'ata')],['DEF',cat(a,'def'),cat(b,'def')],['FÍS',mA.fis,mB.fis],['PAS',cat(a,'jue'),cat(b,'jue')],['ARQ',mA.arq,mB.arq]];
   const lo=Math.min(...R.flatMap(r=>[to99(r[1]),to99(r[2])]))-12,hi=Math.max(...R.flatMap(r=>[to99(r[1]),to99(r[2])])),w=v=>Math.max(6,(to99(v)-lo)/Math.max(1,hi-lo)*100);
   const D99=(x,y)=>Math.abs(to99(x)-to99(y));
-  const bars=R.map(([k,x,y])=>{const d=D99(x,y),cl=d<3?'g':d<6?'w':'x';
+  const bars=R.map(([k,x,y])=>{const d=D99(x,y),cl=k==='ARQ'?'n':d<3?'g':d<6?'w':'x';
     return`<div class="hw-s a"><span class="num">${to99(x)}</span><i style="width:${w(x)}%"></i></div><div class="hw-m"><b>${k}</b><small class="dif ${cl} num">${d<1?'=':'±'+d}</small></div><div class="hw-s b"><i style="width:${w(y)}%"></i><span class="num">${to99(y)}</span></div>`;}).join('');
   const it=[],ok=(c,t,d,wt)=>it.push([c,t,d,wt]);
   const dF=D99(mA.f,mB.f);
   ok(dF<=3,'Nivel general parejo',`${to99(mA.f)} contra ${to99(mB.f)} · es lo que más pesa`,'×3');
-  const bestGk=ids=>ids.filter(id=>S.stats[id]&&S.stats[id].v.arq).sort((x,y)=>S.stats[y].v.arq-S.stats[x].v.arq)[0];
-  const ga=bestGk(a),gb=bestGk(b),dA=D99(mA.arq,mB.arq);
-  ok(dA<=5,dA<=5?'Arco parejo':'Arco algo desparejo',ga&&gb?`Los que mejor atajan: ${name(ga)} (con pechera) y ${name(gb)} (sin pechera)`:`Diferencia al arco: ${dA} puntos`,'×1,2');
   const cs=R.slice(1,5).map(([k,x,y])=>[k,D99(x,y)]).sort((p,q)=>q[1]-p[1]);
-  ok(cs[0][1]<=5,'Ataque, defensa, físico y pase',cs[0][1]<=3?`Todas las diferencias son de ${cs[0][1]} puntos o menos`:`La mayor diferencia es en ${cs[0][0]}: ${cs[0][1]} puntos`,'×0,6');
+  ok(cs[0][1]<=5,'Ataque, defensa, físico y pase',cs[0][1]<=3?`Todas las diferencias son de ${cs[0][1]} puntos o menos`:`La mayor diferencia es en ${cs[0][0]}: ${cs[0][1]} puntos`,'×1');
+  const dA=D99(mA.arq,mB.arq);
   const lines=[['D','defensa'],['M','medio'],['A','ataque']].map(([r,l])=>[l,QA[r]-QB[r]]).filter(([,d])=>Math.abs(d)>0.5);
   ok(!lines.length,'Líneas equilibradas',lines.length?lines.map(([l,d])=>`${d<0?'Con pechera':'Sin pechera'} más flojo en ${l}`).join(' · '):`Formación ${form} en los dos equipos, con defensa, medio y ataque parejos`,'');
+  ok(true,'Arco (todos rotan)',`Promedio como arquero: ${to99(mA.arq)} contra ${to99(mB.arq)} · cuenta poco`,'×0,3');
   const inA=new Set(a),inB=new Set(b),here=id=>inA.has(id)||inB.has(id),same=(x,y)=>(inA.has(x)&&inA.has(y))||(inB.has(x)&&inB.has(y));
   for(const [x,y] of S.rules.sep)if(here(x)&&here(y))ok(!same(x,y),`Separar a ${name(x)} y ${name(y)}`,same(x,y)?'Quedaron juntos':'Cumplido: cada uno en un equipo','regla');
   for(const [x,y] of S.rules.jun)if(here(x)&&here(y))ok(same(x,y),`Juntar a ${name(x)} y ${name(y)}`,same(x,y)?'Cumplido: juegan juntos':'Quedaron separados','regla');
@@ -1700,11 +1701,14 @@ function vRanking(){
 }
 function myRank(){const act=new Set(activeIds());const rows=[...S.claims.entries()].filter(([pid])=>act.has(pid)).map(([pid,uid])=>({pid,v:pid===S.myClaim?S.mine.rated.length:+(S.profiles.get(uid)||{}).votos||0}));rows.sort((a,b)=>b.v-a.v);return rows.findIndex(r=>r.pid===S.myClaim)+1;}
 async function syncMyCount(){
-  if(S.demo||!S.db||!S.uid||!S.myClaim||S._syncing||S.mineLoaded===false)return;
+  if(S.demo||!S.db||!S.uid||!S.myClaim||S.mineLoaded===false)return;
+  if(S._syncing){S._syncAgain=true;return;}
   const pr=S.profiles.get(S.uid);if(!pr)return;
   const v=S.mine.rated.length,k=S.mine.skip.length;
   if(pr.votos===v&&pr.pasados===k)return;
+  if(S._mvServer===false&&(+pr.votos||0)>v)return;
   S._syncing=true;try{await S.db.doc('profiles/'+S.uid).update({votos:v,pasados:k});}catch(_){}S._syncing=false;
+  if(S._syncAgain){S._syncAgain=false;syncMyCount();}
 }
 function surveyTotal(){return activeIds().filter(id=>id!==S.myClaim).length;}
 function vAvance(){
@@ -2336,9 +2340,9 @@ function startSubs(){
   UNSUB.push(db.doc('staff/admins').onSnapshot(s=>{S.admins=new Set(s.exists?(s.data().uids||[]):[]);done();},e=>console.error(e)));
   UNSUB.push(db.doc('config/rules').onSnapshot(s=>{const r=s.exists?s.data():{};const f=l=>(l||[]).filter(o=>o&&o.a&&o.b).map(o=>[o.a,o.b]);const rules={sep:f(r.sep),jun:f(r.jun)};if(S.demo&&S.real)S.real.rules=rules;else S.rules=rules;done();},e=>console.error(e)));
   UNSUB.push(db.collection('matches').orderBy('d','desc').limit(300).onSnapshot(s=>{const ms=s.docs.map(d=>({...d.data(),_id:d.id}));if(S.demo&&S.real)S.real.matches=ms;else S.matches=ms;done();},e=>console.error(e)));
-  S.mineLoaded=false;S._mv=false;S._mt=false;
-  UNSUB.push(db.collection(`users/${S.uid}/myvotes`).onSnapshot(s=>{if(!s.fromCache)S._mv=true;S.mineLoaded=S._mv&&S._mt;const vids={};s.docs.forEach(d=>{vids[d.id]=(d.data()||{}).vid;});S.mine={...S.mine,rated:Object.keys(vids),vids};done();syncMyCount();},e=>console.error(e)));
-  UNSUB.push(db.doc(`users/${S.uid}/meta/yo`).onSnapshot(s=>{if(!s.fromCache)S._mt=true;S.mineLoaded=S._mv&&S._mt;S.mine={...S.mine,skip:s.exists?(s.data().skip||[]):[]};done();syncMyCount();},e=>console.error(e)));
+  S.mineLoaded=false;S._mv=false;S._mt=false;S._mvServer=false;
+  UNSUB.push(db.collection(`users/${S.uid}/myvotes`).onSnapshot(s=>{S._mv=true;if(!s.fromCache)S._mvServer=true;S.mineLoaded=S._mv&&S._mt;const vids={};s.docs.forEach(d=>{vids[d.id]=(d.data()||{}).vid;});S.mine={...S.mine,rated:Object.keys(vids),vids};done();syncMyCount();},e=>console.error(e)));
+  UNSUB.push(db.doc(`users/${S.uid}/meta/yo`).onSnapshot(s=>{S._mt=true;S.mineLoaded=S._mv&&S._mt;S.mine={...S.mine,skip:s.exists?(s.data().skip||[]):[]};done();syncMyCount();},e=>console.error(e)));
 }
 (async()=>{
   let FB=null;try{FB=await window.__fb;}catch(_){}
