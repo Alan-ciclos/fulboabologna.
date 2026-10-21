@@ -692,7 +692,23 @@ input[type=checkbox]{accent-color:var(--pitch)}
  .addrow #new-name,.addrow #new-nat{flex-basis:100%}
 }
 
+/* --- marcas del partido --- */
+.mmk{display:flex;flex-direction:column;gap:6px;min-width:0}
+.mrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px}
+.mrow .mlab{min-width:150px}
+.mrow select{width:auto;padding:4px 8px;font-size:13px}
+.mk-x{border:0;background:none;color:var(--muted);cursor:pointer;padding:0 2px 0 4px;font-size:12px}.mk-x:hover{color:var(--bad)}
+@media (max-width:520px){.mrow .mlab{min-width:0;width:100%}}
 /* --- cómo se armó --- */
+.mk.ghost{cursor:default;pointer-events:none}
+.mk.ghost .gdot{width:34px;height:34px;border-radius:50%;border:2px dashed rgba(255,255,255,.45);display:grid;place-items:center;font-family:var(--f-display);font-size:10px;letter-spacing:.04em;color:rgba(255,255,255,.7);background:rgba(0,0,0,.18)}
+.mk.ghost.A .gdot{border-color:rgba(91,124,255,.75)}.mk.ghost.gk .gdot{border-color:var(--pitch)}
+.pitch-msg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;background:rgba(7,9,13,.82);border:1px solid var(--line);border-radius:12px;padding:12px 18px;text-align:center;max-width:78%;display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.pitch-msg strong{font-family:var(--f-display);font-size:20px;color:var(--ink);text-transform:uppercase;letter-spacing:.03em}
+.hw.empty .hw-s span{color:var(--muted)}
+.hw-ic.wait{background:#1a2236;color:var(--muted)}
+.lockbox{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 10px;align-items:start;margin-top:14px;padding:12px 14px;border:1px dashed var(--pitch);border-radius:12px;background:var(--pitch-soft)}
+.lockbox .lk-ic{font-size:20px;line-height:1.2}.lockbox b{display:block;line-height:1.3}.lockbox .muted{display:block;font-size:12px;margin-top:2px}.lockbox .btn{grid-column:2;justify-self:start;margin-top:4px}
 .how{margin-top:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 16px}
 .how summary{cursor:pointer;display:flex;align-items:center;gap:8px;list-style:none}.how summary::-webkit-details-marker{display:none}
 .how .how-hint{margin-left:auto;font-size:13px;font-weight:700;color:var(--pitch)}.how .chev{color:var(--pitch);transition:transform .2s}.how[open] .chev{transform:rotate(180deg)}
@@ -722,6 +738,7 @@ input[type=checkbox]{accent-color:var(--pitch)}
 nav.tabs .sm{display:none}
 @media (min-width:1100px){header.top.hero nav.tabs button{letter-spacing:.07em;padding:8px 11px}header.top.hero{flex-wrap:nowrap}header.top.hero .right{flex-wrap:nowrap}}
 @media (max-width:1240px){nav.tabs .lg{display:none}nav.tabs .sm{display:inline}}
+@media (max-width:1420px){header.top:has(.me-btn) nav.tabs .lg{display:none}header.top:has(.me-btn) nav.tabs .sm{display:inline}}
 .stats{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;margin-top:18px;align-items:start}
 @media (max-width:900px){.stats{grid-template-columns:minmax(0,1fr)}}
 .st-right{display:flex;flex-direction:column;gap:16px;min-width:0}
@@ -867,7 +884,7 @@ const ITEMS=[
  {k:'eq',g:'act',n:'Juego en equipo',lo:'Morfón, no la pasa nunca',hi:'Siempre ve al compañero mejor ubicado'},
  {k:'hab',g:'act',n:'Habla / ordena',lo:'Mudo, no dice nada',hi:'Ordena, avisa marcas, organiza'},
  {k:'reg',g:'act',n:'Nivel constante',lo:'Depende del día: un partido la rompe y otro no la toca',hi:'Juega siempre al mismo nivel'},
- {k:'cal',g:'act',n:'Se calienta',lo:'Tranquilo, no se engancha nunca',hi:'Se calienta fácil, discute, se pelea',inv:true,priv:true},
+ {k:'cal',g:'act',n:'Se calienta',lo:'Tranquilo, no se engancha nunca',hi:'Se calienta fácil, discute, se pelea',inv:true},
  {k:'arq',g:'arco',n:'Como arquero',lo:'Cuando ataja es un colador',hi:'Ataja de verdad, sale bien, ordena'},
  {k:'gen',g:'gen',n:'Nivel general',lo:'Si armás equipo, lo elegís de los últimos',hi:'Lo elegís de los primeros'},
 ];
@@ -1037,6 +1054,8 @@ const T3=[
  ['Ocultar mis evaluaciones ▴','Nascondi le mie valutazioni ▴','Hide my ratings ▴'],['Ver y editar mis evaluaciones ▾','Vedi e modifica le mie valutazioni ▾','See and edit my ratings ▾'],['Ocultar','Nascondi','Hide'],['Ver y editar','Vedi e modifica','See and edit'],
  ['¿Cómo se armó?','Come sono state fatte?','How were they made?'],['Ver detalle','Vedi dettaglio','See details'],['Qué se tuvo en cuenta','Cosa è stato considerato','What was taken into account'],['diferencia chica','differenza piccola','small difference'],['media','media','medium'],['grande','grande','large'],['Nivel general parejo','Livello generale equilibrato','Even overall level'],['Arco parejo','Porta equilibrata','Even in goal'],['Arco algo desparejo','Porta un po’ squilibrata','Goal a bit uneven'],['Ataque, defensa, físico y pase','Attacco, difesa, fisico e passaggio','Attack, defence, physical and passing'],['Líneas equilibradas','Reparti equilibrati','Balanced lines'],['Actitudes repartidas','Atteggiamenti distribuiti','Attitudes spread out'],['Distinto al partido anterior','Diverso dalla partita precedente','Different from last match'],['Parecido al partido anterior','Simile alla partita precedente','Similar to last match'],['Modificado a mano','Modificato a mano','Changed by hand'],['Los números son de los equipos como quedaron después de mover jugadores','I numeri sono delle squadre dopo aver spostato giocatori','Numbers are for the teams after players were moved'],['Por eso "Volver a armar" da otra combinación pareja','Per questo "Rifai" dà un’altra combinazione equilibrata','That’s why "Shuffle again" gives another even split'],['Quedaron juntos','Sono rimasti insieme','They ended up together'],['Quedaron separados','Sono rimasti separati','They ended up apart'],['Cumplido: cada uno en un equipo','Fatto: ognuno in una squadra','Done: one in each team'],['Cumplido: juegan juntos','Fatto: giocano insieme','Done: they play together'],['regla','regola','rule'],['poco','poco','low'],
  ['Arco (todos rotan)','Porta (ruotano tutti)','Goal (everyone rotates)'],
+ ['Se completa al armar','Si completa quando fai le squadre','Fills in when you make teams'],['Se calcula al armar','Si calcola quando fai le squadre','Calculated when teams are made'],['Qué se tiene en cuenta','Cosa si considera','What is taken into account'],['Reglas de separar / juntar','Regole separare / unire','Separate / together rules'],['Ir a la encuesta','Vai al sondaggio','Go to the survey'],['Después podés mover jugadores a mano arrastrándolos o con ⇄.','Poi puoi spostare i giocatori trascinandoli o con ⇄.','Then you can move players by dragging them or with ⇄.'],
+ ['Se bajó a última hora','Si è tirato indietro all’ultimo','Dropped out last minute'],['Agregar otro…','Aggiungi un altro…','Add another…'],
  ['Estadísticas','Statistiche','Stats'],['Armar','Squadre','Teams'],['Stats','Stats','Stats'],['Partidos','Partite','Matches'],['jugado','giocata','played'],['jugados','giocate','played'],
  ['Tabla general','Classifica generale','Overall table'],['puntos','punti','points'],['Los que más vienen','Chi viene di più','Most present'],['Figuras','Migliori in campo','MVPs'],['Figura','Migliore in campo','MVP'],['Ganadores','Vincenti','Winners'],
  ['veces elegido figura','volte migliore in campo','times MVP'],['Todavía no se eligió ninguna figura.','Ancora nessun migliore in campo.','No MVP chosen yet.'],['Todavía no hay resultados cargados.','Ancora nessun risultato inserito.','No scores entered yet.'],
@@ -1115,6 +1134,9 @@ const I18P=[
  P(/^Elegida entre (\d+) opciones igual de parejas$/,m=>`Scelta tra ${m[1]} opzioni ugualmente equilibrate`,m=>`Picked among ${m[1]} equally even options`),
  P(/^(Con|Sin) pechera más flojo en (defensa|medio|ataque)$/,m=>`${m[1]==='Con'?'Con casacca':'Senza casacca'} più debole in ${{defensa:'difesa',medio:'centrocampo',ataque:'attacco'}[m[2]]}`,m=>`${m[1]==='Con'?'Bibs':'No bibs'} weaker in ${{defensa:'defence',medio:'midfield',ataque:'attack'}[m[2]]}`),
  P(/^Promedio como arquero: (\d+) contra (\d+) · cuenta poco$/,m=>`Media in porta: ${m[1]} contro ${m[2]} · conta poco`,m=>`Average in goal: ${m[1]} vs ${m[2]} · counts little`),
+ P(/^Evaluá a (\d+) jugadores? más para ver (tu nivel|tus atributos de la carta|todas tus aptitudes)$/,m=>`Valuta ancora ${m[1]} ${m[1]==='1'?'giocatore':'giocatori'} per vedere ${{'tu nivel':'il tuo livello','tus atributos de la carta':'i tuoi attributi della carta','todas tus aptitudes':'tutte le tue abilità'}[m[2]]}`,m=>`Rate ${m[1]} more ${m[1]==='1'?'player':'players'} to see ${{'tu nivel':'your level','tus atributos de la carta':'your card attributes','todas tus aptitudes':'all your skills'}[m[2]]}`),
+ P(/^Evaluá a 1 jugador más para ver (tu nivel|tus atributos de la carta|todas tus aptitudes)$/,m=>`Valuta ancora 1 giocatore per vedere ${{'tu nivel':'il tuo livello','tus atributos de la carta':'i tuoi attributi della carta','todas tus aptitudes':'tutte le tue abilità'}[m[1]]}`,m=>`Rate 1 more player to see ${{'tu nivel':'your level','tus atributos de la carta':'your card attributes','todas tus aptitudes':'all your skills'}[m[1]]}`),
+ P(/^Evaluaste (\d+) · nivel a los (\d+), atributos a los (\d+), todo a los (\d+)$/,m=>`Hai valutato ${m[1]} · livello a ${m[2]}, attributi a ${m[3]}, tutto a ${m[4]}`,m=>`You rated ${m[1]} · level at ${m[2]}, attributes at ${m[3]}, everything at ${m[4]}`),
  P(/^Ignorar$/,m=>'Ignora',m=>'Ignore'),
  P(/^Agregar (.+) como jugador nuevo$/,m=>`Aggiungi ${m[1]} come nuovo giocatore`,m=>`Add ${m[1]} as a new player`),
  P(/^Ver ficha de (.+)$/,m=>`Vedi scheda di ${m[1]}`,m=>`See ${m[1]}’s profile`),
@@ -1410,11 +1432,11 @@ const photoStore={
 /* ---------- Carta ---------- */
 function card(id,inf,opt={}){
   inf=inf||info(id);const s=S.stats[id],p=S.players.get(id)||{},v=s.v;
-  const r=to99(s.f),tier=r>=75?'oro':r>=60?'plata':'bronce';
+  const lk=lockLevel(id),r=lk>=1?to99(s.f):'?',tier=lk<1?'plata':r>=75?'oro':r>=60?'plata':'bronce';
   const pos=posLabel(id,inf);
   const cutSrc=opt.cardUrl||(inf.cardPhoto?photoSrc(inf.cardPhoto):'');
   const st=[['ATA',[v.def,v.gam,v.piq]],['DEF',[v.mar,v.ubi]],['PAS',[v.pc,v.pl]],['FÍS',[v.desp,v.hue]],['GAM',[v.ten,v.gam]],['ARQ',[v.arq]]]
-    .map(([k,a])=>`<span><b class="num">${to99(avg(a))}</b>${k}</span>`).join('');
+    .map(([k,a])=>`<span><b class="num">${lk>=2?to99(avg(a)):'?'}</b>${k}</span>`).join('');
   const ph=inf.photo&&photoSrc(inf.photo)?`<img src="${photoSrc(inf.photo)}" alt="" onerror="this.remove()">`:`<span>${esc(initials(p.name))}</span>`;
   const full=completeness(inf)===DONE_KEYS.length;
   const pjN=S._st&&S._st.P[id]?S._st.P[id].pj:0;
@@ -1422,7 +1444,7 @@ function card(id,inf,opt={}){
   const stP=S._st&&S._st.P[id];
   const back=[['Posiciones',[inf.pos,inf.pos2].filter(x=>x&&POS7[x]&&x!=='igual').map(x=>tr(POS7[x])).join(' · ')],
    ['Pie',inf.pie&&PIE[inf.pie]?tr(PIE[inf.pie]):''],['Altura',inf.alt?inf.alt+' cm':''],['Al arco',inf.arco==='no'?tr('Prefiero no atajar'):''],
-   ['Partidos',stP&&stP.pj?[`${stP.pj} PJ`,stP.res?`${stP.w}G ${stP.e}E ${stP.l}P`:'',stP.fig?`⭐ ${stP.fig}`:''].filter(Boolean).join(' · '):''],['Hincha de',inf.club],['Ídolo',inf.idolo],['Festejo',inf.festejo],['Cumple',inf.cumple?fmtCumple(inf.cumple):''],['Nació en',inf.nat?countryName(inf.nat):'']].filter(x=>x[1]);
+   ['Partidos',stP&&stP.pj?[`${stP.pj} PJ`,stP.res?`${stP.w}G ${stP.e}E ${stP.l}P`:''].filter(Boolean).join(' · '):''],['Hincha de',inf.club],['Ídolo',inf.idolo],['Festejo',inf.festejo],['Cumple',inf.cumple?fmtCumple(inf.cumple):''],['Nació en',inf.nat?countryName(inf.nat):'']].filter(x=>x[1]);
   return`<div class="pcard ${tier} ${S.flip===id?'flipped':''}" data-act="flip" data-id="${id}" role="button" tabindex="0" aria-label="Carta de ${esc(p.name)}, tocá para darla vuelta">
   <div class="pc-in">
    <div class="pc-face pc-front">
@@ -1498,7 +1520,7 @@ function vArmar(){
   const n=S.sel.size;
   const list=ids.map(id=>{const s=S.stats[id];const on=S.sel.has(id);return`<li class="${on?'on':''} ${S.profile===id?'selp':''}" draggable="true" data-drag="${id}">
     <label><input type="checkbox" data-act="sel" data-id="${id}" ${on?'checked':''}>${av(id)}<span class="nm" title="${esc(name(id))}">${esc(name(id))}${bday(id)}</span></label>
-    <span class="lvl num" ${s.n<MIN_V?`title="Pocos votos (${s.n}): el nivel todavía es aproximado"`:''}>${s.n<MIN_V?'<span class="dot" aria-label="pocos votos"></span>':''}${to99(s.f)}</span></li>`;}).join('');
+    <span class="lvl num" ${s.n<MIN_V?`title="Pocos votos (${s.n}): el nivel todavía es aproximado"`:''}>${s.n<MIN_V?'<span class="dot" aria-label="pocos votos"></span>':''}${shownLvl(id)}</span></li>`;}).join('');
   return`<div class="armar">
   <section class="panel lista" aria-label="Convocados">
     <div class="row" style="justify-content:space-between"><h2>Convocados</h2><span class="count num ${n===14?'ok':''}">${n}<span class="muted" style="font-size:18px">/14</span></span></div>
@@ -1522,13 +1544,39 @@ function vArmar(){
   <div class="sidecol">${S.teams&&S._verd?`<div class="panel verdict verdict-side">${S._verd}</div>`:''}<div class="backdrop ${S.profile?'open':''}" data-act="close-ficha"></div><aside class="panel ficha ${S.profile?'open':''}" aria-label="Ficha del jugador">${vFicha()}</aside></div>
   </div>`;
 }
+function pitchHTML(form,inner,overlay){
+  return`<div class="pitch-wrap">
+   <div class="pitch-note"><span>Formación propuesta: <strong>${form||'2-3-1'}</strong></span><span class="muted">El 1 arranca al arco y cada ${MINS}' pasa el siguiente</span></div>
+   <div class="pitch" role="img" aria-label="Cancha con las posiciones sugeridas">
+    <svg class="lines h" viewBox="0 0 160 90" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.75)" stroke-width=".6"><rect x="3" y="3" width="154" height="84"/><line x1="80" y1="3" x2="80" y2="87"/><circle cx="80" cy="45" r="10"/><rect x="3" y="25" width="18" height="40"/><rect x="139" y="25" width="18" height="40"/><rect x="3" y="36" width="7" height="18"/><rect x="150" y="36" width="7" height="18"/></g></svg>
+    <svg class="lines v" viewBox="0 0 100 150" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.75)" stroke-width=".6"><rect x="3" y="3" width="94" height="144"/><line x1="3" y1="75" x2="97" y2="75"/><circle cx="50" cy="75" r="10"/><rect x="25" y="3" width="50" height="18"/><rect x="25" y="129" width="50" height="18"/><rect x="36" y="3" width="28" height="7"/><rect x="36" y="140" width="28" height="7"/></g></svg>
+    <div class="half A" data-drop="A"></div><div class="half B" data-drop="B"></div>
+    ${inner}${overlay||''}
+   </div>
+   <div class="legend"><span>Anillo azul: con pechera · blanco: sin pechera</span><span>Borde dorado: arranca al arco</span><span>Anillo verde: el que estás viendo</span></div>
+  </div>`;
+}
+function ghostMarks(){const XS={G:8,D:20,M:32,A:44},L={G:1,D:2,M:3,A:1},out=[];
+  for(const side of ['A','B'])for(const r of ['G','D','M','A'])for(let i=0;i<L[r];i++){const x=side==='A'?XS[r]:100-XS[r],y=10+(i+1)*80/(L[r]+1);
+    out.push(`<div class="mk ghost ${side} ${r==='G'?'gk':''}" style="--x:${x};--y:${y.toFixed(1)}" aria-hidden="true"><span class="gdot">${ROL[r]}</span></div>`);}
+  return out.join('');}
+function vHowEmpty(){
+  const R=['Nivel','ATA','DEF','FÍS','PAS','ARQ'];
+  const bars=R.map(k=>`<div class="hw-s a"><span class="num">–</span><i style="width:0%"></i></div><div class="hw-m"><b>${k}</b><small class="dif n">·</small></div><div class="hw-s b"><i style="width:0%"></i><span class="num">–</span></div>`).join('');
+  const crit=[['Nivel general parejo','×3'],['Ataque, defensa, físico y pase','×1'],['Líneas equilibradas',''],['Arco (todos rotan)','×0,3'],['Reglas de separar / juntar','regla'],['Actitudes repartidas','poco'],['Distinto al partido anterior','poco']];
+  const li=crit.map(([t,w])=>`<li><span class="hw-ic wait">·</span><span class="hw-t">${t}<span class="hw-d">Se calcula al armar</span></span>${w?`<span class="hw-w">${w}</span>`:'<span></span>'}</li>`).join('');
+  return`<details class="how" id="how-box" open><summary><span class="label">¿Cómo se armó?</span><span class="how-hint">Se completa al armar</span><span class="chev" aria-hidden="true">▾</span></summary>
+   <div class="how-body"><p class="muted" style="font-size:13px;margin:0 0 12px">Se prueban todas las combinaciones posibles y queda la más pareja. Al tocar <b>Armar equipos</b> se llenan la cancha, las barras y la lista.</p>
+    <div class="hw empty"><span class="hw-h a">Con pechera</span><span></span><span class="hw-h b">Sin pechera</span>${bars}</div>
+    <span class="label" style="display:block;margin-top:16px">Qué se tiene en cuenta</span><ul class="hw-list">${li}</ul></div></details>`;
+}
 function vTeams(n){
   S._verd='';
   const head=`<div class="cancha-head"><h2 style="font-size:26px;text-transform:uppercase">Equipos</h2>
     <div class="row">${(S.pasteReview||[]).length?`<span class="warn-armar">Hay ${S.pasteReview.length} ${S.pasteReview.length===1?'nombre':'nombres'} sin revisar</span>`:''}<button class="btn bib" data-act="armar" ${n<4||n>MAX_N||S.busy?'disabled':''} title="${S.teams?'Mezcla de nuevo: otra combinación igual de pareja':''}">${S.busy?'Calculando…':S.teams?'🔀 Volver a armar':'Armar equipos'}</button></div></div>`;
   if(!S.teams){
     const msg=n<4?'Pegá la lista o marcá a los que juegan':n>MAX_N?`Máximo ${MAX_N} jugadores`:`${n} convocados listos`;
-    return head+`<div class="cancha-empty" data-drop="A"><strong>${msg}</strong>Se prueban todas las combinaciones posibles y queda la más pareja, con posiciones sugeridas y turnos de arco.<br>Después podés mover jugadores a mano arrastrándolos o con ⇄.</div>`;
+    return head+pitchHTML('2-3-1',ghostMarks(),`<div class="pitch-msg"><strong>${msg}</strong><span>Después podés mover jugadores a mano arrastrándolos o con ⇄.</span></div>`)+vHowEmpty();
   }
   const {a,b,ord,form}=S.teams,LA=layoutTeam(a,ord,form),LB=layoutTeam(b,ord,form),mA=teamMetrics(a),mB=teamMetrics(b),fl=formAll(a,b),QA=teamLines(a,fl),QB=teamLines(b,fl);
   const TN={A:'Con pechera',B:'Sin pechera'};
@@ -1537,16 +1585,7 @@ function vTeams(n){
     line.forEach((id,i)=>{const x=side==='A'?XS[r]:100-XS[r];const y=10+(i+1)*80/(line.length+1);
       out.push(`<div class="mk ${side} ${r==='G'?'gk':''} ${S.profile===id?'sel':''}" style="--x:${x};--y:${y.toFixed(1)}" draggable="true" data-drag="${id}" data-act="profile" data-id="${id}" title="${esc(name(id))} · ${ROL_N[r]}">${av(id)}<span class="n num">${ord[id]}</span><span class="t">${esc(shortName(id,ids))}${bday(id)}</span></div>`);});}
     return out.join('');};
-  const pitch=`<div class="pitch-wrap">
-   <div class="pitch-note"><span>Formación propuesta: <strong>${form}</strong></span><span class="muted">El 1 arranca al arco y cada ${MINS}' pasa el siguiente</span></div>
-   <div class="pitch" role="img" aria-label="Cancha con las posiciones sugeridas">
-    <svg class="lines h" viewBox="0 0 160 90" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.75)" stroke-width=".6"><rect x="3" y="3" width="154" height="84"/><line x1="80" y1="3" x2="80" y2="87"/><circle cx="80" cy="45" r="10"/><rect x="3" y="25" width="18" height="40"/><rect x="139" y="25" width="18" height="40"/><rect x="3" y="36" width="7" height="18"/><rect x="150" y="36" width="7" height="18"/></g></svg>
-    <svg class="lines v" viewBox="0 0 100 150" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.75)" stroke-width=".6"><rect x="3" y="3" width="94" height="144"/><line x1="3" y1="75" x2="97" y2="75"/><circle cx="50" cy="75" r="10"/><rect x="25" y="3" width="50" height="18"/><rect x="25" y="129" width="50" height="18"/><rect x="36" y="3" width="28" height="7"/><rect x="36" y="140" width="28" height="7"/></g></svg>
-    <div class="half A" data-drop="A"></div><div class="half B" data-drop="B"></div>
-    ${marks('A',a,LA)}${marks('B',b,LB)}
-   </div>
-   <div class="legend"><span>Anillo azul: con pechera · blanco: sin pechera</span><span>Borde dorado: arranca al arco</span><span>Anillo verde: el que estás viendo</span></div>
-  </div>`;
+  const pitch=pitchHTML(form,`${marks('A',a,LA)}${marks('B',b,LB)}`);
   const col=(side,ids,L,m)=>`<div class="team ${side}" data-drop="${side}">
     <div class="team-h"><h3>${TN[side]}</h3><span class="avg num" title="Nivel promedio">${to99(m.f)}</span></div>
     <ul class="chips">${ids.slice().sort((x,y)=>ord[x]-ord[y]).map(id=>chip(id,ord[id],L.pos[id])).join('')}</ul></div>`;
@@ -1559,7 +1598,7 @@ function vTeams(n){
   if(Math.abs(a.length-b.length)>1)warns.push('Los equipos tienen distinta cantidad de jugadores.');
   for(const [r,lab] of [['D','defensa'],['M','el medio'],['A','ataque']]){const d=QA[r]-QB[r];if(Math.abs(d)>0.5)warns.push(`${d<0?TN.A:TN.B} queda flojo en ${lab}.`);}
   if(mA.hab+mB.hab>=2&&(!mA.hab||!mB.hab))warns.push('Un equipo no tiene a nadie que hable y ordene.');
-  if(Math.abs(mA.cal-mB.cal)>=2&&isAdmin())warns.push('Los que se calientan quedaron cargados de un lado.');
+  if(Math.abs(mA.cal-mB.cal)>=2)warns.push('Los que se calientan quedaron cargados de un lado.');
   for(const [x,y] of S.rules.sep)if((a.includes(x)&&a.includes(y))||(b.includes(x)&&b.includes(y)))warns.push(`${esc(name(x))} y ${esc(name(y))} quedaron juntos (marcados para separar).`);
   for(const [x,y] of S.rules.jun)if((a.includes(x)&&b.includes(y))||(b.includes(x)&&a.includes(y)))warns.push(`${esc(name(x))} y ${esc(name(y))} quedaron separados (marcados para juntar).`);
   const VERD=`<span class="big dif ${verdict[1]}">${verdict[0]}</span><span class="muted vd-d">Diferencia de nivel: <strong class="num">${Math.abs(to99(mA.f)-to99(mB.f))}</strong> ${Math.abs(to99(mA.f)-to99(mB.f))===1?'punto':'puntos'}${S.manual?' · <span class="pill">Modificado a mano</span>':''}</span>
@@ -1590,8 +1629,8 @@ function vHow(a,b,mA,mB,QA,QB,form){
   const inA=new Set(a),inB=new Set(b),here=id=>inA.has(id)||inB.has(id),same=(x,y)=>(inA.has(x)&&inA.has(y))||(inB.has(x)&&inB.has(y));
   for(const [x,y] of S.rules.sep)if(here(x)&&here(y))ok(!same(x,y),`Separar a ${name(x)} y ${name(y)}`,same(x,y)?'Quedaron juntos':'Cumplido: cada uno en un equipo','regla');
   for(const [x,y] of S.rules.jun)if(here(x)&&here(y))ok(same(x,y),`Juntar a ${name(x)} y ${name(y)}`,same(x,y)?'Cumplido: juegan juntos':'Quedaron separados','regla');
-  const parts=[`morfones ${mA.morf}–${mB.morf}`,`hablan y ordenan ${mA.hab}–${mB.hab}`];if(isAdmin())parts.push(`se calientan ${mA.cal}–${mB.cal}`);
-  const badMix=Math.abs(mA.morf-mB.morf)>=2||(mA.hab+mB.hab>=2&&(!mA.hab||!mB.hab))||(isAdmin()&&Math.abs(mA.cal-mB.cal)>=2);
+  const parts=[`morfones ${mA.morf}–${mB.morf}`,`hablan y ordenan ${mA.hab}–${mB.hab}`];parts.push(`se calientan ${mA.cal}–${mB.cal}`);
+  const badMix=Math.abs(mA.morf-mB.morf)>=2||(mA.hab+mB.hab>=2&&(!mA.hab||!mB.hab))||Math.abs(mA.cal-mB.cal)>=2;
   ok(!badMix,'Actitudes repartidas',parts.join(' · '),'poco');
   const last=S.matches.find(m=>m.a&&m.b&&m.day!==localDay())||null;
   if(last){const both=[...a,...b].filter(id=>last.a.includes(id)||last.b.includes(id));
@@ -1614,7 +1653,7 @@ function chip(id,no,pos){
   const s=S.stats[id];
   return`<li class="chip ${S.profile===id?'sel':''}" draggable="true" data-drag="${id}" data-act="profile" data-id="${id}">
    <span class="no num ${no===1?'gk':''}" title="${no===1?'Arranca al arco':'Turno de arco '+no}">${no}</span>${av(id)}
-   <span class="nm">${esc(name(id))}${bday(id)}</span><span class="rol">${ROL[pos]||''}</span><span class="lvl num">${to99(s.f)}</span>
+   <span class="nm">${esc(name(id))}${bday(id)}</span><span class="rol">${ROL[pos]||''}</span><span class="lvl num">${shownLvl(id)}</span>
    <button class="mv" data-act="move" data-id="${id}" title="Pasar al otro equipo" aria-label="Pasar a ${esc(name(id))} al otro equipo">⇄</button></li>`;
 }
 function bar2(label,val,max,o={}){const pct=max?Math.min(val,max)/max*100:0;
@@ -1625,12 +1664,12 @@ function voteBars(id){const s=S.stats[id],n=s?s.n:0,[lt,lc]=vlevel(n),em=emitted
 function vFicha(){
   const id=S.profile;
   if(!id||!S.stats[id])return`<span class="label">Ficha</span><p class="muted" style="margin:8px 0 0">Tocá un jugador para ver su carta.</p>`;
-  const s=S.stats[id],p=S.players.get(id)||{};
-  const grp=g=>ITEMS.filter(it=>it.g===g&&(!it.priv||isAdmin())).map(it=>`<div class="attr ${it.inv?'hot':''}"><span>${it.n}${it.priv?' 🔒':''}</span><span class="track"><i style="width:${(s.v[it.k]-1)/4*100}%"></i></span><span class="v num">${f1(s.v[it.k])}</span></div>`).join('');
+  const s=S.stats[id],p=S.players.get(id)||{},lk=lockLevel(id);
+  const grp=g=>ITEMS.filter(it=>it.g===g).map(it=>`<div class="attr ${it.inv?'hot':''}"><span>${it.n}</span><span class="track"><i style="width:${(s.v[it.k]-1)/4*100}%"></i></span><span class="v num">${f1(s.v[it.k])}</span></div>`).join('');
   return`<button class="drawer-x" data-act="close-ficha" aria-label="Cerrar ficha">✕</button><span class="label">Ficha</span><div style="margin-top:8px">${card(id)}</div><p class="flip-hint">Tocá la carta para darla vuelta.</p>
    ${s.n<MIN_V?`<p class="muted" style="font-size:12px;margin:8px 0 0">Con menos de ${MIN_V} votos el nivel se completa con ${p.base?'la nota inicial ('+p.base+')':'un nivel promedio'}.</p>`:''}
-   ${isAdmin()&&s.v.cal>=3.5?'<p style="margin:8px 0 0"><span class="pill hot">Se calienta</span></p>':''}
-   <div class="items-all">${Object.keys(GRUPOS).map(g=>`<div class="grp"><span class="label">${GRUPOS[g]}</span>${grp(g)}</div>`).join('')}</div>
+   ${lk>=3&&s.v.cal>=3.5?'<p style="margin:8px 0 0"><span class="pill hot">Se calienta</span></p>':''}
+   ${lk<3?lockMsg():`<div class="items-all">${Object.keys(GRUPOS).map(g=>`<div class="grp"><span class="label">${GRUPOS[g]}</span>${grp(g)}</div>`).join('')}</div>`}
    <div class="b2-wrap">${voteBars(id)}</div>`;
 }
 function vPartidos(){
@@ -1721,6 +1760,14 @@ function vAvance(){
    ${left?`<button class="btn bib av-btn" data-act="start">${done||sk?'Seguir puntuando':'Empezar a puntuar'}</button>`:''}</div>`;
 }
 const NEW_KEYS=['vel','est'];
+const UNLOCK=[5,10,15];
+function myDone(){const act=new Set(activeIds());return S.mine.rated.filter(id=>act.has(id)).length;}
+function unlockNeed(){return[UNLOCK[0],UNLOCK[1],Math.min(UNLOCK[2],Math.max(1,surveyTotal()))];}
+function lockLevel(id){if(S.demo||!S.myClaim||id!==S.myClaim)return 3;const d=myDone(),n=unlockNeed();return d>=n[2]?3:d>=n[1]?2:d>=n[0]?1:0;}
+function lockMsg(){const d=myDone(),n=unlockNeed(),lk=lockLevel(S.myClaim);if(lk>=3)return'';
+  const next=n[lk],what=['tu nivel','tus atributos de la carta','todas tus aptitudes'][lk],k=next-d;
+  return`<div class="lockbox"><span class="lk-ic">🔒</span><span><b>${k===1?`Evaluá a 1 jugador más para ver ${what}`:`Evaluá a ${k} jugadores más para ver ${what}`}</b><span class="muted">Evaluaste ${d} · nivel a los ${n[0]}, atributos a los ${n[1]}, todo a los ${n[2]}</span></span><button class="btn small bib" data-act="tab" data-tab="encuesta">Ir a la encuesta</button></div>`;}
+const shownLvl=id=>lockLevel(id)>=1?to99(S.stats[id].f):'?';
 function vMisEvals(){
   const act=new Set(activeIds()),rated=S.mine.rated.filter(id=>act.has(id)),sk=S.mine.skip.filter(id=>act.has(id));
   if(!rated.length&&!sk.length)return'';
@@ -1734,7 +1781,7 @@ function vMisEvals(){
 function surveyPool(){const excl=new Set([...S.mine.rated,...S.mine.skip,S.myClaim]);return [...activeIds().filter(id=>!excl.has(id)),...staleIds()];}
 
 /* ----- Estadísticas ----- */
-const PTS={jugo:3,gano:1,figura:2,tarde:-1,falto:-3};
+const PTS={jugo:3,gano:1,tarde:-1,falto:-3};
 const isNum=x=>typeof x==='number'&&isFinite(x);
 function localDay(dt){const d=dt||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function statsAll(){
@@ -1746,7 +1793,6 @@ function statsAll(){
       if(abs.has(id)){s.abs++;s.pts+=PTS.falto;continue;}
       s.pj++;s.pts+=PTS.jugo;if(!s.last)s.last=m.d;
       if(hasRes){s.res++;const diff=A.includes(id)?m.ga-m.gb:m.gb-m.ga;if(diff>0){s.w++;s.pts+=PTS.gano;}else if(diff===0)s.e++;else s.l++;}
-      if(m.fig===id){s.fig++;s.pts+=PTS.figura;}
       if(late.has(id)){s.late++;s.pts+=PTS.tarde;}
     }
   }
@@ -1763,7 +1809,6 @@ function vStats(){
   const row=(id,i,right,extra='')=>`<li class="rk2" data-act="profile" data-id="${id}">${medal(i)}${av(id)}<span class="rk-name">${esc(name(id))}${extra}</span>${right}</li>`;
   const table=ids.slice().sort((x,y)=>P[y].pts-P[x].pts||P[y].pj-P[x].pj||name(x).localeCompare(name(y),'es'));
   const pres=ids.filter(id=>P[id].pj>0).sort((x,y)=>P[y].pj-P[x].pj||P[y].streak-P[x].streak).slice(0,8);
-  const figs=ids.filter(id=>P[id].fig>0).sort((x,y)=>P[y].fig-P[x].fig).slice(0,5);
   const resN=ms.filter(m=>isNum(m.ga)&&isNum(m.gb)).length,minRes=Math.max(1,Math.min(6,Math.ceil(resN/2)));
   const wins=ids.filter(id=>P[id].res>=minRes).sort((x,y)=>(P[y].w/P[y].res)-(P[x].w/P[x].res)||P[y].w-P[x].w).slice(0,5);
   const tot=ms.length;
@@ -1774,15 +1819,12 @@ function vStats(){
    </section>
    <div class="st-right">
     <section class="card"><div class="st-h"><h3>Tabla general</h3><span class="muted">puntos</span></div>
-     <p class="st-legend"><span>Jugó</span> <b>+3</b> · <span>Ganó</span> <b>+1</b> · <span>Figura</span> <b>+2</b> · <span>Llegó tarde</span> <b>−1</b> · <span>Faltó sin avisar</span> <b>−3</b></p>
-     <ol class="rk-list">${(S.allTable?table:table.slice(0,10)).map((id,i)=>{const s=P[id];return row(id,i,`<span class="st-pts num">${s.pts}</span>`,`<span class="st-det">PJ ${s.pj}${s.fig?` · ⭐${s.fig}`:''}${s.late?` · ⏰${s.late}`:''}${s.abs?` · 🚫${s.abs}`:''}</span>`);}).join('')}</ol>
+     <p class="st-legend"><span>Jugó</span> <b>+3</b> · <span>Ganó</span> <b>+1</b> · <span>Llegó tarde</span> <b>−1</b> · <span>Se bajó a última hora</span> <b>−3</b></p>
+     <ol class="rk-list">${(S.allTable?table:table.slice(0,10)).map((id,i)=>{const s=P[id];return row(id,i,`<span class="st-pts num">${s.pts}</span>`,`<span class="st-det">PJ ${s.pj}${s.late?` · ⏰${s.late}`:''}${s.abs?` · 🚫${s.abs}`:''}</span>`);}).join('')}</ol>
      ${table.length>10?`<button class="btn small ghost" data-act="all-table">${S.allTable?'Ver menos':'Ver todos'}</button>`:''}
     </section>
     <section class="card"><div class="st-h"><h3>Los que más vienen</h3><span class="muted">${`sobre ${tot} partidos`}</span></div>
      <ol class="rk-list">${pres.map((id,i)=>{const s=P[id];return row(id,i,`<span class="st-pts num"><span class="st-bar"><i style="width:${s.pj/tot*100}%"></i></span>${s.pj}</span>`,s.streak>=3?` <span class="pill st-fire">${`🔥 ${s.streak} seguidos`}</span>`:'');}).join('')}</ol>
-    </section>
-    <section class="card"><div class="st-h"><h3>Figuras</h3><span class="muted">veces elegido figura</span></div>
-     ${figs.length?`<ol class="rk-list">${figs.map((id,i)=>row(id,i,`<span class="st-pts num">${P[id].fig} ⭐</span>`)).join('')}</ol>`:'<p class="muted" style="margin:6px 0 0">Todavía no se eligió ninguna figura.</p>'}
     </section>
     <section class="card"><div class="st-h"><h3>Ganadores</h3><span class="muted">${`mín. ${minRes} partidos con resultado`}</span></div>
      ${wins.length?`<ol class="rk-list">${wins.map((id,i)=>{const s=P[id];return row(id,i,`<span class="st-pts num">${Math.round(s.w/s.res*100)}%</span>`,`<span class="st-det">${s.w}G ${s.e}E ${s.l}P</span>`);}).join('')}</ol>`:'<p class="muted" style="margin:6px 0 0">Todavía no hay resultados cargados.</p>'}
@@ -1794,17 +1836,18 @@ function vMatch(m){
   const adm=canManage(),signed=!S.demo&&!!S.db&&!!S.uid;
   const A=m.a||[],B=m.b||[],all=[...A,...B],abs=new Set(m.abs||[]),late=new Set(m.late||[]);
   const hasRes=isNum(m.ga)&&isNum(m.gb),isToday=m.day===localDay();
-  const canRes=signed&&(adm||!hasRes),canFig=signed&&(adm||!m.fig);
-  const marksSet=(m.late||[]).length||(m.abs||[]).length,canMarks=signed&&(adm||!marksSet);
-  const editing=S.markFor===m._id,dr=editing?S.markDraft:null;
+  const canRes=signed&&(adm||!hasRes);
+  const marksSet=(m.late||[]).length||(m.abs||[]).length,canMarks=S.demo||(signed&&(adm||!marksSet));
+  const editing=S.markFor===m._id&&!!S.markDraft,dr=editing?S.markDraft:{late,abs};
   const st=hasRes?(m.ga>m.gb?'Ganó con pechera':m.ga<m.gb?'Ganó sin pechera':'Empate'):(isToday?'Hoy · cargá el resultado cuando termine':'Sin resultado');
-  const face=id=>{const L=editing?dr.late.has(id):late.has(id),X=editing?dr.abs.has(id):abs.has(id);
-    const inner=`${av(id)}${L?'<i class="mb">⏰</i>':''}${X?'<i class="mb">🚫</i>':''}${m.fig===id?'<i class="mb fig">⭐</i>':''}`;
-    return editing?`<button type="button" class="mface ${X?'off':''}" data-act="mk-cycle" data-id="${id}" title="${esc(name(id))}">${inner}</button>`:`<span class="mface ${X?'off':''}" title="${esc(name(id))}">${inner}</span>`;};
+  const face=id=>{const L=dr.late.has(id),X=dr.abs.has(id);
+    return`<span class="mface ${X?'off':''}" title="${esc(name(id))}">${av(id)}${L?'<i class="mb">⏰</i>':''}${X?'<i class="mb">🚫</i>':''}</span>`;};
   const lock=`<span class="lock" title="Solo un admin puede corregirlo">🔒</span>`;
   const par=m.par||{},vp=Object.values(par).filter(v=>v==='p').length,vd=Object.values(par).filter(v=>v==='d').length,mine=par[S.uid];
   const canPar=signed&&!!S.myClaim&&all.includes(S.myClaim);
-  const figOpts=all.filter(id=>!abs.has(id));
+  const markRow=(k,ic,lab)=>{const set=dr[k],other=k==='late'?dr.abs:dr.late,opts=all.filter(id=>!set.has(id)&&!other.has(id));
+    const chips=[...set].map(id=>`<span class="figset">${av(id)}${esc(name(id))}${canMarks?`<button type="button" class="mk-x" data-act="mk-rm" data-m="${m._id}" data-k="${k}" data-id="${id}" aria-label="Quitar a ${esc(name(id))}">✕</button>`:''}</span>`).join('');
+    return`<div class="mrow"><span class="mlab">${ic} <span>${lab}</span></span>${chips}${canMarks?`<select data-mmark="${m._id}" data-k="${k}" aria-label="${lab}"><option value="">${set.size?'Agregar otro…':'Elegir…'}</option>${opts.map(id=>`<option value="${id}">${esc(name(id))}</option>`).join('')}</select>`:set.size?(adm?'':lock):'<span class="muted">—</span>'}</div>`;};
   return`<article class="mcard">
    <div class="mh"><span class="md">${esc(fmtDate(m.d))}</span><span class="mh-r"><span class="muted">${st}</span>${S.mdel===m._id?`<span class="mdel-q"><span>¿Borrar partido?</span> <button type="button" class="btn small ghost" data-act="mdel-no">No</button><button type="button" class="btn small danger" data-act="mdel-yes" data-m="${m._id}">Sí, borrar</button></span>`:(signed||S.demo)?`<button type="button" class="mdel" data-act="mdel" data-m="${m._id}" title="Borrar partido" aria-label="Borrar partido">🗑</button>`:''}</span></div>
    <div class="msides">
@@ -1818,18 +1861,13 @@ function vMatch(m){
     <div class="mside b"><span class="tn b">Sin pechera</span><div class="mavs">${B.map(face).join('')}</div></div>
    </div>
    <div class="mfoot">
-    <div class="mfig">⭐ <span>Figura</span>
-     ${m.fig&&!canFig?`<span class="figset">${av(m.fig)}${esc(name(m.fig))}</span>${lock}`
-       :canFig?`<select data-mfig="${m._id}" aria-label="Figura del partido"><option value="">Elegir…</option>${figOpts.map(id=>`<option value="${id}" ${m.fig===id?'selected':''}>${esc(name(id))}</option>`).join('')}</select>`
-       :m.fig?`<span class="figset">${av(m.fig)}${esc(name(m.fig))}</span>`:'<span class="muted">—</span>'}
-    </div>
+    <div class="mmk">${markRow('late','⏰','Llegó tarde')}${markRow('abs','🚫','Se bajó a última hora')}
+     ${editing?`<span class="row"><button class="btn small primary" data-act="mk-save" data-m="${m._id}">Guardar</button><button class="btn small ghost" data-act="mk-cancel">Cancelar</button></span>`:''}</div>
     <div class="parv" role="group" aria-label="¿Estuvo parejo?"><span class="muted">¿Estuvo parejo?</span>
      <button type="button" class="chipbtn" data-act="mpar" data-m="${m._id}" data-v="p" aria-pressed="${mine==='p'}" ${canPar?'':'disabled'}>👍 <span>Muy parejo</span> <b class="num">${vp}</b></button>
      <button type="button" class="chipbtn" data-act="mpar" data-m="${m._id}" data-v="d" aria-pressed="${mine==='d'}" ${canPar?'':'disabled'}>👎 <span>Muy desparejo</span> <b class="num">${vd}</b></button>
     </div>
    </div>
-   <div class="mmarks">${editing?`<span class="muted">Tocá a un jugador: ⏰ llegó tarde → 🚫 faltó sin avisar → normal</span><span class="row"><button class="btn small primary" data-act="mk-save" data-m="${m._id}">Guardar</button><button class="btn small ghost" data-act="mk-cancel">Cancelar</button></span>`
-     :canMarks?`<button class="btn small ghost" data-act="mk-edit" data-m="${m._id}">⏰ 🚫 Marcar tardanzas y ausencias</button>`:marksSet&&!adm?`<span class="muted">⏰ 🚫 ${lock}</span>`:''}</div>
   </article>`;
 }
 async function saveMatch(){
@@ -1872,7 +1910,7 @@ function vPlantel(){
      :`<span class="pname">${av(id,'md'+(inf.photo?'':' np'))}<span>${esc(p.name)}${bday(id)}</span>${inf.nat?flag(inf.nat,16):''}${adm?'<span class="pill adm" title="Administrador">Admin</span>':''}${!ro?`<button class="btn small ghost edit" data-act="editname" data-id="${id}" title="Editar" aria-label="Editar a ${esc(p.name)}">✎</button>`:''}</span>`;
    return`<tr class="prow ${p.active===false?'off':''} ${S.profile===id?'selrow':''}" data-act="${editing?'':'profile'}" data-id="${id}">
    <td>${nm}</td>
-   <td class="num">${s.n<MIN_V?'<span class="dot" title="Pocos votos"></span>':''}${to99(s.f)}</td>
+   <td class="num">${s.n<MIN_V?'<span class="dot" title="Pocos votos"></span>':''}${shownLvl(id)}</td>
    <td>${vbar(s.n)}</td>
    <td><input type="checkbox" data-act="pactive" data-id="${id}" ${p.active!==false?'checked':''} aria-label="Activo" ${ro?'disabled':''}></td>
    <td>${ro?'':S.confirmDel===id?`<button class="btn small danger" data-act="pdel2" data-id="${id}">¿Borrar? Se pierden sus votos</button>`:`<button class="btn small ghost" data-act="pdel" data-id="${id}" aria-label="Borrar ${esc(p.name)}">✕</button>`}</td></tr>`;}).join('');
@@ -2101,7 +2139,7 @@ function fallbackCopy(txt){const t=document.createElement('textarea');t.value=tx
 function startSurvey(){
   const pool=surveyPool(),cnt=id=>S.stats[id]?.n||0;
   const st=new Set(staleIds());
-  pool.sort((x,y)=>(st.has(x)-st.has(y))||cnt(x)-cnt(y)||Math.random()-.5);
+  pool.sort((x,y)=>(st.has(x)-st.has(y))||cnt(y)-cnt(x)||Math.random()-.5);
   const queue=pool.slice(0,TANDA),stale={};queue.forEach(id=>{if(st.has(id))stale[id]=(S.mine.vids||{})[id];});
   S.survey={queue,i:0,stale};prefillAns();render();window.scrollTo({top:0});
 }
@@ -2192,9 +2230,10 @@ break;
     case 'more-matches':S.allMatches=!S.allMatches;render();break;
     case 'all-table':S.allTable=!S.allTable;render();break;
     case 'mk-edit':{const m=S.matches.find(x=>x._id===t.dataset.m);if(!m)break;S.markFor=m._id;S.markDraft={late:new Set(m.late||[]),abs:new Set(m.abs||[])};render();break;}
+    case 'mk-rm':{const mid=t.dataset.m,m=S.matches.find(x=>x._id===mid);if(!m)break;if(S.markFor!==mid||!S.markDraft){S.markFor=mid;S.markDraft={late:new Set(m.late||[]),abs:new Set(m.abs||[])};}S.markDraft[t.dataset.k].delete(id);render();break;}
     case 'mk-cancel':S.markFor=null;S.markDraft=null;render();break;
     case 'mk-cycle':{const dr=S.markDraft;if(!dr)break;if(dr.abs.has(id))dr.abs.delete(id);else if(dr.late.has(id)){dr.late.delete(id);dr.abs.add(id);}else dr.late.add(id);render();break;}
-    case 'mk-save':{const dr=S.markDraft,mid=t.dataset.m;if(!dr)break;const ok=await write(()=>S.db.doc('matches/'+mid).update({late:[...dr.late],abs:[...dr.abs]}),'Guardado');if(ok){S.markFor=null;S.markDraft=null;render();}break;}
+    case 'mk-save':{const dr=S.markDraft,mid=t.dataset.m;if(!dr)break;if(S.demo){const m=S.matches.find(x=>x._id===mid);if(m){m.late=[...dr.late];m.abs=[...dr.abs];}S.markFor=null;S.markDraft=null;render();toast('Guardado');break;}const ok=await write(()=>S.db.doc('matches/'+mid).update({late:[...dr.late],abs:[...dr.abs]}),'Guardado');if(ok){S.markFor=null;S.markDraft=null;render();}break;}
     case 'mpar':{const m=S.matches.find(x=>x._id===t.dataset.m);if(!m||!S.uid)break;const par={...(m.par||{})};if(par[S.uid]===t.dataset.v)delete par[S.uid];else par[S.uid]=t.dataset.v;await write(()=>S.db.doc('matches/'+m._id).update({par}));break;}
     case 'toggle-admin':{if(!S.owner)break;const u=S.claims.get(id);if(!u)break;const set=new Set(S.admins);set.has(u)?set.delete(u):set.add(u);
       await write(()=>S.db.doc('staff/admins').set({uids:[...set]}),set.has(u)?`${name(id)} ahora es admin`:`${name(id)} ya no es admin`);break;}
@@ -2241,6 +2280,9 @@ document.addEventListener('change',async e=>{
   if(a==='yphoto'){const f=t.files&&t.files[0];if(f){if(S.pending)URL.revokeObjectURL(S.pending.url);S.pending={file:f,url:URL.createObjectURL(f)};render();}return;}
   if(a==='savename'){const v=t.value.trim();if(v&&v!==name(id)){if([...S.players.entries()].some(([k,p])=>k!==id&&norm(p.name)===norm(v))){toast('Ya hay otro jugador con ese nombre');render();return;}await write(()=>S.db.doc('players/'+id).update({name:v}),'Nombre corregido');}render();return;}
   if(t.dataset.mscore){await saveScore(t.dataset.mscore);return;}
+  if(t.dataset.mmark){const mid=t.dataset.mmark,m=S.matches.find(x=>x._id===mid),id=t.value;if(!m||!id)return;
+    if(S.markFor!==mid||!S.markDraft){S.markFor=mid;S.markDraft={late:new Set(m.late||[]),abs:new Set(m.abs||[])};}
+    const k=t.dataset.k,o=k==='late'?'abs':'late';S.markDraft[o].delete(id);S.markDraft[k].add(id);render();return;}
   if(t.dataset.mfig){const v=t.value||null;await write(()=>S.db.doc('matches/'+t.dataset.mfig).update({fig:v}),'Guardado');return;}
   if(a==='mres'){const f=t.dataset.f;const v=t.value===''?null:+t.value;await write(()=>S.db.doc('matches/'+id).update({[f]:v}));return;}
 });
