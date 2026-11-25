@@ -808,6 +808,16 @@ body.needlogin nav.tabs, body.needlogin .me-btn{display:none}
 .av.sv-av{width:84px;height:84px;font-size:28px;border:2px solid var(--pitch)}
 .av.sv-av.sv-cut img{object-fit:contain;object-position:center bottom}
 .sv-card-box{margin:12px 0;padding:12px;border-radius:var(--r);background:var(--surface-2);border:1px solid var(--line)}
+
+/* --- cambios lista 2 --- */
+.st-mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0 0;padding:12px 14px}
+.st-mini-item{display:flex;flex-direction:column;gap:2px}
+.st-mini-item b{font-family:var(--f-display);font-size:17px;color:var(--ink)}
+@media (max-width:620px){.st-mini{grid-template-columns:1fr}}
+.m-det{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.m-det summary{cursor:pointer;display:flex;align-items:center;gap:6px;list-style:none}
+.m-det summary::-webkit-details-marker{display:none}
+.m-det-hint{margin-left:auto;font-size:12px;font-weight:700;color:var(--pitch)}
 </style>
 </head>
 <body>
@@ -1085,6 +1095,7 @@ const T3=[
  ['Datos de jugador','Dati del giocatore','Player details'],['Sobre mí','Su di me','About me'],['Número de camiseta','Numero di maglia','Shirt number'],['Altura','Altezza','Height'],['Menos','Meno','Less'],['Más','Più','More'],['Altura en cm','Altezza in cm','Height in cm'],['Posiciones','Posizioni','Positions'],['Cambiar foto','Cambia foto','Change photo'],['Cambiar foto personal','Cambia foto personale','Change personal photo'],['Todavía no hay jugadores. Agregalos arriba.','Ancora nessun giocatore. Aggiungili qui sopra.','No players yet. Add them above.'],['Todavía no hay jugadores. Solo los administradores agregan, editan o borran jugadores.','Ancora nessun giocatore. Solo gli amministratori aggiungono, modificano o eliminano giocatori.','No players yet. Only admins add, edit or delete players.'],['La altura tiene que estar entre 140 y 220 cm','L’altezza deve essere tra 140 e 220 cm','Height must be between 140 and 220 cm'],['El número de camiseta va de 1 a 99','Il numero di maglia va da 1 a 99','Shirt number goes from 1 to 99'],
  ['Solo los administradores agregan, editan o borran jugadores.','Solo gli amministratori aggiungono, modificano o eliminano giocatori.','Only admins add, edit or delete players.'],['Admin','Admin','Admin'],['Administrador','Amministratore','Admin'],['Hacer admin','Rendi admin','Make admin'],['Quitar admin','Togli admin','Remove admin'],
  ['Ver ficha','Vedi scheda','See profile'],['Ocultar ficha','Nascondi scheda','Hide profile'],
+ ['Tardanzas, bajas y parejo','Ritardi, assenze e equilibrio','Late, no-shows & evenness'],['Ver','Vedi','See'],['Formación','Modulo','Formation'],
 ];
 const I18N={it:{},en:{}};for(const [es,it,en] of T3){I18N.it[es]=it;I18N.en[es]=en;}
 const LV={insuficiente:{it:'insufficiente',en:'not enough'},'mínimo':{it:'minimo',en:'minimum'},bueno:{it:'buono',en:'good'},'óptimo':{it:'ottimo',en:'great'}};
@@ -1847,7 +1858,11 @@ function vStats(){
   const resN=ms.filter(m=>isNum(m.ga)&&isNum(m.gb)).length,minRes=Math.max(1,Math.min(6,Math.ceil(resN/2)));
   const wins=ids.filter(id=>P[id].res>=minRes).sort((x,y)=>(P[y].w/P[y].res)-(P[x].w/P[x].res)||P[y].w-P[x].w).slice(0,5);
   const tot=ms.length;
-  return`<div class="stats">
+  const topPts=table[0]?`${esc(name(table[0]))} (${P[table[0]].pts} pts)`:'—';
+  const topPres=pres[0]?`${esc(name(pres[0]))} (${P[pres[0]].pj} PJ)`:'—';
+  const topWin=wins[0]?`${esc(name(wins[0]))} (${Math.round(P[wins[0]].w/P[wins[0]].res*100)}%)`:'—';
+  const mini=`<div class="card st-mini"><div class="st-mini-item"><span class="label">Tabla general</span><b>${topPts}</b></div><div class="st-mini-item"><span class="label">Los que más vienen</span><b>${topPres}</b></div><div class="st-mini-item"><span class="label">Ganadores</span><b>${topWin}</b></div></div>`;
+  return`${mini}<div class="stats">
    <section class="card st-left"><div class="st-h"><h3>Partidos</h3><span class="muted">${tot===1?'1 jugado':`${tot} jugados`}</span></div>
     ${shown.map(vMatch).join('')}
     ${ms.length>5?`<button class="btn small ghost" data-act="more-matches">${S.allMatches?'Ver menos':'Ver partidos anteriores'}</button>`:''}
@@ -1883,6 +1898,7 @@ function vMatch(m){
   const markRow=(k,ic,lab)=>{const set=dr[k],other=k==='late'?dr.abs:dr.late,opts=all.filter(id=>!set.has(id)&&!other.has(id));
     const chips=[...set].map(id=>`<span class="figset">${av(id)}${esc(name(id))}${canMarks?`<button type="button" class="mk-x" data-act="mk-rm" data-m="${m._id}" data-k="${k}" data-id="${id}" aria-label="Quitar a ${esc(name(id))}">✕</button>`:''}</span>`).join('');
     return`<div class="mrow"><span class="mlab">${ic} <span>${lab}</span></span>${chips}${canMarks?`<select data-mmark="${m._id}" data-k="${k}" aria-label="${lab}"><option value="">${set.size?'Agregar otro…':'Elegir…'}</option>${opts.map(id=>`<option value="${id}">${esc(name(id))}</option>`).join('')}</select>`:set.size?(adm?'':lock):'<span class="muted">—</span>'}</div>`;};
+  const detCnt=dr.late.size+dr.abs.size+vp+vd;
   return`<article class="mcard">
    <div class="mh"><span class="md">${esc(fmtDate(m.d))}</span><span class="mh-r"><span class="muted">${st}</span>${S.mdel===m._id?`<span class="mdel-q"><span>¿Borrar partido?</span> <button type="button" class="btn small ghost" data-act="mdel-no">No</button><button type="button" class="btn small danger" data-act="mdel-yes" data-m="${m._id}">Sí, borrar</button></span>`:(signed||S.demo)?`<button type="button" class="mdel" data-act="mdel" data-m="${m._id}" title="Borrar partido" aria-label="Borrar partido">🗑</button>`:''}</span></div>
    <div class="msides">
@@ -1895,14 +1911,16 @@ function vMatch(m){
     </div>
     <div class="mside b"><span class="tn b">Sin pechera</span><div class="mavs">${B.map(face).join('')}</div></div>
    </div>
-   <div class="mfoot">
-    <div class="mmk">${markRow('late','⏰','Llegó tarde')}${markRow('abs','🚫','Se bajó a última hora')}
-     ${editing?`<span class="row"><button class="btn small primary" data-act="mk-save" data-m="${m._id}">Guardar</button><button class="btn small ghost" data-act="mk-cancel">Cancelar</button></span>`:''}</div>
-    <div class="parv" role="group" aria-label="¿Estuvo parejo?"><span class="muted">¿Estuvo parejo?</span>
-     <button type="button" class="chipbtn" data-act="mpar" data-m="${m._id}" data-v="p" aria-pressed="${mine==='p'}" ${canPar?'':'disabled'}>👍 <span>Muy parejo</span> <b class="num">${vp}</b></button>
-     <button type="button" class="chipbtn" data-act="mpar" data-m="${m._id}" data-v="d" aria-pressed="${mine==='d'}" ${canPar?'':'disabled'}>👎 <span>Muy desparejo</span> <b class="num">${vd}</b></button>
+   <details class="m-det"${editing?' open':''}><summary><span class="label">Tardanzas, bajas y parejo</span>${detCnt?` <span class="pill">${detCnt}</span>`:''}<span class="m-det-hint">Ver</span></summary>
+    <div class="mfoot">
+     <div class="mmk">${markRow('late','⏰','Llegó tarde')}${markRow('abs','🚫','Se bajó a última hora')}
+      ${editing?`<span class="row"><button class="btn small primary" data-act="mk-save" data-m="${m._id}">Guardar</button><button class="btn small ghost" data-act="mk-cancel">Cancelar</button></span>`:''}</div>
+     <div class="parv" role="group" aria-label="¿Estuvo parejo?"><span class="muted">¿Estuvo parejo?</span>
+      <button type="button" class="chipbtn" data-act="mpar" data-m="${m._id}" data-v="p" aria-pressed="${mine==='p'}" ${canPar?'':'disabled'}>👍 <span>Muy parejo</span> <b class="num">${vp}</b></button>
+      <button type="button" class="chipbtn" data-act="mpar" data-m="${m._id}" data-v="d" aria-pressed="${mine==='d'}" ${canPar?'':'disabled'}>👎 <span>Muy desparejo</span> <b class="num">${vd}</b></button>
+     </div>
     </div>
-   </div>
+   </details>
   </article>`;
 }
 async function saveMatch(){
@@ -2171,8 +2189,8 @@ function vReview(){
 }
 function copyTeams(){
   const {a,b,ord,form}=S.teams;
-  const side=(ids,emo,tit)=>{const L=layoutTeam(ids,ord,form);return`${emo} *${tr(tit)}*\n`+ids.slice().sort((x,y)=>ord[x]-ord[y]).map(id=>{const k=ord[id];return`${k}. ${name(id)}${k===1?' 🧤':''} · ${tr(ROL[L.pos[id]])} · ${tr('arco')} ${(k-1)*MINS}'-${k*MINS}'`;}).join('\n');};
-  const txt=`${side(a,'🔵','CON PECHERA')}\n\n${side(b,'⚪','SIN PECHERA')}\n\n${tr(`Formación ${form}. El 1 arranca al arco y cada ${MINS}' pasa el siguiente.`)}`;
+  const side=(ids,emo,tit)=>`${emo} *${tr(tit)}*\n`+ids.slice().sort((x,y)=>ord[x]-ord[y]).map(id=>{const k=ord[id];return`${k}. ${name(id)}${k===1?' 🧤':''}`;}).join('\n');
+  const txt=`${side(a,'🔵','CON PECHERA')}\n\n${side(b,'⚪','SIN PECHERA')}\n\n${tr(`Formación ${form}`)}`;
   try{navigator.clipboard.writeText(txt).then(()=>toast('Copiado'),()=>fallbackCopy(txt));}catch(e){fallbackCopy(txt);}
   if(S.uid||S.demo){S.askMatch=true;render();}
 }
@@ -2180,7 +2198,27 @@ function fallbackCopy(txt){const t=document.createElement('textarea');t.value=tx
 function buildQueue(){
   const pool=surveyPool(),cnt=id=>S.stats[id]?.n||0;
   const st=new Set(staleIds());
-  pool.sort((x,y)=>(st.has(x)-st.has(y))||cnt(y)-cnt(x)||Math.random()-.5);
+  const ms=[...(S.matches||[])].sort((x,y)=>String(y.d).localeCompare(String(x.d)));
+  const lastM=ms[0];
+  const lastAbs=new Set((lastM&&lastM.abs)||[]);
+  const playedLast=id=>!!lastM&&!lastAbs.has(id)&&([...(lastM.a||[]),...(lastM.b||[])].includes(id));
+  const recentIdx=id=>{for(let k=0;k<ms.length;k++){const m=ms[k];if(!(m.abs||[]).includes(id)&&([...(m.a||[]),...(m.b||[])].includes(id)))return k;}return 999;};
+  const pjOf=id=>(S._st&&S._st.P&&S._st.P[id]&&S._st.P[id].pj)||0;
+  const bucket=id=>{
+    if(st.has(id))return 3;
+    const n=cnt(id);
+    if(n<MIN_V&&(playedLast(id)||recentIdx(id)<=2))return 0;
+    if(n<MIN_V)return 1;
+    return 2;
+  };
+  pool.sort((x,y)=>{
+    const bx=bucket(x),by=bucket(y);
+    if(bx!==by)return bx-by;
+    if(bx===0)return recentIdx(x)-recentIdx(y)||pjOf(y)-pjOf(x)||cnt(x)-cnt(y)||Math.random()-.5;
+    if(bx===1)return pjOf(y)-pjOf(x)||cnt(x)-cnt(y)||Math.random()-.5;
+    if(bx===2)return cnt(x)-cnt(y)||recentIdx(x)-recentIdx(y)||Math.random()-.5;
+    return cnt(y)-cnt(x)||Math.random()-.5;
+  });
   const queue=pool.slice(0,TANDA),stale={};queue.forEach(id=>{if(st.has(id))stale[id]=(S.mine.vids||{})[id];});
   return{queue,stale};
 }
