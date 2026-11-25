@@ -1576,7 +1576,8 @@ function vLogin(){
 function vArmar(){
   if(!S.players.size)return emptyPlantel();
   const q=norm(S.q);
-  const ids=sortedIds(activeIds()).filter(id=>!q||norm(name(id)).includes(q));
+  const _P=(S._st&&S._st.P)||{},isSC=id=>/\(\s*s\.?\s*c\.?\s*\)/i.test(name(id));
+  const ids=activeIds().filter(id=>!q||norm(name(id)).includes(q)).sort((a,b)=>(isSC(a)-isSC(b))||((_P[b]?.pj||0)-(_P[a]?.pj||0))||name(a).localeCompare(name(b),'es'));
   const n=S.sel.size;
   const list=ids.map(id=>{const s=S.stats[id];const on=S.sel.has(id);return`<li class="${on?'on':''} ${S.profile===id?'selp':''}" draggable="true" data-drag="${id}">
     <label><input type="checkbox" data-act="sel" data-id="${id}" ${on?'checked':''}>${av(id)}<span class="nm" title="${esc(name(id))}">${esc(name(id))}${bday(id)}</span></label>
