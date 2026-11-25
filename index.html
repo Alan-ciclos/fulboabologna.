@@ -796,6 +796,18 @@ body.needlogin nav.tabs, body.needlogin .me-btn{display:none}
 .gbtn{display:inline-flex;align-items:center;gap:10px;font-size:17px;padding:14px 22px;font-family:var(--f-display);letter-spacing:.06em;text-transform:uppercase}
 .gbtn svg{width:20px;height:20px;background:#fff;border-radius:50%;padding:2px}
 .signout{margin-top:14px;text-align:center}
+
+/* --- cambios lista 1 --- */
+.rk-bar i.rk-gold{background:var(--pitch)}
+.rk-bar i.rk-yel{background:var(--lv2)}
+.rk-bar i.rk-org{background:var(--lv1)}
+.rk-bar i.rk-red{background:var(--lv0)}
+.pill.rk-y{color:var(--lv2);border-color:var(--lv2);background:none}
+.pill.rk-o{color:var(--lv1);border-color:var(--lv1);background:none}
+.pill.rk-r{color:var(--lv0);border-color:var(--lv0);background:none}
+.av.sv-av{width:84px;height:84px;font-size:28px;border:2px solid var(--pitch)}
+.av.sv-av.sv-cut img{object-fit:contain;object-position:center bottom}
+.sv-card-box{margin:12px 0;padding:12px;border-radius:var(--r);background:var(--surface-2);border:1px solid var(--line)}
 </style>
 </head>
 <body>
@@ -904,8 +916,8 @@ const POS7_XY={DC:[50,15],MI:[19,40],MC:[50,44],MD:[81,40],LI:[19,67],DFC:[50,71
 const LINE_OF={def:'D',med:'M',ata:'A',LI:'D',DFC:'D',LD:'D',MI:'M',MC:'M',MD:'M',DC:'A'};
 const SIDE_OF={LI:0,MI:0,LD:2,MD:2};
 const KIT_URL='camiseta.jpg';
-const PROMPT='Usá la selfie que te adjunto de mí y la imagen con las camisetas de Fulbo a Bologna para crear un retrato de futbolista estilo carta coleccionable: de frente, mirando a cámara, desde la cabeza hasta los hombros, centrado, vistiendo una de las dos camisetas de la imagen adjunta —elegí vos entre la titular azul y negra a bastones o la alternativa blanca con la franja diagonal según cuál le quede mejor al jugador, respetando el escudo de Fulbo a Bologna y los detalles dorados—, luz de estudio pareja y expresión confiada. Mantené mi cara exactamente igual, sin cambiar mis rasgos; solo hacé retoques estéticos mínimos si hace falta, como emparejar la luz y el tono de piel o suavizar brillos. Entregalo en PNG de 800 x 1000 px con fondo transparente; si no podés, usá un fondo blanco liso #FFFFFF sin sombras. La cabeza arriba con un poco de margen y los hombros llegando al borde de abajo.';
-const BADGES=[[25,'Hincha de la encuesta'],[10,'Comprometido']];
+const PROMPT='Usá la selfie que te adjunto de mí y la imagen con las camisetas de Fulbo a Bologna para crear un retrato de futbolista estilo carta coleccionable: de frente, mirando a cámara, desde la cabeza hasta los hombros, centrado, vistiendo una de las dos camisetas de la imagen adjunta —elegí vos entre la titular azul y negra a bastones o la alternativa blanca con la franja diagonal según cuál le quede mejor al jugador, respetando el escudo de Fulbo a Bologna y los detalles dorados—, luz de estudio pareja y expresión confiada. Mantené mi cara exactamente igual, sin cambiar mis rasgos; solo hacé retoques estéticos mínimos si hace falta, como emparejar la luz y el tono de piel o suavizar brillos. Entregalo en JPG de 800 x 1000 px con fondo blanco liso #FFFFFF sin sombras (o con fondo transparente si lo permite). La cabeza arriba con un poco de margen y los hombros llegando al borde de abajo.';
+const TOP_BADGES=['DT del grupo','Ojo clínico','El VAR humano','Scouting europeo','Bilardista de ley','Asistente de lujo','Pizarrón en mano','Sabe de fulbo'];
 const CC='AR UY BR CL PY BO PE CO VE EC MX CR PA GT HN SV NI CU DO PR US CA ES IT PT FR DE GB IE NL BE CH AT PL CZ SK HU RO BG GR HR SI RS BA ME MK AL TR UA RU BY LT LV EE FI SE NO DK IS LU MT CY MA DZ TN EG NG SN CM GH CI ML ZA AO MZ KE ET JP KR CN IN PK IR IQ IL LB SY JO SA AE QA AU NZ PH ID VN TH MY SG AD AF AG AM AZ BB BD BF BH BI BJ BN BS BT BW BZ CD CF CG CV DJ DM ER FJ FM GA GD GE GM GN GQ GW GY HT JM KG KH KI KM KN KP KW KZ LA LC LI LK LR LS LY MC MD MG MH MM MN MR MU MV MW NA NE NP NR OM PG PS PW RW SB SC SD SL SM SO SR SS ST SZ TD TG TJ TL TM TO TT TV TW TZ UG UZ VA VC VU WS XK YE ZM ZW HK'.split(' ');
 
 /* ---------- Idiomas ---------- */
@@ -1072,6 +1084,7 @@ const T3=[
  ['Solo un admin puede corregirlo','Solo un admin può correggerlo','Only an admin can change it'],['Resultado guardado','Risultato salvato','Score saved'],['Re-evaluación: ¿sigue igual?','Rivalutazione: è ancora così?','Re-rating: still the same?'],['Sigue igual / Guardar','È uguale / Salva','Still the same / Save'],['Saltear','Salta','Skip'],
  ['Datos de jugador','Dati del giocatore','Player details'],['Sobre mí','Su di me','About me'],['Número de camiseta','Numero di maglia','Shirt number'],['Altura','Altezza','Height'],['Menos','Meno','Less'],['Más','Più','More'],['Altura en cm','Altezza in cm','Height in cm'],['Posiciones','Posizioni','Positions'],['Cambiar foto','Cambia foto','Change photo'],['Cambiar foto personal','Cambia foto personale','Change personal photo'],['Todavía no hay jugadores. Agregalos arriba.','Ancora nessun giocatore. Aggiungili qui sopra.','No players yet. Add them above.'],['Todavía no hay jugadores. Solo los administradores agregan, editan o borran jugadores.','Ancora nessun giocatore. Solo gli amministratori aggiungono, modificano o eliminano giocatori.','No players yet. Only admins add, edit or delete players.'],['La altura tiene que estar entre 140 y 220 cm','L’altezza deve essere tra 140 e 220 cm','Height must be between 140 and 220 cm'],['El número de camiseta va de 1 a 99','Il numero di maglia va da 1 a 99','Shirt number goes from 1 to 99'],
  ['Solo los administradores agregan, editan o borran jugadores.','Solo gli amministratori aggiungono, modificano o eliminano giocatori.','Only admins add, edit or delete players.'],['Admin','Admin','Admin'],['Administrador','Amministratore','Admin'],['Hacer admin','Rendi admin','Make admin'],['Quitar admin','Togli admin','Remove admin'],
+ ['Ver ficha','Vedi scheda','See profile'],['Ocultar ficha','Nascondi scheda','Hide profile'],
 ];
 const I18N={it:{},en:{}};for(const [es,it,en] of T3){I18N.it[es]=it;I18N.en[es]=en;}
 const LV={insuficiente:{it:'insufficiente',en:'not enough'},'mínimo':{it:'minimo',en:'minimum'},bueno:{it:'buono',en:'good'},'óptimo':{it:'ottimo',en:'great'}};
@@ -1173,8 +1186,8 @@ function i18nDom(root){
 }
 const PROMPT_L={
  es:null,
- it:'Usa il selfie che ti allego di me e l’immagine con le maglie di Fulbo a Bologna per creare un ritratto da calciatore in stile figurina da collezione: di fronte, guardando in camera, dalla testa alle spalle, centrato, indossando una delle due maglie dell’immagine allegata —scegli tu tra la prima maglia nerazzurra a strisce o la seconda maglia bianca con la fascia diagonale in base a quale sta meglio al giocatore, rispettando lo stemma di Fulbo a Bologna e i dettagli dorati—, luce da studio uniforme ed espressione sicura. Mantieni il mio viso esattamente uguale, senza cambiare i miei tratti; fai solo ritocchi estetici minimi se serve, come uniformare la luce e il tono della pelle o attenuare i riflessi. Consegnalo in PNG da 800 x 1000 px con sfondo trasparente; se non puoi, usa uno sfondo bianco uniforme #FFFFFF senza ombre. La testa in alto con un po’ di margine e le spalle che arrivano al bordo inferiore.',
- en:'Use the selfie of me I’m attaching and the image with the Fulbo a Bologna shirts to create a footballer portrait in the style of a collectible card: facing forward, looking at the camera, from head to shoulders, centred, wearing one of the two shirts from the attached image —choose between the home blue-and-black striped shirt or the away white shirt with the diagonal sash depending on which suits the player best, keeping the Fulbo a Bologna crest and gold details—, even studio lighting and a confident expression. Keep my face exactly the same, without changing my features; only make minimal cosmetic touch-ups if needed, like evening out the lighting and skin tone or reducing shine. Deliver it as an 800 x 1000 px PNG with a transparent background; if you can’t, use a plain white #FFFFFF background with no shadows. Head at the top with a little margin and the shoulders reaching the bottom edge.'};
+ it:'Usa il selfie che ti allego di me e l’immagine con le maglie di Fulbo a Bologna per creare un ritratto da calciatore in stile figurina da collezione: di fronte, guardando in camera, dalla testa alle spalle, centrato, indossando una delle due maglie dell’immagine allegata —scegli tu tra la prima maglia nerazzurra a strisce o la seconda maglia bianca con la fascia diagonale in base a quale sta meglio al giocatore, rispettando lo stemma di Fulbo a Bologna e i dettagli dorati—, luce da studio uniforme ed espressione sicura. Mantieni il mio viso esattamente uguale, senza cambiare i miei tratti; fai solo ritocchi estetici minimi se serve, come uniformare la luce e il tono della pelle o attenuare i riflessi. Consegnalo in JPG da 800 x 1000 px con sfondo bianco uniforme #FFFFFF senza ombre (o con sfondo trasparente se possibile). La testa in alto con un po’ di margine e le spalle che arrivano al bordo inferiore.',
+ en:'Use the selfie of me I’m attaching and the image with the Fulbo a Bologna shirts to create a footballer portrait in the style of a collectible card: facing forward, looking at the camera, from head to shoulders, centred, wearing one of the two shirts from the attached image —choose between the home blue-and-black striped shirt or the away white shirt with the diagonal sash depending on which suits the player best, keeping the Fulbo a Bologna crest and gold details—, even studio lighting and a confident expression. Keep my face exactly the same, without changing my features; only make minimal cosmetic touch-ups if needed, like evening out the lighting and skin tone or reducing shine. Deliver it as an 800 x 1000 px JPG with a plain white #FFFFFF background with no shadows (or with a transparent background if possible). Head at the top with a little margin and the shoulders reaching the bottom edge.'};
 function promptText(){return PROMPT_L[S.lang]||PROMPT;}
 function monthName(i){try{return new Intl.DateTimeFormat(LOCALE[S.lang],{month:'long',timeZone:'UTC'}).format(Date.UTC(2000,i,1));}catch(_){return MESES[i];}}
 function setLang(l){
@@ -1719,27 +1732,44 @@ function vEncuesta(){
     <span class="qn">${it.n}${it.inv?'<small>acá 5 no es bueno</small>':''}${it.k==='arq'?'<small style="color:var(--muted)">si nunca lo viste atajar, dejalo vacío</small>':''}</span>
     <span class="scale" role="group" aria-label="${it.n}">${[1,2,3,4,5].map(v=>`<button data-act="ans" data-k="${it.k}" data-v="${v}" aria-pressed="${S.ans[it.k]===v}">${v}</button>`).join('')}</span>
     <span class="anch"><span>1 · ${it.lo}</span><span>${it.hi} · 5</span></span></div>`).join('')}</div>`;
+  const inf=info(id),pSrc=inf.photo?photoSrc(inf.photo):'',cSrc=inf.cardPhoto?photoSrc(inf.cardPhoto):'';
+  const bigPh=pSrc?`<span class="av sv-av" style="--av:${avColor(name(id))}"><img src="${pSrc}" alt="" onerror="this.remove()"></span>`
+    :cSrc?`<span class="av sv-av sv-cut" style="--av:${avColor(name(id))}"><img src="${cSrc}" alt="" onerror="this.remove()"></span>`
+    :`<span class="av sv-av" style="--av:${avColor(name(id))}" aria-hidden="true">${esc(initials(name(id)))}</span>`;
   return`<div class="enc"><div class="card">
-   <div class="eval-h"><div class="row" style="flex-wrap:nowrap">${av(id,'lg')}<div><span class="label">${edit?'Editando tu evaluación':known?'Nueva evaluación':isStale?'Re-evaluación: ¿sigue igual?':`Jugador ${i+1} de ${queue.length}`}</span><h2>${esc(name(id))}</h2></div></div>
+   <div class="eval-h"><div class="row" style="flex-wrap:nowrap">${bigPh}<div><span class="label">${edit?'Editando tu evaluación':known?'Nueva evaluación':isStale?'Re-evaluación: ¿sigue igual?':`Jugador ${i+1} de ${queue.length}`}</span><h2>${esc(name(id))}</h2>
+     <div class="row" style="margin-top:8px"><button class="btn small" data-act="skip">${edit||known?'Cancelar':isStale?'Saltear':'No lo conozco lo suficiente'}</button><button class="btn small ghost" data-act="sv-card">${S.surveyCard?'Ocultar ficha':'Ver ficha'}</button></div></div></div>
     <div class="prog">${queue.map((_,j)=>`<i class="${j<i?'done':j===i?'cur':''}"></i>`).join('')}</div></div>
+   ${S.surveyCard?`<div class="sv-card-box">${card(id)}<p class="flip-hint">Tocá la carta para darla vuelta.</p></div>`:''}
    ${Object.keys(GRUPOS).map(grp).join('')}
-   <div class="eval-f"><div class="row"><button class="btn ghost" data-act="skip">${edit||known?'Cancelar':isStale?'Saltear':'No lo conozco lo suficiente'}</button>${!edit&&!known?`<button class="btn small ghost" data-act="finish-survey">Pausar y salir</button>`:''}</div>
+   <div class="eval-f"><div class="row">${!edit&&!known?`<button class="btn small ghost" data-act="finish-survey">Pausar y salir</button>`:''}</div>
     <div class="row"><span class="muted" style="font-size:13px">${canSave?'':S.ans.gen?`Faltan ${8-answered} respuestas`:'Falta el nivel general'}</span><button class="btn primary" data-act="save-vote" ${canSave?'':'disabled'}>${edit?'Guardar cambios':isStale?'Sigue igual / Guardar':(i+1<queue.length||surveyPool().length>1)?'Guardar y seguir':'Guardar y terminar'}</button></div></div>
   </div></div>`;
 }
 function vRanking(){
-  const act=new Set(activeIds()),total=act.size;
+  const act=new Set(activeIds()),total=act.size,maxV=Math.max(1,total-1);
   const rows=[...S.claims.entries()].filter(([pid])=>act.has(pid)).map(([pid,uid])=>{const pr=S.profiles.get(uid)||{};return{pid,v:+pr.votos||0,sk:+pr.pasados||0};});
   rows.sort((a,b)=>b.v-a.v||name(a.pid).localeCompare(name(b.pid),'es'));
   const max=Math.max(1,...rows.map(r=>r.v)),voters=rows.filter(r=>r.v>0),zero=rows.filter(r=>r.v===0);
   const unclaimed=sortedIds([...act].filter(id=>!S.claims.has(id)));
-  const badge=r=>{if(r.v>0&&r.v+r.sk>=total-1)return'DT del grupo';for(const [m,t] of BADGES)if(r.v>=m)return t;return'';};
+  const rkInfo=(r,i)=>{
+    const pct=r.v/maxV;
+    const isTop=i<TOP_BADGES.length&&pct>0.5;
+    let b='',bc='';
+    if(isTop){b=TOP_BADGES[i];bc='rk-b';}
+    else if(pct>0.6){b='';bc='';}
+    else if(pct>0.4){b='dale ponele gana hermano';bc='rk-y';}
+    else if(pct>0.2){b='muy poco comprometido';bc='rk-o';}
+    else{b='un culeado de mierda';bc='rk-r';}
+    const bar=(isTop||pct>0.6)?'rk-gold':pct>0.4?'rk-yel':pct>0.2?'rk-org':'rk-red';
+    return{b,bc,bar};
+  };
   const medal=i=>i<3?`<span class="rk-m" aria-label="Puesto ${i+1}">${['🥇','🥈','🥉'][i]}</span>`:`<span class="rk-m rk-n num">${i+1}</span>`;
-  const li=(r,i)=>{const b=badge(r),me=r.pid===S.myClaim;return`<li class="rk ${me?'me':''}">${medal(i)}${av(r.pid)}<span class="rk-name">${esc(name(r.pid))}${me?' <span class="pill">vos</span>':''}${b?` <span class="pill rk-b">${b}</span>`:''}</span>
-     <span class="rk-bar"><i style="width:${r.v/max*100}%"></i></span><strong class="rk-v num">${r.v}</strong></li>`;};
+  const li=(r,i)=>{const {b,bc,bar}=rkInfo(r,i),me=r.pid===S.myClaim;return`<li class="rk ${me?'me':''}">${medal(i)}${av(r.pid)}<span class="rk-name">${esc(name(r.pid))}${me?' <span class="pill">vos</span>':''}${b?` <span class="pill ${bc}">${b}</span>`:''}</span>
+     <span class="rk-bar"><i class="${bar}" style="width:${r.v/max*100}%"></i></span><strong class="rk-v num">${r.v}</strong></li>`;};
   return`<div class="card ranking"><div class="row" style="justify-content:space-between;align-items:baseline"><h3 style="font-size:24px;text-transform:uppercase">Ranking de encuestadores</h3></div>
    ${voters.length?`<ol class="rk-list">${voters.map(li).join('')}</ol>`:'<p class="muted" style="margin:8px 0 0">Todavía nadie votó. ¡Estrenalo vos!</p>'}
-   ${zero.length?`<p class="label rk-zero" style="margin:14px 0 4px">Todavía no votó</p><ul class="rk-list zero">${zero.map(r=>`<li class="rk">${av(r.pid)}<span class="rk-name">${esc(name(r.pid))}${r.pid===S.myClaim?' <span class="pill">vos</span>':''}</span><span class="pill">0</span></li>`).join('')}</ul>`:''}
+   ${zero.length?`<p class="label rk-zero" style="margin:14px 0 4px">Todavía no votó</p><ul class="rk-list zero">${zero.map(r=>`<li class="rk">${av(r.pid)}<span class="rk-name">${esc(name(r.pid))}${r.pid===S.myClaim?' <span class="pill">vos</span>':''} <span class="pill">todavía ni votó el forrito</span></span><span class="pill">0</span></li>`).join('')}</ul>`:''}
    ${unclaimed.length?`<p class="muted" style="font-size:12px;margin:12px 0 0"><strong>Sin cuenta todavía (${unclaimed.length}):</strong> ${unclaimed.slice(0,25).map(id=>esc(name(id))).join(', ')}${unclaimed.length>25?` y ${unclaimed.length-25} más`:''}. No pueden votar hasta que entren y reclamen su ficha.</p>`:''}
    <p class="muted" style="font-size:11px;margin:10px 0 0">Solo se muestra la cantidad. Nunca a quién evaluó cada uno ni qué notas puso.</p></div>`;
 }
@@ -1905,7 +1935,8 @@ async function updateVote(id,vid,r){return write(()=>S.db.doc('ratings/'+id).upd
 
 /* ----- Plantel ----- */
 function vPlantel(){
-  const ids=sortedIds([...S.players.keys()]);
+  const _P=(S._st&&S._st.P)||{},isSC=id=>/\(\s*s\.?\s*c\.?\s*\)/i.test(name(id));
+  const ids=[...S.players.keys()].sort((a,b)=>(isSC(a)-isSC(b))||((_P[b]?.pj||0)-(_P[a]?.pj||0))||name(a).localeCompare(name(b),'es'));
   const ro=!canManage(),canPhoto=!!S.assets&&!S.demo;
   const photoBtn=(id,txt)=>canPhoto?`<label class="btn small filebtn">${S.uploading===id?'Subiendo…':txt}<input type="file" accept="image/*" data-act="photo" data-id="${id}" aria-label="${txt} de ${esc(name(id))}" ${S.uploading?'disabled':''}></label>`:'';
   const rows=ids.map(id=>{const p=S.players.get(id),s=S.stats[id],inf=info(id);
@@ -2155,19 +2186,19 @@ function buildQueue(){
 }
 function startSurvey(){
   const {queue,stale}=buildQueue();if(!queue.length)return;
-  S.survey={queue,i:0,stale};prefillAns();render();window.scrollTo({top:0});
+  S.survey={queue,i:0,stale};S.surveyCard=false;prefillAns();render();window.scrollTo({top:0});
 }
 async function saveMine(){await S.db.doc(`users/${S.uid}/meta/yo`).set({skip:S.mine.skip});}
 async function nextInSurvey(kind){
   const sv=S.survey,id=sv.queue[sv.i],staleVid=sv.stale&&sv.stale[id];
   if(kind==='vote'){
     const r={...stripAns(S.ans),_t:Date.now()};
-    if(sv.edit){const ok=await updateVote(id,sv.edit,r);if(!ok)return;toast('Evaluación actualizada');S.survey=null;S.ans={};render();window.scrollTo({top:0});return;}
+    if(sv.edit){const ok=await updateVote(id,sv.edit,r);if(!ok)return;toast('Evaluación actualizada');S.survey=null;S.surveyCard=false;S.ans={};render();window.scrollTo({top:0});return;}
     if(staleVid){const ok=await updateVote(id,staleVid,r);if(!ok)return;}
     else{const vid=await saveNewVote(id,r);if(!vid)return;
       S.mine.rated=[...S.mine.rated.filter(x=>x!==id),id];S.mine.skip=S.mine.skip.filter(x=>x!==id);S.mine.vids={...(S.mine.vids||{}),[id]:vid};}
   }else{
-    if(sv.edit||sv.known){S.survey=null;S.ans={};render();return;}
+    if(sv.edit||sv.known){S.survey=null;S.surveyCard=false;S.ans={};render();return;}
     if(!staleVid)S.mine.skip=[...S.mine.skip,id];
   }
   try{await saveMine();}catch(e){}
@@ -2180,10 +2211,10 @@ async function nextInSurvey(kind){
       prefillAns();
       toast('¡Tanda completada! Seguimos con la próxima 💪');
     }else{
-      S.survey=null;S.ans={};
+      S.survey=null;S.surveyCard=false;S.ans={};
       const r=myRank();toast(r?`Tanda terminada. Estás ${r}º en el ranking 🔥`:'Tanda terminada. ¡Gracias!');
     }
-  }else prefillAns();
+  }else{S.surveyCard=false;prefillAns();}
   render();window.scrollTo({top:0,behavior:'smooth'});
 }
 function goTab(t){S.tab=t;if(t!=='yo'){S.editPid=null;}else if(!S.editPid){S.draftFor=null;}try{localStorage.setItem('pech-tab',t==='yo'?'armar':t)}catch(_){}render();}
@@ -2219,10 +2250,11 @@ break;
     case 'exit-demo':S.demo=false;S.players=new Map(S.real.players);S.votes=S.real.votes;S.matches=S.real.matches||[];S.profiles=S.real.profiles||new Map();S.rules=S.real.rules||{sep:[],jun:[]};S.sel.clear();resetTeams();S.profile=null;computeStats();syncClaims();render();break;
     case 'start':startSurvey();break;
     case 'ans':{const k=t.dataset.k,v=+t.dataset.v;if(S.ans[k]===v)delete S.ans[k];else S.ans[k]=v;render();break;}
-    case 'skip':nextInSurvey('skip');break;
-    case 'finish-survey':S.survey=null;S.ans={};render();window.scrollTo({top:0});break;
-    case 'ev-edit':{const vid=(S.mine.vids||{})[id];const v=S.votes.find(x=>x._id===vid);if(!vid){toast('Ese voto no se puede editar');break;}S.ans=stripAns(v&&v.r);S.survey={queue:[id],i:0,edit:vid};render();window.scrollTo({top:0});break;}
-    case 'ev-known':S.ans={};S.survey={queue:[id],i:0,known:true};render();window.scrollTo({top:0});break;
+    case 'sv-card':S.surveyCard=!S.surveyCard;render();break;
+    case 'skip':S.surveyCard=false;nextInSurvey('skip');break;
+    case 'finish-survey':S.survey=null;S.surveyCard=false;S.ans={};render();window.scrollTo({top:0});break;
+    case 'ev-edit':{const vid=(S.mine.vids||{})[id];const v=S.votes.find(x=>x._id===vid);if(!vid){toast('Ese voto no se puede editar');break;}S.ans=stripAns(v&&v.r);S.survey={queue:[id],i:0,edit:vid};S.surveyCard=false;render();window.scrollTo({top:0});break;}
+    case 'ev-known':S.ans={};S.survey={queue:[id],i:0,known:true};S.surveyCard=false;render();window.scrollTo({top:0});break;
     case 'save-vote':nextInSurvey('vote');break;
     case 'addp':{
       const names=($('#newp')?.value||'').split(/\n/).map(cleanLine).filter(Boolean);
