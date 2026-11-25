@@ -557,7 +557,7 @@ body{background:var(--bg);color:var(--ink)}
 h1,h2,h3,.count,.avg,.big,.pc-r,.pc-name,.pc-stats span,.pc-pos,.pc-dor,nav.tabs button,.rk-v,.rk-n,.chip .lvl,.plist .lvl,.mk .n,.chip .no,.p7,.scale button,.team-h h3,.cancha-empty strong,.pitch-note strong,.pc-tier,.metrics td.a,.metrics td.b,.dif{font-family:var(--f-display);font-stretch:normal;font-variation-settings:normal}
 h2,h3{letter-spacing:.02em}
 header.top.hero{position:relative;margin-top:12px;padding:18px 20px;border-radius:14px;border-bottom:2px solid var(--pitch);min-height:150px;align-items:flex-end;
- background:linear-gradient(90deg,rgba(7,9,13,.97) 0%,rgba(7,9,13,.82) 42%,rgba(7,9,13,.25) 100%),url("hero.webp")}
+ background:linear-gradient(90deg,rgba(7,9,13,.97) 0%,rgba(7,9,13,.82) 42%,rgba(7,9,13,.25) 100%),url("hero.webp") right 30%/cover no-repeat}
 .top .brand{align-items:center;gap:16px}
 .top .brand .crest{width:96px;height:auto;flex:none;filter:drop-shadow(0 6px 14px rgba(0,0,0,.5))}
 .top .brand h1.wm{font-family:var(--f-script);font-weight:400;font-stretch:normal;font-variation-settings:normal;font-size:46px;line-height:1;color:var(--pitch);text-transform:none;letter-spacing:0;transform:rotate(-4deg);transform-origin:left bottom}
@@ -849,7 +849,7 @@ try{
 </script>
 <div class="wrap">
   <header class="top hero">
-    <div class="brand"><img class="crest" src="escudo.webp">
+    <div class="brand"><img class="crest" src="escudo.webp" alt="Escudo de Fulbo a Bologna" width="240" height="273"><div class="wm-box"><h1 class="wm">Fulbo a Bologna</h1><small class="motto">Più di un gioco · 7 contra 7</small></div></div>
     <div class="right">
       <nav class="tabs" role="tablist" id="tabs">
         <button role="tab" data-tab="armar" aria-selected="true"><span class="lg">Armar equipos</span><span class="sm">Armar</span></button>
@@ -904,7 +904,7 @@ const POS7_XY={DC:[50,15],MI:[19,40],MC:[50,44],MD:[81,40],LI:[19,67],DFC:[50,71
 const LINE_OF={def:'D',med:'M',ata:'A',LI:'D',DFC:'D',LD:'D',MI:'M',MC:'M',MD:'M',DC:'A'};
 const SIDE_OF={LI:0,MI:0,LD:2,MD:2};
 const KIT_URL='camiseta.jpg';
-const PROMPT='Usá la selfie que te adjunto de mí y la imagen con las camisetas de Fulbo a Bologna para crear un retrato de futbolista estilo carta coleccionable: de frente, mirando a cámara, desde la cabeza hasta los hombros, centrado, vistiendo una de las dos camisetas de la imagen adjunta (la titular azul y negra a bastones o la alternativa blanca con la franja diagonal, respetando el escudo de Fulbo a Bologna y los detalles dorados), luz de estudio pareja y expresión confiada. Mantené mi cara exactamente igual, sin cambiar mis rasgos; solo hacé retoques estéticos mínimos si hace falta, como emparejar la luz y el tono de piel o suavizar brillos. Entregalo en PNG de 800 x 1000 px con fondo transparente; si no podés, usá un fondo verde liso #00B140 sin sombras. La cabeza arriba con un poco de margen y los hombros llegando al borde de abajo.';
+const PROMPT='Usá la selfie que te adjunto de mí y la imagen con las camisetas de Fulbo a Bologna para crear un retrato de futbolista estilo carta coleccionable: de frente, mirando a cámara, desde la cabeza hasta los hombros, centrado, vistiendo una de las dos camisetas de la imagen adjunta —elegí vos entre la titular azul y negra a bastones o la alternativa blanca con la franja diagonal según cuál le quede mejor al jugador, respetando el escudo de Fulbo a Bologna y los detalles dorados—, luz de estudio pareja y expresión confiada. Mantené mi cara exactamente igual, sin cambiar mis rasgos; solo hacé retoques estéticos mínimos si hace falta, como emparejar la luz y el tono de piel o suavizar brillos. Entregalo en PNG de 800 x 1000 px con fondo transparente; si no podés, usá un fondo blanco liso #FFFFFF sin sombras. La cabeza arriba con un poco de margen y los hombros llegando al borde de abajo.';
 const BADGES=[[25,'Hincha de la encuesta'],[10,'Comprometido']];
 const CC='AR UY BR CL PY BO PE CO VE EC MX CR PA GT HN SV NI CU DO PR US CA ES IT PT FR DE GB IE NL BE CH AT PL CZ SK HU RO BG GR HR SI RS BA ME MK AL TR UA RU BY LT LV EE FI SE NO DK IS LU MT CY MA DZ TN EG NG SN CM GH CI ML ZA AO MZ KE ET JP KR CN IN PK IR IQ IL LB SY JO SA AE QA AU NZ PH ID VN TH MY SG AD AF AG AM AZ BB BD BF BH BI BJ BN BS BT BW BZ CD CF CG CV DJ DM ER FJ FM GA GD GE GM GN GQ GW GY HT JM KG KH KI KM KN KP KW KZ LA LC LI LK LR LS LY MC MD MG MH MM MN MR MU MV MW NA NE NP NR OM PG PS PW RW SB SC SD SL SM SO SR SS ST SZ TD TG TJ TL TM TO TT TV TW TZ UG UZ VA VC VU WS XK YE ZM ZW HK'.split(' ');
 
@@ -1017,9 +1017,9 @@ const T3=[
  ['Descargar camisetas','Scarica maglie','Download shirts'],['⬇ Descargar camisetas','⬇ Scarica maglie','⬇ Download shirts'],
  ['Copiá el prompt, abrí','Copia il prompt, apri','Copy the prompt, open'],[', pegalo y adjuntá tu selfie junto con la imagen de las camisetas.',', incollalo e allega il tuo selfie insieme all’immagine delle maglie.',', paste it and attach your selfie along with the shirts image.'],
  ['Copiar prompt','Copia prompt','Copy prompt'],['Copiado ✓','Copiato ✓','Copied ✓'],['Ver prompt','Vedi prompt','See prompt'],['Descargá la imagen y subila acá.','Scarica l’immagine e caricala qui.','Download the image and upload it here.'],['Subir foto','Carica foto','Upload photo'],['Subir otra','Caricane un’altra','Upload another'],
- ['¡Quedó sin fondo!','Senza sfondo!','Background removed!'],['Ojo: la imagen tiene fondo','Attenzione: l’immagine ha lo sfondo','Heads up: the image has a background'],['Le saqué el fondo verde.','Ho tolto lo sfondo verde.','I removed the green background.'],['Mirá cómo queda en la carta.','Guarda come viene sulla carta.','See how it looks on the card.'],
- ['Le saqué el fondo verde. Mirá cómo queda en la carta.','Ho tolto lo sfondo verde. Guarda come viene sulla carta.','I removed the green background. See how it looks on the card.'],
- ['No es transparente ni verde liso. Podés pedirle a ChatGPT que la rehaga o usarla igual.','Non è trasparente né verde uniforme. Puoi chiedere a ChatGPT di rifarla o usarla così.','It’s neither transparent nor plain green. Ask ChatGPT to redo it or use it anyway.'],
+ ['¡Quedó sin fondo!','Senza sfondo!','Background removed!'],['Ojo: la imagen tiene fondo','Attenzione: l’immagine ha lo sfondo','Heads up: the image has a background'],['Le saqué el fondo blanco.','Ho tolto lo sfondo bianco.','I removed the white background.'],['Mirá cómo queda en la carta.','Guarda come viene sulla carta.','See how it looks on the card.'],
+ ['Le saqué el fondo blanco. Mirá cómo queda en la carta.','Ho tolto lo sfondo bianco. Guarda come viene sulla carta.','I removed the white background. See how it looks on the card.'],
+ ['No es transparente ni blanco liso. Podés pedirle a ChatGPT que la rehaga o usarla igual.','Non è trasparente né bianco uniforme. Puoi chiedere a ChatGPT di rifarla o usarla così.','It’s neither transparent nor plain white. Ask ChatGPT to redo it or use it anyway.'],
  ['Usar esta foto','Usa questa foto','Use this photo'],['Elegir otra','Scegline un’altra','Choose another'],['¿Así queda bien?','Va bene così?','Does it look right?'],['Subiendo…','Caricamento…','Uploading…'],['Procesando…','Elaborazione…','Processing…'],
  ['Necesitás permiso de editor para subir fotos.','Ti serve il permesso di editor per caricare foto.','You need editor permission to upload photos.'],
  ['Posición preferida','Posizione preferita','Preferred position'],['Elegí tu posición en la cancha de 7','Scegli la tua posizione nel campo da 7','Pick your position on the 7-a-side pitch'],['Ataque ↑','Attacco ↑','Attack ↑'],['Tocá tu posición','Tocca la tua posizione','Tap your position'],
@@ -1173,8 +1173,8 @@ function i18nDom(root){
 }
 const PROMPT_L={
  es:null,
- it:'Usa il selfie che ti allego di me e l’immagine con le maglie di Fulbo a Bologna per creare un ritratto da calciatore in stile figurina da collezione: di fronte, guardando in camera, dalla testa alle spalle, centrato, indossando una delle due maglie dell’immagine allegata (la prima maglia nerazzurra a strisce o la seconda maglia bianca con la fascia diagonale, rispettando lo stemma di Fulbo a Bologna e i dettagli dorati), luce da studio uniforme ed espressione sicura. Mantieni il mio viso esattamente uguale, senza cambiare i miei tratti; fai solo ritocchi estetici minimi se serve, come uniformare la luce e il tono della pelle o attenuare i riflessi. Consegnalo in PNG da 800 x 1000 px con sfondo trasparente; se non puoi, usa uno sfondo verde uniforme #00B140 senza ombre. La testa in alto con un po’ di margine e le spalle che arrivano al bordo inferiore.',
- en:'Use the selfie of me I’m attaching and the image with the Fulbo a Bologna shirts to create a footballer portrait in the style of a collectible card: facing forward, looking at the camera, from head to shoulders, centred, wearing one of the two shirts from the attached image (either the home blue-and-black striped shirt or the away white shirt with the diagonal sash, keeping the Fulbo a Bologna crest and gold details), even studio lighting and a confident expression. Keep my face exactly the same, without changing my features; only make minimal cosmetic touch-ups if needed, like evening out the lighting and skin tone or reducing shine. Deliver it as an 800 x 1000 px PNG with a transparent background; if you can’t, use a plain green #00B140 background with no shadows. Head at the top with a little margin and the shoulders reaching the bottom edge.'};
+ it:'Usa il selfie che ti allego di me e l’immagine con le maglie di Fulbo a Bologna per creare un ritratto da calciatore in stile figurina da collezione: di fronte, guardando in camera, dalla testa alle spalle, centrato, indossando una delle due maglie dell’immagine allegata —scegli tu tra la prima maglia nerazzurra a strisce o la seconda maglia bianca con la fascia diagonale in base a quale sta meglio al giocatore, rispettando lo stemma di Fulbo a Bologna e i dettagli dorati—, luce da studio uniforme ed espressione sicura. Mantieni il mio viso esattamente uguale, senza cambiare i miei tratti; fai solo ritocchi estetici minimi se serve, come uniformare la luce e il tono della pelle o attenuare i riflessi. Consegnalo in PNG da 800 x 1000 px con sfondo trasparente; se non puoi, usa uno sfondo bianco uniforme #FFFFFF senza ombre. La testa in alto con un po’ di margine e le spalle che arrivano al bordo inferiore.',
+ en:'Use the selfie of me I’m attaching and the image with the Fulbo a Bologna shirts to create a footballer portrait in the style of a collectible card: facing forward, looking at the camera, from head to shoulders, centred, wearing one of the two shirts from the attached image —choose between the home blue-and-black striped shirt or the away white shirt with the diagonal sash depending on which suits the player best, keeping the Fulbo a Bologna crest and gold details—, even studio lighting and a confident expression. Keep my face exactly the same, without changing my features; only make minimal cosmetic touch-ups if needed, like evening out the lighting and skin tone or reducing shine. Deliver it as an 800 x 1000 px PNG with a transparent background; if you can’t, use a plain white #FFFFFF background with no shadows. Head at the top with a little margin and the shoulders reaching the bottom edge.'};
 function promptText(){return PROMPT_L[S.lang]||PROMPT;}
 function monthName(i){try{return new Intl.DateTimeFormat(LOCALE[S.lang],{month:'long',timeZone:'UTC'}).format(Date.UTC(2000,i,1));}catch(_){return MESES[i];}}
 function setLang(l){
@@ -1972,7 +1972,7 @@ function vYo(){
        <div class="row" style="margin-top:8px"><button class="btn primary small" data-act="yphoto-ok" ${busy?'disabled':''}>${S.uploading==='yo'?'Subiendo…':'Usar esta foto'}</button><label class="btn small filebtn">Elegir otra<input type="file" accept="image/*" data-act="yphoto"></label><button class="btn small ghost" data-act="yphoto-cancel">Cancelar</button></div></div></div>`:''}`;
   const pc=S.pendingCard;
   const cardPrev=pc?`<div class="pp"><div class="cut-prev"><img src="${pc.url}" alt="Vista previa de la foto de jugador"></div><div style="flex:1;min-width:160px"><strong>${pc.transparent?'¡Quedó sin fondo!':'Ojo: la imagen tiene fondo'}</strong>
-       <p class="muted" style="margin:2px 0 8px;font-size:13px">${pc.transparent?(pc.keyed?'Le saqué el fondo verde. ':'')+'Mirá cómo queda en la carta.':'No es transparente ni verde liso. Podés pedirle a ChatGPT que la rehaga o usarla igual.'}</p>
+       <p class="muted" style="margin:2px 0 8px;font-size:13px">${pc.transparent?(pc.keyed?'Le saqué el fondo blanco. ':'')+'Mirá cómo queda en la carta.':'No es transparente ni blanco liso. Podés pedirle a ChatGPT que la rehaga o usarla igual.'}</p>
        <div class="row"><button class="btn primary small" data-act="ycard-ok" ${busy?'disabled':''}>${S.uploading==='card'?'Subiendo…':'Usar esta foto'}</button><button class="btn small ghost" data-act="ycard-cancel">Cancelar</button></div></div></div>`:'';
   const upCard=txt=>canPhoto?`<label class="btn small filebtn">${S.uploading==='proc'?'Procesando…':txt}<input type="file" accept="image/png,image/webp,image/jpeg" data-act="ycard" ${busy?'disabled':''}></label>`:'';
   const cardPhoto=`<div class="card-photo-row"><span class="ph-lab">De jugador</span><div class="cut-prev sm">${d.cardPhoto&&photoSrc(d.cardPhoto)?`<img src="${photoSrc(d.cardPhoto)}" alt="" onerror="this.remove()">`:'<span>Sin foto</span>'}</div>
@@ -2029,7 +2029,7 @@ function vYo(){
   </div>${modal}`;
 }
 async function loadImg(url){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=url;});}
-/* Foto de jugador: 800x1000 PNG, se quita el fondo verde liso si lo tiene */
+/* Foto de jugador: 800x1000 PNG, se quita el fondo blanco liso desde los bordes (sin borrar la camiseta blanca) */
 async function makeCardPhoto(file){
   const url=URL.createObjectURL(file);
   try{
@@ -2040,14 +2040,19 @@ async function makeCardPhoto(file){
     const at=(x,y)=>{const i=(y*W+x)*4;return[px[i],px[i+1],px[i+2],px[i+3]];};
     const corners=[at(4,4),at(W-5,4),at(4,Math.floor(H/2)),at(W-5,Math.floor(H/2))];
     const transparentBg=corners.filter(c=>c[3]<30).length>=2;
-    const greenBg=!transparentBg&&corners.filter(([r,g,b,a])=>a>200&&g>90&&g>r*1.35&&g>b*1.35).length>=2;
-    if(greenBg){
-      for(let i=0;i<px.length;i+=4){const r=px[i],g=px[i+1],b=px[i+2],m=Math.max(r,b);
-        if(g>70&&g>m*1.2){const k=Math.min(1,(g-m*1.2)/45);px[i+3]=Math.round(px[i+3]*(1-k));px[i+1]=Math.min(g,Math.round(m*1.05));}}
+    const isWhite=([r,g,b,a])=>a>200&&r>232&&g>232&&b>232&&Math.max(r,g,b)-Math.min(r,g,b)<22;
+    const whiteBg=!transparentBg&&corners.filter(isWhite).length>=2;
+    if(whiteBg){
+      const vis=new Uint8Array(W*H),q=new Int32Array(W*H);let qs=0,qe=0;
+      const push=(x,y)=>{const p=y*W+x;if(vis[p])return;const i=p*4;if(px[i+3]>200&&px[i]>225&&px[i+1]>225&&px[i+2]>225&&Math.max(px[i],px[i+1],px[i+2])-Math.min(px[i],px[i+1],px[i+2])<28){vis[p]=1;q[qe++]=p;}};
+      for(let x=0;x<W;x++){push(x,0);push(x,H-1);}
+      for(let y=0;y<H;y++){push(0,y);push(W-1,y);}
+      while(qs<qe){const p=q[qs++],x=p%W,y=(p-x)/W;px[p*4+3]=0;
+        if(x>0)push(x-1,y);if(x+1<W)push(x+1,y);if(y>0)push(x,y-1);if(y+1<H)push(x,y+1);}
       ctx.putImageData(data,0,0);
     }
     const blob=await new Promise(res=>c.toBlob(res,'image/png'));
-    return{blob,keyed:greenBg,transparent:transparentBg||greenBg};
+    return{blob,keyed:whiteBg,transparent:transparentBg||whiteBg};
   }finally{URL.revokeObjectURL(url);}
 }
 function copyText(txt,okMsg){
